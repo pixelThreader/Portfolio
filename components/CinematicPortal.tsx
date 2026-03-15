@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { useRef } from "react";
 import { Instagram, Menu } from "lucide-react";
+import Image from "next/image";
 
 export default function CinematicPortal() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -40,11 +41,12 @@ export default function CinematicPortal() {
           className="absolute inset-0 w-full h-full"
           style={{ scale: bgScale }}
         >
-          <img 
+          <Image 
             src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=3540&auto=format&fit=crop" 
             alt="Mountain Landscape" 
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
+            fill
+            className="object-cover"
+            priority
           />
         </motion.div>
 
@@ -72,7 +74,7 @@ export default function CinematicPortal() {
             <Menu className="w-5 h-5 pointer-events-auto cursor-pointer" />
           </header>
           
-          <div className="flex flex-col items-center justify-center flex-grow">
+          <div className="flex flex-col items-center justify-center grow">
             <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl font-light tracking-tight text-white mb-4">
               Reality
             </h1>
@@ -82,7 +84,7 @@ export default function CinematicPortal() {
           </div>
 
           <footer className="flex justify-between items-end w-full">
-            <div className="text-xs tracking-[0.1em] text-gray-400 max-w-xs">
+            <div className="text-xs tracking-widest text-gray-400 max-w-xs">
               A cinematic exploration of space and depth through the digital medium.
             </div>
             <Instagram className="w-5 h-5 text-gray-400 pointer-events-auto cursor-pointer" />
@@ -101,12 +103,12 @@ export default function CinematicPortal() {
               "https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=2000&auto=format&fit=crop",
               "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2000&auto=format&fit=crop"
             ].map((src, i) => (
-              <div key={i} className="group relative aspect-[3/4] overflow-hidden bg-gray-900 cursor-pointer">
-                <img 
+              <div key={i} className="group relative aspect-3/4 overflow-hidden bg-gray-900 cursor-pointer">
+                <Image 
                   src={src} 
                   alt={`Work ${i + 1}`} 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  referrerPolicy="no-referrer"
+                  fill
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:opacity-0" />
                 <div className="absolute bottom-6 left-6">
