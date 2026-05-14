@@ -2,61 +2,92 @@
 
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { useRef } from "react";
-import { Instagram, Menu } from "lucide-react";
-import Image from "next/image";
 
 export default function CinematicPortal() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
   });
 
   const springProgress = useSpring(scrollYProgress, {
     stiffness: 50,
-    damping: 20
+    damping: 20,
   });
 
-  // Mask scale: starts at 1, grows to 40
-  const maskScale = useTransform(springProgress, [0, 0.8], [1, 40]);
-  
-  // Background image scale: 1.2 to 1.0
-  const bgScale = useTransform(springProgress, [0, 1], [1.2, 1]);
+  // Mask scale: starts at 1, grows to 50
+  const maskScale = useTransform(springProgress, [0, 0.7], [1, 50]);
 
-  // Text opacity and y position
-  const textOpacity = useTransform(springProgress, [0, 0.3], [1, 0]);
-  const textY = useTransform(springProgress, [0, 0.3], [0, -100]);
+  // Background parallax
+  const bgY = useTransform(springProgress, [0, 1], ["0%", "-20%"]);
+  const bgScale = useTransform(springProgress, [0, 1], [1.1, 1]);
 
-  // Gallery opacity
-  const galleryOpacity = useTransform(springProgress, [0.8, 1], [0, 1]);
-  const galleryY = useTransform(springProgress, [0.8, 1], [50, 0]);
-  const galleryPointerEvents = useTransform(galleryOpacity, (val) => val > 0.1 ? "auto" : "none");
+  // Text animation
+  const textOpacity = useTransform(springProgress, [0, 0.25], [1, 0]);
+  const textY = useTransform(springProgress, [0, 0.25], [0, -80]);
+  const textScale = useTransform(springProgress, [0, 0.25], [1, 0.95]);
+
+  // About section reveal
+  const aboutOpacity = useTransform(springProgress, [0.65, 0.85], [0, 1]);
+  const aboutY = useTransform(springProgress, [0.65, 0.85], [80, 0]);
+
+  // Scroll indicator
+  const scrollIndicatorOpacity = useTransform(springProgress, [0, 0.1], [1, 0]);
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-[#0a0a0a] text-white font-sans">
+    <div ref={containerRef} className="relative h-[500vh] bg-background text-foreground">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        
-        {/* Background Layer (The Dream) */}
-        <motion.div 
+        {/* Atmospheric Background (revealed by circle) */}
+        <motion.div
           className="absolute inset-0 w-full h-full"
-          style={{ scale: bgScale }}
+          style={{ y: bgY, scale: bgScale }}
         >
-          <Image 
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=3540&auto=format&fit=crop" 
-            alt="Mountain Landscape" 
-            fill
-            className="object-cover"
-            priority
+          {/* Layered gradient atmosphere */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0015] via-[#110025] to-[#0a0015]" />
+
+          {/* Floating orbs */}
+          <div
+            className="absolute top-[20%] left-[15%] w-[400px] h-[400px] rounded-full opacity-30"
+            style={{
+              background: "radial-gradient(circle, rgba(188,19,254,0.3) 0%, transparent 70%)",
+              animation: "float 8s ease-in-out infinite",
+            }}
+          />
+          <div
+            className="absolute bottom-[15%] right-[10%] w-[350px] h-[350px] rounded-full opacity-20"
+            style={{
+              background: "radial-gradient(circle, rgba(224,64,251,0.3) 0%, transparent 70%)",
+              animation: "float 10s ease-in-out infinite 2s",
+            }}
+          />
+          <div
+            className="absolute top-[50%] left-[60%] w-[250px] h-[250px] rounded-full opacity-15"
+            style={{
+              background: "radial-gradient(circle, rgba(138,43,226,0.4) 0%, transparent 70%)",
+              animation: "float 7s ease-in-out infinite 1s",
+            }}
+          />
+
+          {/* Subtle grid pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(188,19,254,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(188,19,254,0.3) 1px, transparent 1px)",
+              backgroundSize: "80px 80px",
+            }}
           />
         </motion.div>
 
-        {/* Foreground Mask Layer (The Reality) */}
-        <motion.div 
-          className="absolute inset-0 w-full h-full bg-[#0a0a0a] origin-center flex items-center justify-center pointer-events-none"
-          style={{ 
+        {/* Foreground Mask Layer — The Circle Reveal */}
+        <motion.div
+          className="absolute inset-0 w-full h-full bg-background origin-center pointer-events-none"
+          style={{
             scale: maskScale,
-            WebkitMaskImage: "radial-gradient(circle, transparent 150px, black 151px)",
-            maskImage: "radial-gradient(circle, transparent 150px, black 151px)",
+            WebkitMaskImage:
+              "radial-gradient(circle, transparent 150px, black 151px)",
+            maskImage:
+              "radial-gradient(circle, transparent 150px, black 151px)",
             WebkitMaskRepeat: "no-repeat",
             maskRepeat: "no-repeat",
             WebkitMaskPosition: "center",
@@ -64,58 +95,135 @@ export default function CinematicPortal() {
           }}
         />
 
-        {/* UI Layer */}
-        <motion.div 
-          className="absolute inset-0 flex flex-col justify-between p-8 md:p-12 pointer-events-none"
-          style={{ opacity: textOpacity, y: textY }}
+        {/* Hero Content Layer */}
+        <motion.div
+          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-6"
+          style={{ opacity: textOpacity, y: textY, scale: textScale }}
         >
-          <header className="flex justify-between items-center w-full">
-            <div className="text-xs tracking-[0.2em] uppercase font-medium">Studio</div>
-            <Menu className="w-5 h-5 pointer-events-auto cursor-pointer" />
-          </header>
-          
-          <div className="flex flex-col items-center justify-center grow">
-            <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl font-light tracking-tight text-white mb-4">
-              Reality
-            </h1>
-            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-gray-400">
-              Scroll to enter the dream
-            </p>
-          </div>
+          {/* Top label */}
+          <motion.p
+            className="text-[10px] md:text-[11px] tracking-[0.5em] uppercase text-foreground/30 font-light mb-8"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.5, duration: 0.8 }}
+          >
+            AI Engineer • Full Stack Developer • System Builder
+          </motion.p>
 
-          <footer className="flex justify-between items-end w-full">
-            <div className="text-xs tracking-widest text-gray-400 max-w-xs">
-              A cinematic exploration of space and depth through the digital medium.
-            </div>
-            <Instagram className="w-5 h-5 text-gray-400 pointer-events-auto cursor-pointer" />
-          </footer>
+          {/* Main heading */}
+          <motion.h1
+            className="font-serif text-5xl sm:text-6xl md:text-8xl lg:text-[8rem] xl:text-[9rem] font-normal tracking-tight text-center leading-[0.9]"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.7, duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <span className="block">Building</span>
+            <span className="block gradient-text mt-2">Intelligent</span>
+            <span className="block mt-2">Systems</span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            className="mt-8 md:mt-12 text-xs md:text-sm tracking-[0.2em] uppercase text-foreground/40 font-light text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3.2, duration: 0.8 }}
+          >
+            Piyush — <span className="text-neon/60">pixelThreader</span>
+          </motion.p>
         </motion.div>
 
-        {/* Gallery Section */}
-        <motion.div 
-          className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-black/40 backdrop-blur-md p-8"
-          style={{ opacity: galleryOpacity, y: galleryY, pointerEvents: galleryPointerEvents }}
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          style={{ opacity: scrollIndicatorOpacity }}
         >
-          <h2 className="font-serif text-4xl md:text-6xl font-light mb-12 text-white">Selected Works</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
-            {[
-              "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=2000&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=2000&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2000&auto=format&fit=crop"
-            ].map((src, i) => (
-              <div key={i} className="group relative aspect-3/4 overflow-hidden bg-gray-900 cursor-pointer">
-                <Image 
-                  src={src} 
-                  alt={`Work ${i + 1}`} 
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:opacity-0" />
-                <div className="absolute bottom-6 left-6">
-                  <p className="text-xs tracking-[0.2em] uppercase text-white/90">Project 0{i + 1}</p>
-                </div>
+          <motion.p
+            className="text-[9px] tracking-[0.4em] uppercase text-foreground/25 font-light"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3.5, duration: 0.8 }}
+          >
+            Scroll to explore
+          </motion.p>
+          <motion.div
+            className="w-[1px] h-8 bg-gradient-to-b from-neon/40 to-transparent"
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: 1 }}
+            transition={{ delay: 3.8, duration: 0.6 }}
+            style={{ transformOrigin: "top" }}
+          />
+        </motion.div>
+
+        {/* About Section — appears after scroll reveal */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center p-6 md:p-12"
+          style={{ opacity: aboutOpacity, y: aboutY }}
+        >
+          <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Profile Card */}
+            <div className="md:col-span-1 glass rounded-3xl p-8 flex flex-col items-center text-center">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-neon/30 to-magenta/30 border border-neon/20 flex items-center justify-center mb-5">
+                <span className="text-3xl font-serif gradient-text">P</span>
               </div>
-            ))}
+              <h3 className="text-lg font-light tracking-wide">Piyush</h3>
+              <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mt-1">
+                pixelThreader
+              </p>
+              <div className="mt-6 w-full space-y-3">
+                {[
+                  { label: "Focus", value: "AI & Systems" },
+                  { label: "Stack", value: "Full Stack" },
+                  { label: "Passion", value: "Deep Learning" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex justify-between items-center text-xs py-2 border-b border-foreground/5"
+                  >
+                    <span className="text-foreground/30 uppercase tracking-wider text-[10px]">
+                      {item.label}
+                    </span>
+                    <span className="text-foreground/70">{item.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* About Text Card */}
+            <div className="md:col-span-2 glass rounded-3xl p-8 flex flex-col justify-center">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-neon/50 mb-4">
+                About
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-normal leading-snug mb-6">
+                Engineering ideas into{" "}
+                <span className="gradient-text">reality</span>
+              </h2>
+              <p className="text-sm md:text-base text-foreground/50 leading-relaxed font-light">
+                I'm an AI Engineer and Full Stack Developer who builds
+                intelligent, production-grade systems. From deep learning
+                architectures to scalable web platforms, I craft solutions that
+                push the boundary between innovation and execution. I think in
+                systems, design with intention, and build for the future.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {[
+                  "Next.js",
+                  "React",
+                  "TypeScript",
+                  "Python",
+                  "AI/ML",
+                  "Deep Learning",
+                  "System Design",
+                ].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1.5 text-[10px] tracking-wider uppercase rounded-full border border-foreground/10 text-foreground/40 hover:border-neon/30 hover:text-foreground/60 transition-colors duration-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
