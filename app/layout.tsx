@@ -1,67 +1,60 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Playfair_Display } from "next/font/google";
+import { Merienda, Merriweather } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import Header from "@/components/widgets/Header";
+import Footer from "@/components/widgets/Footer";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
-import Navigation from "@/components/Navigation";
-import Preloader from "@/components/Preloader";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const merienda = Merienda({
+    variable: "--font-merienda",
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const merriweather = Merriweather({
+    variable: "--font-merriweather",
+    subsets: ["latin"],
+    weight: ["300", "400", "700", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "Piyush | pixelThreader — AI Engineer & Full Stack Developer",
-  description:
-    "Portfolio of Piyush (pixelThreader) — AI Engineer, Full Stack Developer, and System Builder crafting intelligent digital experiences.",
-  keywords: [
-    "AI Engineer",
-    "Full Stack Developer",
-    "Deep Learning",
-    "System Design",
-    "Next.js",
-    "Portfolio",
-    "pixelThreader",
-    "Piyush",
-  ],
-  authors: [{ name: "Piyush (pixelThreader)" }],
-  openGraph: {
-    title: "Piyush | pixelThreader — AI Engineer & Full Stack Developer",
-    description: "Engineering ideas into reality. AI • Systems • Experiences.",
-    type: "website",
-  },
+    title: "pixelThreader: AI Engineer & Full Stack Developer",
+    description:
+        "Portfolio of pixelThreader: AI Engineer, Full Stack Developer, and System Builder crafting intelligent digital experiences.",
+    keywords: [
+        "AI Engineer",
+        "Full Stack Developer",
+        "Deep Learning",
+        "System Design",
+        "Next.js",
+        "Portfolio",
+        "pixelThreader",
+        "Piyush",
+    ],
+    authors: [{ name: "pixelThreader" }],
+    openGraph: {
+        title: "pixelThreader: AI Engineer & Full Stack Developer",
+        description: "Engineering ideas into reality. AI • Systems • Experiences.",
+        type: "website",
+    },
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" className="dark">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased min-h-screen`}
-      >
-        <SmoothScroll>
-          <Preloader />
-          <Navigation />
-          {children}
-        </SmoothScroll>
-        <Analytics />
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" className="dark scroll-smooth">
+            <body
+                className={`${merienda.variable} ${merriweather.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
+            >
+                <Header />
+                <main className="flex-1 w-full flex flex-col">
+                    {children}
+                </main>
+                <Analytics />
+            </body>
+        </html>
+    );
 }
