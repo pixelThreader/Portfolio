@@ -207,8 +207,7 @@ Keep learning relentlessly.
 
 ## ⚡ Final Note
 
-> Trends come and go.  
-> Strong fundamentals and execution stay forever.
+> I Think.... I Plan... I Code.... I Enjoy...
 
 ### — pixelThreader
 
