@@ -7,7 +7,7 @@ export default function Home() {
         <main className="w-full grow relative overflow-hidden flex flex-col justify-center bg-background min-h-[calc(100vh-100px)]">
             
             {/* Massive Background Flowers */}
-            <div className="fixed top-[30%] left-0 -translate-x-[55%] -translate-y-1/2 pointer-events-none z-0">
+            <div className="fixed top-0 left-0 -translate-x-[50%] -translate-y-1/2 pointer-events-none z-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/flower_pattern.png"
@@ -15,7 +15,7 @@ export default function Home() {
                 />
             </div>
 
-            <div className="fixed bottom-0 right-0 translate-x-[35%] translate-y-[25%] pointer-events-none z-0">
+            <div className="fixed bottom-0 right-0 translate-x-[50%] translate-y-[10%] pointer-events-none z-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/flower_pattern.png"
