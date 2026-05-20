@@ -30,10 +30,10 @@ export default function Header() {
                         />
                     </div>
                     <span className="font-title text-xl md:text-2xl font-bold tracking-wide select-none">
-                        <span className="text-white font-normal group-hover:text-white/95 transition-colors">pixel</span>
+                        <span className="text-white font-bold group-hover:text-white/95 transition-colors">pixel</span>
                         <span className="inline-block whitespace-nowrap">
-                            <span className="gradient-text font-bold pl-1">Threader</span>
-                            <span className="text-magenta font-black">.</span>
+                            <span className="brand-gradient font-bold pl-1">Threader</span>
+                            <span className="text-white">.</span>
                         </span>
                     </span>
                 </Link>

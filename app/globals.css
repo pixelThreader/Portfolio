@@ -237,6 +237,20 @@ html.lenis, html.lenis body {
   background-clip: text;
 }
 
+@utility brand-gradient {
+  background: linear-gradient(to right, #D0197E 23%, #D606C8 62%, #A94365 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brand-gradient {
+  background: linear-gradient(to right, #D0197E 23%, #D606C8 62%, #A94365 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
 @utility ambient-bg {
   background-image:
     radial-gradient(circle at 20% 20%, rgba(138, 43, 226, 0.12) 0%, transparent 50%),

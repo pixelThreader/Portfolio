@@ -30,9 +30,9 @@ export default function Home() {
                     
                     {/* Big Heading */}
                     <h1 className="font-title text-[56px] sm:text-[76px] lg:text-[92px] font-bold leading-none tracking-tight select-none whitespace-nowrap">
-                        <span className="text-white font-normal">pixel</span>
-                        <span className="gradient-text font-extrabold pl-1">Threader</span>
-                        <span className="text-magenta font-black">.</span>
+                        <span className="text-white font-bold">pixel</span>
+                        <span className="brand-gradient font-bold px-1">Threader</span>
+                        <span className="text-white">.</span>
                     </h1>
 
                     {/* Capsule Tag Pills */}
@@ -54,7 +54,7 @@ export default function Home() {
 
                     {/* Action Buttons */}
                     <div className="mt-4">
-                        <ButtonGroup gap="gap-[16px] sm:gap-[24px]">
+                        <ButtonGroup gap="gap-[8px] sm:gap-[12px]">
                             {["Explore", "Blogs", "Projects"].map((btn) => (
                                 <CustomLink key={btn} href={`#${btn.toLowerCase()}`}>
                                     {btn}

@@ -11,7 +11,7 @@ export function ButtonGroup({
   children, 
   selected, 
   onSelect, 
-  gap = "gap-3 sm:gap-[24px]", // Spacing as per design
+  gap = "gap-1.5 sm:gap-[12px]", // Spacing reduced by 50%
   className = "" 
 }: {
   children: React.ReactNode,
