@@ -1,19 +1,20 @@
 import Image from "next/image";
-import Link from "next/link";
+import NextLink from "next/link";
+import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
 
 export default function Home() {
     return (
         <main className="w-full grow relative overflow-hidden flex flex-col justify-center bg-background min-h-[calc(100vh-100px)]">
             
             {/* Massive Background Flowers */}
-            <div className="fixed top-0 left-0 -translate-x-[50%] -translate-y-1/2 pointer-events-none z-0">
+            <div className="fixed top-[30%] left-0 -translate-x-[55%] -translate-y-1/2 pointer-events-none z-0">
                 <img
                     src="/flower_pattern.png"
                     alt=""
                 />
             </div>
 
-            <div className="fixed bottom-0 right-0 translate-x-[50%] translate-y-[25%] pointer-events-none z-0">
+            <div className="fixed bottom-0 right-0 translate-x-[35%] translate-y-[25%] pointer-events-none z-0">
                 <img
                     src="/flower_pattern.png"
                     alt=""
@@ -28,9 +29,9 @@ export default function Home() {
                     
                     {/* Big Heading */}
                     <h1 className="font-title text-[56px] sm:text-[76px] lg:text-[92px] font-bold leading-none tracking-tight select-none whitespace-nowrap">
-                        <span className="text-white font-bold">pixel</span>
-                        <span className="gradient-text font-bold pl-1 pr-1">Threader</span>
-                        <span className="text-white">.</span>
+                        <span className="text-white font-normal">pixel</span>
+                        <span className="gradient-text font-extrabold pl-1">Threader</span>
+                        <span className="text-magenta font-black">.</span>
                     </h1>
 
                     {/* Capsule Tag Pills */}
@@ -52,16 +53,14 @@ export default function Home() {
                     </p>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-wrap gap-5 w-full sm:w-auto">
-                        {["Explore", "Blogs", "Projects"].map((btn) => (
-                            <Link
-                                key={btn}
-                                href={`#${btn.toLowerCase()}`}
-                                className="w-full sm:w-auto text-center px-10 py-3 rounded-full border border-white/20 hover:bg-white/10 text-white/90 font-serif text-[16px] transition-all duration-300 backdrop-blur-sm"
-                            >
-                                {btn}
-                            </Link>
-                        ))}
+                    <div className="mt-4">
+                        <ButtonGroup gap="gap-[16px] sm:gap-[24px]">
+                            {["Explore", "Blogs", "Projects"].map((btn) => (
+                                <CustomLink key={btn} href={`#${btn.toLowerCase()}`}>
+                                    {btn}
+                                </CustomLink>
+                            ))}
+                        </ButtonGroup>
                     </div>
                 </div>
 
