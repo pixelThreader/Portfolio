@@ -1,6 +1,7 @@
 import Image from "next/image";
 import NextLink from "next/link";
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
+import { BadgeGroup, Badge } from "@/components/widgets/Badge";
 
 export default function Home() {
     return (
@@ -35,15 +36,14 @@ export default function Home() {
                     </h1>
 
                     {/* Capsule Tag Pills */}
-                    <div className="flex flex-wrap gap-4 mt-8 mb-10">
-                        {["Full-Stack", "UI / UX", "AI / ML"].map((tag) => (
-                            <span
-                                key={tag}
-                                className="px-6 py-1.5 rounded-full border border-white/20 text-white/80 font-serif italic text-sm md:text-[15px] cursor-default select-none backdrop-blur-sm"
-                            >
-                                {tag}
-                            </span>
-                        ))}
+                    <div className="mt-8 mb-10">
+                        <BadgeGroup>
+                            {["Full-Stack", "UI / UX", "AI / ML"].map((tag) => (
+                                <Badge key={tag}>
+                                    {tag}
+                                </Badge>
+                            ))}
+                        </BadgeGroup>
                     </div>
 
                     {/* Description Paragraph */}

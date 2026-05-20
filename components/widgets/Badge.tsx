@@ -8,7 +8,7 @@ import React from 'react';
  */
 export function BadgeGroup({ 
   children, 
-  gap = "gap-2 sm:gap-[16px]", 
+  gap = "gap-1 sm:gap-[8px]", 
   className = "" 
 }: {
   children: React.ReactNode,
@@ -28,16 +28,16 @@ export function BadgeGroup({
         const roundedClass = isFirst 
           ? { 
               outer: "rounded-l-[30px] rounded-r-[12px]", 
-              inner: "rounded-l-[28.5px] rounded-r-[10.5px]" 
+              inner: "rounded-l-[29px] rounded-r-[11px]" 
             }
           : isLast 
             ? { 
                 outer: "rounded-r-[30px] rounded-l-[12px]", 
-                inner: "rounded-r-[28.5px] rounded-l-[10.5px]" 
+                inner: "rounded-r-[29px] rounded-l-[11px]" 
               }
             : { 
-                outer: "rounded-[12px]", 
-                inner: "rounded-[10.5px]" 
+                outer: "rounded-[7px]", 
+                inner: "rounded-[7px]" 
               };
 
         return React.cloneElement(child as React.ReactElement<any>, {
@@ -48,9 +48,10 @@ export function BadgeGroup({
               {/* Outer Gradient Border Layer */}
               <span className={`absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-white/10 ${roundedClass.outer}`} />
               
-              {/* Inner Mask Container (using bg-background to match the page, making it look transparent inside) */}
+              {/* Inner Mask Container */}
               <span 
-                className={`relative flex items-center justify-center px-4 sm:px-6 py-1.5 font-serif italic text-[14px] text-white/90 tracking-wide select-none bg-background ${roundedClass.inner}`}
+                className={`relative flex items-center justify-center px-4 sm:px-6 py-1.5 font-serif italic text-[14px] text-white/90 tracking-wide select-none ${roundedClass.inner}`}
+                style={{ backgroundColor: "#411F27" }}
               >
                 {child.props.children}
               </span>
