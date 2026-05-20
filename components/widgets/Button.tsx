@@ -72,7 +72,7 @@ export function ButtonGroup({
           children: (
             <>
               {/* Outer Glowing / Illuminated Gradient Border */}
-              <span className={`absolute inset-0 bg-gradient-to-br transition-all duration-300 ${
+              <span className={`absolute inset-0 bg-linear-to-br transition-all duration-300 ${
                 isActive 
                   ? 'from-white/70 via-transparent to-white/40' 
                   : 'from-white/20 via-transparent to-white/10 group-hover:from-white/35 group-hover:to-white/20'

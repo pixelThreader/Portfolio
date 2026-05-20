@@ -27,12 +27,12 @@ export function BadgeGroup({
         // Dynamic border-radius calculations based on relative position
         const roundedClass = isFirst 
           ? { 
-              outer: "rounded-l-[30px] rounded-r-[12px]", 
+              outer: "rounded-l-[30px] rounded-r-[11px]", 
               inner: "rounded-l-[29px] rounded-r-[11px]" 
             }
           : isLast 
             ? { 
-                outer: "rounded-r-[30px] rounded-l-[12px]", 
+                outer: "rounded-r-[30px] rounded-l-[11px]", 
                 inner: "rounded-r-[29px] rounded-l-[11px]" 
               }
             : { 
@@ -46,7 +46,7 @@ export function BadgeGroup({
           children: (
             <>
               {/* Outer Gradient Border Layer */}
-              <span className={`absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-white/10 ${roundedClass.outer}`} />
+              <span className={`absolute inset-0 bg-linear-to-br from-white/40 via-transparent to-white/25 ${roundedClass.outer}`} />
               
               {/* Inner Mask Container */}
               <span 
