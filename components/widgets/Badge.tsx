@@ -20,7 +20,8 @@ export function BadgeGroup({
 
   return (
     <div className={`flex flex-wrap items-center ${gap} ${className}`}>
-      {validChildren.map((child, index) => {
+      {validChildren.map((childNode, index) => {
+        const child = childNode as React.ReactElement<{ className?: string; children?: React.ReactNode }>;
         const isFirst = index === 0;
         const isLast = index === count - 1;
         
@@ -40,7 +41,7 @@ export function BadgeGroup({
                 inner: "rounded-[7px]" 
               };
 
-        return React.cloneElement(child as React.ReactElement<any>, {
+        return React.cloneElement(child, {
           key: child.key || `badge-${index}`,
           className: `${child.props.className || ''} relative block p-[1px] group ${roundedClass.outer}`.trim(),
           children: (

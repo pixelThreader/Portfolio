@@ -1,5 +1,4 @@
 import Image from "next/image";
-import NextLink from "next/link";
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
 import { BadgeGroup, Badge } from "@/components/widgets/Badge";
 
@@ -9,6 +8,7 @@ export default function Home() {
             
             {/* Massive Background Flowers */}
             <div className="fixed top-[30%] left-0 -translate-x-[55%] -translate-y-1/2 pointer-events-none z-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/flower_pattern.png"
                     alt=""
@@ -16,6 +16,7 @@ export default function Home() {
             </div>
 
             <div className="fixed bottom-0 right-0 translate-x-[35%] translate-y-[25%] pointer-events-none z-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/flower_pattern.png"
                     alt=""

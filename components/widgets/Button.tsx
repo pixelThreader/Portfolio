@@ -25,7 +25,14 @@ export function ButtonGroup({
 
   return (
     <div className={`flex flex-wrap items-center justify-center ${gap} ${className}`}>
-      {validChildren.map((child, index) => {
+      {validChildren.map((childNode, index) => {
+        const child = childNode as React.ReactElement<{ 
+          className?: string; 
+          children?: React.ReactNode; 
+          value?: string; 
+          active?: boolean; 
+          onClick?: (e: React.MouseEvent) => void;
+        }>;
         const isFirst = index === 0;
         const isLast = index === count - 1;
         
@@ -65,7 +72,7 @@ export function ButtonGroup({
 
         // Intelligently clone the child to act as the premium outer element
         // while nesting the illuminated borders and background mask
-        return React.cloneElement(child as React.ReactElement<any>, {
+        return React.cloneElement(child, {
           key: child.key || `btn-${index}`,
           onClick: handleChildClick,
           className: `${child.props.className || ''} relative block p-[1.5px] transition-all duration-300 hover:scale-[1.03] active:scale-95 group ${roundedClass.outer} ${activeClass}`.trim(),
@@ -97,6 +104,7 @@ export function ButtonGroup({
 }
 
 // Custom wrapper button component
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function Button({ children, active, className = "", ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { active?: boolean }) {
   return (
     <button type="button" className={className} {...props}>
