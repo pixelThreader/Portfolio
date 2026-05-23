@@ -10,7 +10,7 @@ export const Highlight = ({ children }: { children: ReactNode }) => {
 export const CarouselSectionTitle = ({ children }: { children: ReactNode }) => {
   return (
     <div className="flex flex-col items-center justify-center mb-12 w-full">
-      <h2 className="text-4xl md:text-5xl lg:text-6xl font-title text-white flex items-baseline justify-center tracking-tighter">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-title text-white flex items-baseline justify-center tracking-tighter pb-3 pt-1 leading-normal">
         {children}
         <span className="text-white">.</span>
       </h2>

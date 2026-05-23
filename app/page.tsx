@@ -16,6 +16,17 @@ import {
   CardGlossyFooter, 
   CardGlossyDate 
 } from "@/components/widgets/CardGlossy";
+import {
+  JournalCard,
+  JournalCardImage,
+  JournalCardContent,
+  JournalCardHeader,
+  JournalCardTitle,
+  JournalCardDescription,
+  JournalCardFooter,
+  JournalCardMeta,
+  JournalCardAction
+} from "@/components/widgets/JournalCard";
 
 export default function Home() {
     return (
@@ -44,15 +55,16 @@ export default function Home() {
                 <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 py-12">
                 
                 {/* Left Column: Hero Copy */}
-                <div className="flex flex-col items-start text-left w-full max-w-2xl">
+                {/* Left Column: Hero Copy */}
+                <div className="flex flex-col items-start md:items-center lg:items-start text-left md:text-center lg:text-left w-full max-w-2xl md:mx-auto lg:mx-0">
                     
                     {/* Big Heading */}
-                    <h1 className="font-title text-[40px] min-[400px]:text-[48px] sm:text-[64px] md:text-[76px] lg:text-[92px] font-bold leading-none tracking-tight select-none flex flex-wrap">
+                    <h1 className="font-title text-[40px] min-[400px]:text-[48px] sm:text-[64px] md:text-[76px] lg:text-[72px] xl:text-[80px] font-bold leading-none tracking-tight select-none flex md:justify-center lg:justify-start whitespace-nowrap">
                         <span className="text-white font-bold">pixel</span><span className="brand-gradient font-bold ml-[2px]">Threader</span><span className="text-white">.</span>
                     </h1>
 
                     {/* Capsule Tag Pills */}
-                    <div className="mt-8 mb-10">
+                    <div className="mt-8 mb-10 flex md:justify-center lg:justify-start w-full">
                         <BadgeGroup>
                             {["Full-Stack", "UI / UX", "AI / ML"].map((tag) => (
                                 <Badge key={tag}>
@@ -63,13 +75,13 @@ export default function Home() {
                     </div>
 
                     {/* Description Paragraph */}
-                    <p className="font-serif text-white/70 text-base md:text-lg leading-relaxed max-w-[540px] mb-12">
+                    <p className="font-serif text-white/70 text-base md:text-lg leading-relaxed max-w-[540px] mb-12 md:mx-auto lg:mx-0">
                         AI systems, full-stack apps, and random ideas that turn into real products. 
                         Mostly working with deep learning, automation, and backend systems while shipping things fast.
                     </p>
 
                     {/* Action Buttons */}
-                    <div className="mt-4">
+                    <div className="mt-4 flex md:justify-center lg:justify-start w-full">
                         <ButtonGroup gap="gap-[8px] sm:gap-[12px]">
                             {["Explore", "Blogs", "Projects"].map((btn) => (
                                 <CustomLink key={btn} href={`#${btn.toLowerCase()}`}>
@@ -192,6 +204,39 @@ export default function Home() {
                                     <CardGlossyDate>{card.date}</CardGlossyDate>
                                 </CardGlossyFooter>
                             </CardGlossy>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+            </CarouselSection>
+
+            {/* Blogs & Journal Section */}
+            <CarouselSection>
+                <CarouselSectionTitle>
+                    Blogs & <Highlight>Journal</Highlight>
+                </CarouselSectionTitle>
+                <CarouselContent>
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((idx) => (
+                        <CarouselItem key={idx} className="w-[300px] sm:w-[390px] h-full flex">
+                            <JournalCard className="w-full h-full">
+                                <JournalCardImage />
+                                <JournalCardContent>
+                                    <JournalCardHeader>
+                                        <JournalCardTitle>Architectural Scaling #{idx}</JournalCardTitle>
+                                        <BadgeGroup className="shrink-0 pt-1">
+                                            <Badge>5 mins</Badge>
+                                        </BadgeGroup>
+                                    </JournalCardHeader>
+                                    
+                                    <JournalCardDescription>
+                                        Exploring modern resilient system design patterns. This is a placeholder insight focusing on highly available infrastructure and deep learning pipelines.
+                                    </JournalCardDescription>
+                                    
+                                    <JournalCardFooter>
+                                        <JournalCardMeta>Sept 12, 2026 | System Design</JournalCardMeta>
+                                        <JournalCardAction />
+                                    </JournalCardFooter>
+                                </JournalCardContent>
+                            </JournalCard>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
