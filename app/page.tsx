@@ -40,9 +40,7 @@ export default function Home() {
                     
                     {/* Big Heading */}
                     <h1 className="font-title text-[40px] min-[400px]:text-[48px] sm:text-[64px] md:text-[76px] lg:text-[92px] font-bold leading-none tracking-tight select-none flex flex-wrap">
-                        <span className="text-white font-bold">pixel</span>
-                        <span className="brand-gradient font-bold pr-1">Threader</span>
-                        <span className="text-white">.</span>
+                        <span className="text-white font-bold">pixel</span><span className="brand-gradient font-bold ml-[2px]">Threader</span><span className="text-white">.</span>
                     </h1>
 
                     {/* Capsule Tag Pills */}
