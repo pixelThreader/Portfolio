@@ -48,8 +48,8 @@ export function ButtonGroup({
                 inner: "rounded-r-[38.5px] rounded-l-[18.5px] sm:rounded-r-[38.5px] sm:rounded-l-[18.5px]" 
               }
             : { 
-                outer: "rounded-[20px]", 
-                inner: "rounded-[18.5px]" 
+                outer: "rounded-[11px]", 
+                inner: "rounded-[9.5px]" 
               };
 
         // Determine if this child is active
@@ -87,7 +87,7 @@ export function ButtonGroup({
               
               {/* Inner High-Fidelity Mask Container */}
               <span 
-                className={`relative flex items-center justify-center px-8 sm:px-10 py-3 sm:py-4 font-serif text-[16px] sm:text-[18px] tracking-wide transition-all duration-300 select-none ${roundedClass.inner}`}
+                className={`relative flex items-center justify-center px-5 min-[400px]:px-6 sm:px-8 md:px-10 py-2 min-[400px]:py-2.5 sm:py-3 md:py-4 font-serif text-[14px] min-[400px]:text-[15px] sm:text-[16px] md:text-[18px] tracking-wide transition-all duration-300 select-none ${roundedClass.inner}`}
                 style={{
                   backgroundColor: isActive ? 'rgba(78, 28, 38, 0.95)' : 'rgba(58, 20, 29, 0.65)',
                   color: isActive ? '#ffffff' : '#ffd4dc'

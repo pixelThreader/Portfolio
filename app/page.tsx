@@ -33,15 +33,15 @@ export default function Home() {
             {/* Hero Section */}
             <section className="w-full min-h-[calc(100vh-100px)] flex flex-col justify-center relative z-10">
                 {/* Main Content Grid */}
-                <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col lg:flex-row items-center justify-between gap-12 py-12">
+                <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 py-12">
                 
                 {/* Left Column: Hero Copy */}
-                <div className="flex flex-col items-start text-left max-w-2xl">
+                <div className="flex flex-col items-start text-left w-full max-w-2xl">
                     
                     {/* Big Heading */}
-                    <h1 className="font-title text-[56px] sm:text-[76px] lg:text-[92px] font-bold leading-none tracking-tight select-none whitespace-nowrap">
+                    <h1 className="font-title text-[40px] min-[400px]:text-[48px] sm:text-[64px] md:text-[76px] lg:text-[92px] font-bold leading-none tracking-tight select-none flex flex-wrap">
                         <span className="text-white font-bold">pixel</span>
-                        <span className="brand-gradient font-bold px-1">Threader</span>
+                        <span className="brand-gradient font-bold pr-1">Threader</span>
                         <span className="text-white">.</span>
                     </h1>
 
@@ -75,8 +75,8 @@ export default function Home() {
                 </div>
 
                 {/* Right Column: Profile Image */}
-                <div className="flex justify-center items-center lg:justify-end">
-                    <div className="relative w-[620px] h-[620px]">
+                <div className="flex w-full lg:w-1/2 justify-center items-center lg:justify-end mt-12 lg:mt-0 shrink-0">
+                    <div className="relative w-full max-w-[320px] md:max-w-[480px] lg:max-w-[620px] aspect-square">
                         <Image
                             src="/Profile.png"
                             alt="pixelThreader Profile"
