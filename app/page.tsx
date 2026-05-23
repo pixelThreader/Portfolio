@@ -1,10 +1,17 @@
 import Image from "next/image";
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
 import { BadgeGroup, Badge } from "@/components/widgets/Badge";
+import { 
+  CarouselSection, 
+  CarouselSectionTitle, 
+  Highlight, 
+  CarouselContent, 
+  CarouselItem 
+} from "@/components/widgets/CarouselSection";
 
 export default function Home() {
     return (
-        <main className="w-full grow relative overflow-hidden flex flex-col justify-center bg-background min-h-[calc(100vh-100px)]">
+        <div className="w-full relative overflow-x-hidden bg-background">
             
             {/* Massive Background Flowers */}
             <div className="fixed top-0 left-0 -translate-x-[50%] -translate-y-1/2 pointer-events-none z-0">
@@ -23,8 +30,10 @@ export default function Home() {
                 />
             </div>
 
-            {/* Main Content Grid */}
-            <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col lg:flex-row items-center justify-between gap-12 z-10 py-12 relative">
+            {/* Hero Section */}
+            <section className="w-full min-h-[calc(100vh-100px)] flex flex-col justify-center relative z-10">
+                {/* Main Content Grid */}
+                <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col lg:flex-row items-center justify-between gap-12 py-12">
                 
                 {/* Left Column: Hero Copy */}
                 <div className="flex flex-col items-start text-left max-w-2xl">
@@ -78,7 +87,26 @@ export default function Home() {
                     </div>
                 </div>
 
-            </div>
-        </main>
+                </div>
+
+            </section>
+
+            {/* Latest Updates Section */}
+            <CarouselSection>
+                <CarouselSectionTitle>
+                    Latest <Highlight>Updates</Highlight>
+                </CarouselSectionTitle>
+                <CarouselContent>
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+                        <CarouselItem key={item}>
+                            <div className="w-full h-64 glass rounded-[2rem] flex flex-col p-6 items-center justify-center text-white/50 border-white/5 relative overflow-hidden group hover:border-magenta/30 transition-colors">
+                                <span className="text-xl font-title">{item}</span>
+                            </div>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+            </CarouselSection>
+
+        </div>
     );
 }
