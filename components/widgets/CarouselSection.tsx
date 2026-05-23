@@ -128,9 +128,9 @@ export const CarouselContent = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const CarouselItem = ({ children }: { children: ReactNode }) => {
+export const CarouselItem = ({ children, className = "w-[280px] md:w-[320px] lg:w-[400px]" }: { children: ReactNode, className?: string }) => {
   return (
-    <div className="flex-none w-[280px] md:w-[320px] lg:w-[400px] snap-center">
+    <div className={`flex-none snap-center h-full ${className}`}>
       {children}
     </div>
   );

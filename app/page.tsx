@@ -8,6 +8,7 @@ import {
   CarouselContent, 
   CarouselItem 
 } from "@/components/widgets/CarouselSection";
+import CardGlossy from "@/components/widgets/CardGlossy";
 
 export default function Home() {
     return (
@@ -100,6 +101,100 @@ export default function Home() {
                             <div className="w-full h-64 glass rounded-[2rem] flex flex-col p-6 items-center justify-center text-white/50 border-white/5 relative overflow-hidden group hover:border-magenta/30 transition-colors">
                                 <span className="text-xl font-title">{item}</span>
                             </div>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+            </CarouselSection>
+
+            {/* Featured Articles Section (Second Carousel with 12 Glossy Cards) */}
+            <CarouselSection>
+                <CarouselSectionTitle>
+                    Featured <Highlight>Writing</Highlight>
+                </CarouselSectionTitle>
+                <CarouselContent>
+                    {[
+                        {
+                            title: "The AI Renaissance",
+                            description: "Exploring how deep learning is reshaping modern software development tools and automated execution frameworks.",
+                            date: "July 12, 2026",
+                            badges: ["AI", "10 mins"]
+                        },
+                        {
+                            title: "Turbopack vs Webpack",
+                            description: "Why Next.js dev server memory problems exist and how Rust is fixing hot-module replacement speeds.",
+                            date: "July 15, 2026",
+                            badges: ["Next.js", "4 mins"]
+                        },
+                        {
+                            title: "Glossy CSS Guide",
+                            description: "How to design premium glassy borders and high fidelity translucent panels using pure modern Tailwind v4.",
+                            date: "July 18, 2026",
+                            badges: ["Design", "6 mins"]
+                        },
+                        {
+                            title: "Recruiting in LLM Era",
+                            description: "LLMs are changing tech screening. What junior developers actually need to build to stand out in recruitment.",
+                            date: "July 20, 2026",
+                            badges: ["Careers", "8 mins"]
+                        },
+                        {
+                            title: "Bun: Speeding Up TS",
+                             description: "Ditching Node for Bun in development environments: An honest speed and environment comparison.",
+                            date: "July 22, 2026",
+                            badges: ["Runtime", "5 mins"]
+                        },
+                        {
+                            title: "Postgres Optimization",
+                            description: "How to optimize complex queries and indexing strategies for heavy relational production workloads.",
+                            date: "July 25, 2026",
+                            badges: ["Database", "12 mins"]
+                        },
+                        {
+                            title: "Framer Motion Physics",
+                            description: "Adding realistic inertia and drag animations to horizontal snap scroll carousels for premium feel.",
+                            date: "July 28, 2026",
+                            badges: ["Frontend", "7 mins"]
+                        },
+                        {
+                            title: "Agentic Loops",
+                            description: "Building autonomous coding loops that actually solve issues without getting trapped in infinite runtime cycles.",
+                            date: "Aug 02, 2026",
+                            badges: ["AI", "15 mins"]
+                        },
+                        {
+                            title: "Tailwind v4 Deep Dive",
+                            description: "Testing the brand new linear-to-br utilities and CSS variables theme engine on production builds.",
+                            date: "Aug 05, 2026",
+                            badges: ["Tailwind", "5 mins"]
+                        },
+                        {
+                            title: "Building in Public",
+                            description: "Why shipping incomplete concepts yields better design feedback than launching extremely polished MVPs.",
+                            date: "Aug 10, 2026",
+                            badges: ["Mindset", "4 mins"]
+                        },
+                        {
+                            title: "Next.js Server Actions",
+                            description: "Securing backend endpoints directly inside React components without exposing extra routing controllers.",
+                            date: "Aug 15, 2026",
+                            badges: ["Security", "9 mins"]
+                        },
+                        {
+                            title: "Cyberpunk Palette Design",
+                            description: "The mathematical rules behind contrasting dark magenta gradients and deep ambient neon glow systems.",
+                            date: "Aug 20, 2026",
+                            badges: ["Art", "6 mins"]
+                        }
+                    ].map((card, idx) => (
+                        <CarouselItem key={idx} className="w-[320px] sm:w-[465px] h-full flex">
+                            <CardGlossy
+                                title={card.title}
+                                description={card.description}
+                                date={card.date}
+                                badges={card.badges}
+                                gradientDivider={idx % 2 === 0}
+                                className="w-full h-full"
+                            />
                         </CarouselItem>
                     ))}
                 </CarouselContent>
