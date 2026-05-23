@@ -8,7 +8,14 @@ import {
   CarouselContent, 
   CarouselItem 
 } from "@/components/widgets/CarouselSection";
-import CardGlossy from "@/components/widgets/CardGlossy";
+import { 
+  CardGlossy, 
+  CardGlossyContent, 
+  CardGlossyTitle, 
+  CardGlossyDescription, 
+  CardGlossyFooter, 
+  CardGlossyDate 
+} from "@/components/widgets/CardGlossy";
 
 export default function Home() {
     return (
@@ -187,14 +194,20 @@ export default function Home() {
                         }
                     ].map((card, idx) => (
                         <CarouselItem key={idx} className="w-[320px] sm:w-[465px] h-full flex">
-                            <CardGlossy
-                                title={card.title}
-                                description={card.description}
-                                date={card.date}
-                                badges={card.badges}
-                                gradientDivider={idx % 2 === 0}
-                                className="w-full h-full"
-                            />
+                            <CardGlossy className="w-full h-full">
+                                <CardGlossyContent>
+                                    <CardGlossyTitle>{card.title}</CardGlossyTitle>
+                                    <CardGlossyDescription>{card.description}</CardGlossyDescription>
+                                </CardGlossyContent>
+                                <CardGlossyFooter gradientDivider={idx % 2 === 0}>
+                                    <BadgeGroup className="origin-left scale-[1]">
+                                        {card.badges.map((badge, bIdx) => (
+                                            <Badge key={bIdx}>{badge}</Badge>
+                                        ))}
+                                    </BadgeGroup>
+                                    <CardGlossyDate>{card.date}</CardGlossyDate>
+                                </CardGlossyFooter>
+                            </CardGlossy>
                         </CarouselItem>
                     ))}
                 </CarouselContent>

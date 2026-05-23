@@ -51,7 +51,7 @@ export function BadgeGroup({
               
               {/* Inner Mask Container */}
               <span 
-                className={`relative flex items-center justify-center px-3 min-[400px]:px-4 md:px-6 py-1 min-[400px]:py-1.5 md:py-2 font-serif italic text-[12px] min-[400px]:text-[14px] md:text-[16px] text-white/90 tracking-wide select-none ${roundedClass.inner}`}
+                className={`relative flex w-fit items-center justify-center px-1.5 min-[400px]:px-2 md:px-3 py-0.5 min-[400px]:py-1 md:py-1 font-serif font-bold text-[10px] min-[400px]:text-[11px] md:text-[12px] text-white/90 tracking-wide select-none ${roundedClass.inner}`}
                 style={{ backgroundColor: "#411F27" }}
               >
                 {child.props.children}
