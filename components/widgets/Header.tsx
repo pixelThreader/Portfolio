@@ -30,20 +30,18 @@ export default function Header() {
             {/* Placeholder to prevent layout shift when header becomes fixed */}
             <div className="h-[96px] w-full shrink-0" />
 
-            <header 
-                className={`fixed z-50 transition-all duration-500 flex items-center justify-between ${
-                    isScrolled 
-                        ? 'top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] max-w-5xl py-3 px-6 md:px-8 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]'
-                        : 'top-0 left-0 w-full py-8 px-8 md:px-16 lg:px-[12%] xl:px-[15%] bg-transparent border-transparent'
-                }`}
-            >
-                {/* Solid Glossy Background with Gradient Border (Active when scrolled) */}
-                <div className={`absolute inset-0 rounded-full transition-opacity duration-500 -z-20 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
-                    {/* Gradient Border Layer */}
-                    <span className="absolute inset-0 rounded-full bg-linear-to-br from-white/30 via-transparent to-white/10" />
-                    {/* Solid Inner Mask for Glossy Feel without Transparency */}
-                    <span className="absolute inset-[1.5px] rounded-full bg-[#3A141D] shadow-[inset_0_1px_4px_rgba(255,255,255,0.1)]" />
-                </div>
+            {/* Fixed Outer Wrapper (Locks horizontal alignment to match page content exactly) */}
+            <div className={`fixed z-50 w-full transition-all duration-500 px-8 md:px-16 lg:px-[12%] xl:px-[15%] ${isScrolled ? 'top-4' : 'top-0'}`}>
+                
+                <header className={`relative w-full flex items-center justify-between transition-all duration-500 ${isScrolled ? 'py-3' : 'py-8'}`}>
+                    
+                    {/* Solid Glossy Background with Gradient Border (Fades in when scrolled) */}
+                    <div className={`absolute top-0 bottom-0 -left-6 -right-6 md:-left-8 md:-right-8 rounded-full transition-all duration-500 -z-20 ${isScrolled ? 'opacity-100 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]' : 'opacity-0 shadow-none'}`}>
+                        {/* Gradient Border Layer */}
+                        <span className="absolute inset-0 rounded-full bg-linear-to-br from-white/30 via-transparent to-white/10" />
+                        {/* Solid Inner Mask for Glossy Feel without Transparency */}
+                        <span className="absolute inset-[1.5px] rounded-full bg-[#3A141D] shadow-[inset_0_1px_4px_rgba(255,255,255,0.1)]" />
+                    </div>
                 {/* Brand Logo */}
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-8 h-8 rounded-full overflow-hidden border border-magenta/20 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-105 shadow-[0_0_15px_rgba(188,19,254,0.15)] shrink-0">
@@ -109,6 +107,7 @@ export default function Header() {
                     </div>
                 )}
             </header>
+            </div>
         </>
     );
 }
