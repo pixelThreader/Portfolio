@@ -103,22 +103,6 @@ export default function Home() {
                     Latest <Highlight>Updates</Highlight>
                 </CarouselSectionTitle>
                 <CarouselContent>
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-                        <CarouselItem key={item}>
-                            <div className="w-full h-64 glass rounded-[2rem] flex flex-col p-6 items-center justify-center text-white/50 border-white/5 relative overflow-hidden group hover:border-magenta/30 transition-colors">
-                                <span className="text-xl font-title">{item}</span>
-                            </div>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-            </CarouselSection>
-
-            {/* Featured Articles Section (Second Carousel with 12 Glossy Cards) */}
-            <CarouselSection>
-                <CarouselSectionTitle>
-                    Featured <Highlight>Writing</Highlight>
-                </CarouselSectionTitle>
-                <CarouselContent>
                     {[
                         {
                             title: "The AI Renaissance",
