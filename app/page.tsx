@@ -295,9 +295,13 @@ export default function Home() {
                                     <ProjectDetail>
                                         <ProjectHeader>
                                             <ProjectDetailLogo>
-                                                <div className="w-full h-full rounded-xl bg-[radial-gradient(circle_at_top_left,#ff6bb3,#6326ff)] shadow-[0_8px_20px_rgba(132,0,255,0.4)] flex items-center justify-center text-2xl">
-                                                    🌐
-                                                </div>
+                                                <Image
+                                                    src="/brand/inner_logo_dr_light.png"
+                                                    alt="Deep Researcher Logo"
+                                                    width={48}
+                                                    height={48}
+                                                    className="w-full h-full object-contain"
+                                                />
                                             </ProjectDetailLogo>
                                             <ProjectTitle>Deep Researcher v2</ProjectTitle>
                                             <ProjectGitHubLink href="https://github.com/pixelthreader/deep-researcher" />
@@ -341,7 +345,7 @@ export default function Home() {
 
                             {/* RHS — glow applied automatically by ProjectLogo */}
                             <div className="flex-1 flex items-center justify-center">
-                                <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={1}>
+                                <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={0.5}>
                                     <Image
                                         src="/projects/deep_researcher.png"
                                         alt="Deep Researcher v2 Preview"

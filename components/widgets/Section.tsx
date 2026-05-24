@@ -4,9 +4,9 @@ export const Highlight = ({ children }: { children: ReactNode }) => {
   return <span className="brand-gradient font-title ml-2 md:ml-3">{children}</span>;
 };
 
-export const SectionTitle = ({ children }: { children: ReactNode }) => {
+export const SectionTitle = ({ children, id }: { children: ReactNode; id?: string }) => {
   return (
-    <div className="flex flex-col items-center justify-center mb-12 w-full">
+    <div className="flex flex-col items-center justify-center mb-12 w-full" id={id}>
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-title text-white flex items-baseline justify-center tracking-tighter pb-3 pt-1 leading-normal">
         {children}
         <span className="text-white">.</span>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { ButtonGroup, Link as CustomLink } from '@/components/widgets/Button';
 
 // ─── Icons (exact paths from /components/svgs/) ───────────────────────────────
 
@@ -95,9 +96,9 @@ export function Project({ children, className = "" }: { children: React.ReactNod
     <div className={`relative w-full rounded-[28px] sm:rounded-[34px] border border-white/10 bg-[#411F27] shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_60px_rgba(0,0,0,0.35)] overflow-hidden ${className}`}>
       {/* Gradient border glow */}
       <div className="pointer-events-none absolute inset-0 rounded-[inherit]">
-        <div className="absolute inset-0 rounded-[inherit] bg-gradient-to-br from-white/30 via-transparent via-40% to-white/12 opacity-90" />
+        <div className="absolute inset-0 rounded-[inherit] bg-linear-to-br from-white/30 via-transparent via-40% to-white/12 opacity-90" />
         <div
-          className="absolute inset-[1px] rounded-[inherit]"
+          className="absolute inset-px rounded-[inherit]"
           style={{ backgroundColor: '#411F27', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)' }}
         />
       </div>
@@ -170,7 +171,7 @@ export function ProjectGitHubLink({ href, className = "" }: { href: string; clas
 export function ProjectDesc({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <p
-      className={`text-[14px] sm:text-[16px] leading-[1.5] text-[#b48a96] tracking-[-0.01em] mb-5 sm:mb-7 max-w-3xl ${className}`}
+      className={`text-[14px] sm:text-[16px] leading-normal text-[#b48a96] tracking-[-0.01em] mb-5 sm:mb-7 max-w-3xl ${className}`}
       style={{ fontFamily: 'Merriweather, serif' }}
     >
       {children}
@@ -255,17 +256,12 @@ export function ProjectFeature({ children, className = "" }: { children: React.R
 
 export function ProjectUrl({ href, className = "" }: { href: string; className?: string }) {
   return (
-    <div className={`mt-5 sm:mt-6 flex justify-end ${className}`}>
-      <a
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className="group inline-flex items-center gap-1.5 text-[13px] sm:text-[15px] text-[#a98590] hover:text-white transition-colors duration-300"
-        style={{ fontFamily: 'Merriweather, serif' }}
-      >
-        <span>Learn More</span>
-        <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-      </a>
+    <div className={`mt-3 sm:mt-8 flex justify-end ${className}`}>
+      <ButtonGroup gap="gap-[3px]" scaleOnHover={false} size="md">
+        <CustomLink href={href} target="_blank" rel="noreferrer" active>
+          Learn More
+        </CustomLink>
+      </ButtonGroup>
     </div>
   );
 }
