@@ -175,10 +175,10 @@ export function ProjectGitHubLink({ href, className = "" }: { href: string; clas
         className="opacity-75 hover:opacity-100 transition-opacity"
         aria-label="GitHub"
       >
-        <GitHubIcon className="w-4.5 h-4.5 sm:w-5 h-5 text-white" />
+        <GitHubIcon className="w-4.5 h-5 sm:w-5 text-white" />
       </a>
       <button className="opacity-55 hover:opacity-90 transition-opacity" aria-label="Share">
-        <ShareIcon className="w-4.5 h-4.5 sm:w-5 h-5 text-white" />
+        <ShareIcon className="w-4.5 sm:w-5 h-5 text-white" />
       </button>
     </div>
   );
