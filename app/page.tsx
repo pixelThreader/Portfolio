@@ -1,43 +1,66 @@
 import Image from "next/image";
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
 import { BadgeGroup, Badge } from "@/components/widgets/Badge";
-import { 
-  CarouselSection, 
-  CarouselSectionTitle, 
-  Highlight, 
-  CarouselContent, 
-  CarouselItem 
+import {
+    CarouselSection,
+    CarouselSectionTitle,
+    Highlight,
+    CarouselContent,
+    CarouselItem
 } from "@/components/widgets/CarouselSection";
-import { 
-  Section, 
-  SectionTitle, 
-  SectionContent 
+import {
+    Section,
+    SectionTitle,
+    SectionContent
 } from "@/components/widgets/Section";
-import { 
-  CardGlossy, 
-  CardGlossyContent, 
-  CardGlossyTitle, 
-  CardGlossyDescription, 
-  CardGlossyFooter, 
-  CardGlossyDate 
+import {
+    CardGlossy,
+    CardGlossyContent,
+    CardGlossyTitle,
+    CardGlossyDescription,
+    CardGlossyFooter,
+    CardGlossyDate
 } from "@/components/widgets/CardGlossy";
 import {
-  JournalCard,
-  JournalCardImage,
-  JournalCardContent,
-  JournalCardHeader,
-  JournalCardTitle,
-  JournalCardDescription,
-  JournalCardFooter,
-  JournalCardMeta,
-  JournalCardAction
+    JournalCard,
+    JournalCardImage,
+    JournalCardContent,
+    JournalCardHeader,
+    JournalCardTitle,
+    JournalCardDescription,
+    JournalCardFooter,
+    JournalCardMeta,
+    JournalCardAction
 } from "@/components/widgets/JournalCard";
+import {
+    Projects,
+    Project,
+    ProjectDetail,
+    ProjectHeader,
+    ProjectDetailLogo,
+    ProjectTitle,
+    ProjectDesc,
+    ProjectGitHubLink,
+    ProjectMeta,
+    ProjectAuthors,
+    ProjectAuthor,
+    AuthorName,
+    AuthorGitHubLink,
+    LastCommit,
+    LastCommitDate,
+    LastCommitMessage,
+    ProjectLicense,
+    ProjectFeatures,
+    ProjectFeature,
+    ProjectUrl,
+    ProjectLogo
+} from "@/components/widgets/Projects";
 import CurvedLoop from '@/components/external/CurvedLoop';
 
 export default function Home() {
     return (
         <div className="w-full relative overflow-x-hidden bg-background">
-            
+
             {/* Massive Background Flowers */}
             <div className="fixed top-0 left-0 -translate-x-[50%] -translate-y-1/2 pointer-events-none z-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -59,57 +82,57 @@ export default function Home() {
             <section className="w-full min-h-[calc(100vh-100px)] flex flex-col justify-center relative z-10">
                 {/* Main Content Grid */}
                 <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 py-12">
-                
-                {/* Left Column: Hero Copy */}
-                {/* Left Column: Hero Copy */}
-                <div className="flex flex-col items-start md:items-center lg:items-start text-left md:text-center lg:text-left w-full max-w-2xl md:mx-auto lg:mx-0">
-                    
-                    {/* Big Heading */}
-                    <h1 className="font-title text-[40px] min-[400px]:text-[48px] sm:text-[64px] md:text-[76px] lg:text-[72px] xl:text-[80px] font-bold leading-none tracking-tight select-none flex md:justify-center lg:justify-start whitespace-nowrap">
-                        <span className="text-white font-bold">pixel</span><span className="brand-gradient font-bold ml-[2px]">Threader</span><span className="text-white">.</span>
-                    </h1>
 
-                    {/* Capsule Tag Pills */}
-                    <div className="mt-8 mb-10 flex md:justify-center lg:justify-start w-full">
-                        <BadgeGroup>
-                            {["Full-Stack", "UI / UX", "AI / ML"].map((tag) => (
-                                <Badge key={tag}>
-                                    {tag}
-                                </Badge>
-                            ))}
-                        </BadgeGroup>
+                    {/* Left Column: Hero Copy */}
+                    {/* Left Column: Hero Copy */}
+                    <div className="flex flex-col items-start md:items-center lg:items-start text-left md:text-center lg:text-left w-full max-w-2xl md:mx-auto lg:mx-0">
+
+                        {/* Big Heading */}
+                        <h1 className="font-title text-[40px] min-[400px]:text-[48px] sm:text-[64px] md:text-[76px] lg:text-[72px] xl:text-[80px] font-bold leading-none tracking-tight select-none flex md:justify-center lg:justify-start whitespace-nowrap">
+                            <span className="text-white font-bold">pixel</span><span className="brand-gradient font-bold ml-[2px]">Threader</span><span className="text-white">.</span>
+                        </h1>
+
+                        {/* Capsule Tag Pills */}
+                        <div className="mt-8 mb-10 flex md:justify-center lg:justify-start w-full">
+                            <BadgeGroup>
+                                {["Full-Stack", "UI / UX", "AI / ML"].map((tag) => (
+                                    <Badge key={tag}>
+                                        {tag}
+                                    </Badge>
+                                ))}
+                            </BadgeGroup>
+                        </div>
+
+                        {/* Description Paragraph */}
+                        <p className="font-serif text-white/70 text-base md:text-lg leading-relaxed max-w-[540px] mb-12 md:mx-auto lg:mx-0">
+                            AI systems, full-stack apps, and random ideas that turn into real products.
+                            Mostly working with deep learning, automation, and backend systems while shipping things fast.
+                        </p>
+
+                        {/* Action Buttons */}
+                        <div className="mt-4 flex md:justify-center lg:justify-start w-full">
+                            <ButtonGroup gap="gap-[8px] sm:gap-[12px]">
+                                {["Explore", "Blogs", "Projects"].map((btn) => (
+                                    <CustomLink key={btn} href={`#${btn.toLowerCase()}`}>
+                                        {btn}
+                                    </CustomLink>
+                                ))}
+                            </ButtonGroup>
+                        </div>
                     </div>
 
-                    {/* Description Paragraph */}
-                    <p className="font-serif text-white/70 text-base md:text-lg leading-relaxed max-w-[540px] mb-12 md:mx-auto lg:mx-0">
-                        AI systems, full-stack apps, and random ideas that turn into real products. 
-                        Mostly working with deep learning, automation, and backend systems while shipping things fast.
-                    </p>
-
-                    {/* Action Buttons */}
-                    <div className="mt-4 flex md:justify-center lg:justify-start w-full">
-                        <ButtonGroup gap="gap-[8px] sm:gap-[12px]">
-                            {["Explore", "Blogs", "Projects"].map((btn) => (
-                                <CustomLink key={btn} href={`#${btn.toLowerCase()}`}>
-                                    {btn}
-                                </CustomLink>
-                            ))}
-                        </ButtonGroup>
+                    {/* Right Column: Profile Image */}
+                    <div className="flex w-full lg:w-1/2 justify-center items-center lg:justify-end mt-12 lg:mt-0 shrink-0">
+                        <div className="relative w-full max-w-[320px] md:max-w-[480px] lg:max-w-[620px] aspect-square">
+                            <Image
+                                src="/Profile.png"
+                                alt="pixelThreader Profile"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
+                        </div>
                     </div>
-                </div>
-
-                {/* Right Column: Profile Image */}
-                <div className="flex w-full lg:w-1/2 justify-center items-center lg:justify-end mt-12 lg:mt-0 shrink-0">
-                    <div className="relative w-full max-w-[320px] md:max-w-[480px] lg:max-w-[620px] aspect-square">
-                        <Image
-                            src="/Profile.png"
-                            alt="pixelThreader Profile"
-                            fill
-                            className="object-contain"
-                            priority
-                        />
-                    </div>
-                </div>
 
                 </div>
 
@@ -148,7 +171,7 @@ export default function Home() {
                         },
                         {
                             title: "Bun: Speeding Up TS",
-                             description: "Ditching Node for Bun in development environments: An honest speed and environment comparison.",
+                            description: "Ditching Node for Bun in development environments: An honest speed and environment comparison.",
                             date: "July 22, 2026",
                             badges: ["Runtime", "5 mins"]
                         },
@@ -232,11 +255,11 @@ export default function Home() {
                                             <Badge>5 mins</Badge>
                                         </BadgeGroup>
                                     </JournalCardHeader>
-                                    
+
                                     <JournalCardDescription>
                                         Exploring modern resilient system design patterns. This is a placeholder insight focusing on highly available infrastructure and deep learning pipelines.
                                     </JournalCardDescription>
-                                    
+
                                     <JournalCardFooter>
                                         <JournalCardMeta>Sept 12, 2026 | System Design</JournalCardMeta>
                                         <JournalCardAction />
@@ -255,6 +278,80 @@ export default function Home() {
                 </SectionTitle>
                 <SectionContent className="text-white/70 text-lg leading-relaxed text-center">
                     This is a sample of the new Section component. It stretches out vertically to fit its content without adding horizontal scrollbars. It obeys the marginal spacing defined by the platform's layout constraints, ensuring a consistent design aesthetic across all pages.
+                </SectionContent>
+            </Section>
+
+            {/* Selected Projects Section */}
+            <Section>
+                <SectionTitle id="projects">
+                    Selected <Highlight>Projects</Highlight>
+                </SectionTitle>
+                <SectionContent>
+                    <Projects>
+                        {/* Project card — LHS only. ProjectLogo (RHS) is outside the card. */}
+                        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+                            <div className="w-full lg:flex-[0_0_58%]">
+                                <Project>
+                                    <ProjectDetail>
+                                        <ProjectHeader>
+                                            <ProjectDetailLogo>
+                                                <div className="w-full h-full rounded-xl bg-[radial-gradient(circle_at_top_left,#ff6bb3,#6326ff)] shadow-[0_8px_20px_rgba(132,0,255,0.4)] flex items-center justify-center text-2xl">
+                                                    🌐
+                                                </div>
+                                            </ProjectDetailLogo>
+                                            <ProjectTitle>Deep Researcher v2</ProjectTitle>
+                                            <ProjectGitHubLink href="https://github.com/pixelthreader/deep-researcher" />
+                                        </ProjectHeader>
+
+                                        <ProjectDesc>
+                                            Deep Researcher V2 is the successor to the previous version, an Open-Source agentic research harness for autonomous web research, reasoning, source analysis, multi-step planning, and structured AI-powered report generation.
+                                        </ProjectDesc>
+
+                                        <ProjectMeta>
+                                            <ProjectAuthors>
+                                                <ProjectAuthor>
+                                                    <AuthorName href="https://github.com/pixelThreader">pixelThreader</AuthorName>
+                                                </ProjectAuthor>
+                                                <ProjectAuthor>
+                                                    <AuthorName href="https://github.com/openagentx">OpenAgentX</AuthorName>
+                                                </ProjectAuthor>
+                                                <ProjectAuthor>
+                                                    <AuthorName href="https://github.com/neurostack">NeuroStack</AuthorName>
+                                                </ProjectAuthor>
+                                            </ProjectAuthors>
+
+                                            <LastCommit>
+                                                <LastCommitDate>May 20, 2026</LastCommitDate>
+                                                <LastCommitMessage>commit #315: This Feature includes this th...</LastCommitMessage>
+                                            </LastCommit>
+
+                                            <ProjectLicense>MIT License</ProjectLicense>
+
+                                            <ProjectFeatures>
+                                                <ProjectFeature>Multi Agent System</ProjectFeature>
+                                                <ProjectFeature>MCP Tools</ProjectFeature>
+                                                <ProjectFeature>Multi-Step Reasoning</ProjectFeature>
+                                            </ProjectFeatures>
+                                        </ProjectMeta>
+
+                                        <ProjectUrl href="https://github.com/pixelthreader/deep-researcher" />
+                                    </ProjectDetail>
+                                </Project>
+                            </div>
+
+                            {/* RHS — glow applied automatically by ProjectLogo */}
+                            <div className="flex-1 flex items-center justify-center">
+                                <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={1}>
+                                    <Image
+                                        src="/projects/deep_researcher.png"
+                                        alt="Deep Researcher v2 Preview"
+                                        width={520}
+                                        height={520}
+                                    />
+                                </ProjectLogo>
+                            </div>
+                        </div>
+                    </Projects>
                 </SectionContent>
             </Section>
 
