@@ -22,11 +22,17 @@ export function BadgeGroup({
     <div className={`flex flex-wrap items-center ${gap} ${className}`}>
       {validChildren.map((childNode, index) => {
         const child = childNode as React.ReactElement<{ className?: string; children?: React.ReactNode }>;
+        const isOnly = count === 1;
         const isFirst = index === 0;
         const isLast = index === count - 1;
         
         // Dynamic border-radius calculations based on relative position
-        const roundedClass = isFirst 
+        const roundedClass = isOnly
+          ? {
+              outer: "rounded-[30px]",
+              inner: "rounded-[29px]"
+            }
+          : isFirst 
           ? { 
               outer: "rounded-l-[30px] rounded-r-[11px]", 
               inner: "rounded-l-[29px] rounded-r-[11px]" 

@@ -5,7 +5,7 @@ import { BadgeGroup, Badge } from "./Badge";
 
 export function CardGlossy({ children, className = "" }: { children: React.ReactNode, className?: string }) {
   return (
-    <div className={`relative w-full max-w-[465px] rounded-[28px] bg-gradient-to-br from-[#a88b97]/80 via-[#6a4754]/40 to-[#a88b97]/80 p-[1.5px] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[34px] flex flex-col ${className}`}>
+    <div className={`relative w-full max-w-[465px] rounded-[28px] bg-linear-to-br from-[#a88b97]/80 via-[#6a4754]/40 to-[#a88b97]/80 p-[1.5px] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[34px] flex flex-col ${className}`}>
       <div className="rounded-[26px] border border-white/5 bg-[#471824]/95 px-5 pb-5 pt-5 backdrop-blur-xl sm:rounded-[32px] sm:px-7 sm:pt-7 flex flex-col flex-1 h-full">
         {children}
       </div>
@@ -37,7 +37,7 @@ export function CardGlossyFooter({ children, gradientDivider = true, className =
   return (
     <div className={`mt-auto pt-6 ${className}`}>
       {gradientDivider ? (
-        <div className="h-px w-full bg-gradient-to-r from-[#b998a5]/50 via-[#9a7383]/40 to-[#b998a5]/50" />
+        <div className="h-px w-full bg-linear-to-r from-[#b998a5]/50 via-[#9a7383]/40 to-[#b998a5]/50" />
       ) : (
         <div className="h-px w-full bg-white/10" />
       )}

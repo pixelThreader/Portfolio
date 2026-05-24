@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Merienda, Merriweather } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/widgets/Header";
+import Footer from "@/components/widgets/Footer";
 import "./globals.css";
 
 const merienda = Merienda({
@@ -52,6 +53,7 @@ export default function RootLayout({
                 <main className="flex-1 w-full flex flex-col">
                     {children}
                 </main>
+                <Footer />
                 <Analytics />
             </body>
         </html>

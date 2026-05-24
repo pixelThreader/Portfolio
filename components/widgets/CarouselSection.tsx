@@ -4,7 +4,7 @@ import React, { ReactNode, useRef, useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const Highlight = ({ children }: { children: ReactNode }) => {
-  return <span className="brand-gradient font-title">{children}</span>;
+  return <span className="brand-gradient font-title ml-2 md:ml-3">{children}</span>;
 };
 
 export const CarouselSectionTitle = ({ children }: { children: ReactNode }) => {

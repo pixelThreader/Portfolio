@@ -2,7 +2,7 @@ import React from "react";
 
 export function JournalCard({ children, className = "" }: { children: React.ReactNode, className?: string }) {
   return (
-    <div className={`relative w-full max-w-[390px] cursor-pointer rounded-[30px] bg-gradient-to-br from-[#A88A96]/75 via-[#714853]/35 to-[#B296A2]/75 p-[1.5px] ${className}`}>
+    <div className={`relative w-full max-w-[390px] cursor-pointer rounded-[30px] bg-linear-to-br from-[#A88A96]/75 via-[#714853]/35 to-[#B296A2]/75 p-[1.5px] ${className}`}>
       <div className="rounded-[28px] bg-[#4A1D28]/95 p-3 backdrop-blur-xl flex flex-col h-full">
         {children}
       </div>
@@ -12,7 +12,7 @@ export function JournalCard({ children, className = "" }: { children: React.Reac
 
 export function JournalCardImage({ children, className = "" }: { children?: React.ReactNode, className?: string }) {
   return (
-    <div className={`relative h-[285px] w-full shrink-0 overflow-hidden rounded-[22px] bg-gradient-to-br from-[#004B72] via-[#001F5C] to-[#34114A] ${className}`}>
+    <div className={`relative h-[285px] w-full shrink-0 overflow-hidden rounded-[22px] bg-linear-to-br from-[#004B72] via-[#001F5C] to-[#34114A] ${className}`}>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(255,0,119,0.18),transparent_40%)] pointer-events-none" />
       {children}
     </div>

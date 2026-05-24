@@ -9,6 +9,11 @@ import {
   CarouselItem 
 } from "@/components/widgets/CarouselSection";
 import { 
+  Section, 
+  SectionTitle, 
+  SectionContent 
+} from "@/components/widgets/Section";
+import { 
   CardGlossy, 
   CardGlossyContent, 
   CardGlossyTitle, 
@@ -241,6 +246,16 @@ export default function Home() {
                     ))}
                 </CarouselContent>
             </CarouselSection>
+
+            {/* Sample Section */}
+            <Section>
+                <SectionTitle>
+                    Sample <Highlight>Section</Highlight>
+                </SectionTitle>
+                <SectionContent className="text-white/70 text-lg leading-relaxed text-center">
+                    This is a sample of the new Section component. It stretches out vertically to fit its content without adding horizontal scrollbars. It obeys the marginal spacing defined by the platform's layout constraints, ensuring a consistent design aesthetic across all pages.
+                </SectionContent>
+            </Section>
 
         </div>
     );
