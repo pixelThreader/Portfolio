@@ -59,12 +59,12 @@ function MetaRow({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid grid-cols-[auto_1fr] gap-x-4 items-center">
+    <div className="grid grid-cols-[auto_1fr] gap-x-3 sm:gap-x-4 items-center">
       {/* Label col */}
-      <div className="flex items-center gap-3 text-[#8f6974] w-[160px] sm:w-[190px]">
-        <span className="w-[18px] h-[18px] sm:w-5 sm:h-5 opacity-80 shrink-0">{icon}</span>
+      <div className="flex items-center gap-2 sm:gap-3 text-[#8f6974] w-[130px] sm:w-[170px] lg:w-[190px]">
+        <span className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 opacity-80 shrink-0">{icon}</span>
         <span
-          className="text-[13px] sm:text-[14px] tracking-[-0.02em] whitespace-nowrap"
+          className="text-[11.5px] sm:text-[13px] lg:text-[14px] tracking-[-0.02em] whitespace-nowrap"
           style={{ fontFamily: 'Merriweather, serif' }}
         >
           {label}
@@ -72,7 +72,7 @@ function MetaRow({
       </div>
       {/* Value col */}
       <div
-        className="text-[14px] sm:text-[16px] text-white/90 leading-snug"
+        className="text-[12px] sm:text-[14.5px] lg:text-[16px] text-white/90 leading-snug min-w-0"
         style={{ fontFamily: 'Merriweather, serif' }}
       >
         {children}
@@ -85,7 +85,7 @@ function MetaRow({
 
 export function Projects({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`flex flex-col gap-12 sm:gap-20 w-full ${className}`}>
+    <div className={`flex flex-col gap-6 sm:gap-20 w-full ${className}`}>
       {children}
     </div>
   );
@@ -97,10 +97,10 @@ export function Project({ children, className = "" }: { children: React.ReactNod
   const logoChild = childrenArray[1];
 
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14 w-full">
+    <div className="flex flex-col lg:flex-row lg:even:flex-row-reverse items-center gap-8 lg:gap-14 w-full">
       {/* LHS - Card wrapper containing ProjectDetail */}
       <div className={`w-full ${logoChild ? 'lg:flex-[0_0_58%]' : ''}`}>
-        <div className={`relative w-full rounded-[28px] sm:rounded-[34px] border border-white/10 bg-[#411F27] shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_60px_rgba(0,0,0,0.35)] overflow-hidden ${className}`}>
+        <div className={`relative w-full rounded-[24px] sm:rounded-[34px] border border-white/10 bg-[#411F27] overflow-hidden ${className}`}>
           {/* Gradient border glow */}
           <div className="pointer-events-none absolute inset-0 rounded-[inherit]">
             <div className="absolute inset-0 rounded-[inherit] bg-linear-to-br from-white/30 via-transparent via-40% to-white/12 opacity-90" />
@@ -116,9 +116,9 @@ export function Project({ children, className = "" }: { children: React.ReactNod
         </div>
       </div>
 
-      {/* RHS - Centered preview logo glow */}
+      {/* RHS - Centered preview logo glow (hidden on mobile/tablet) */}
       {logoChild && (
-        <div className="flex-1 flex items-center justify-center w-full">
+        <div className="hidden lg:flex flex-1 items-center justify-center w-full">
           {logoChild}
         </div>
       )}
@@ -128,7 +128,7 @@ export function Project({ children, className = "" }: { children: React.ReactNod
 
 export function ProjectDetail({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`px-6 sm:px-8 lg:px-10 py-6 sm:py-8 ${className}`} style={{ fontFamily: 'Merriweather, serif' }}>
+    <div className={`px-4 sm:px-8 lg:px-10 py-5 sm:py-8 ${className}`} style={{ fontFamily: 'Merriweather, serif' }}>
       {children}
     </div>
   );
@@ -136,7 +136,7 @@ export function ProjectDetail({ children, className = "" }: { children: React.Re
 
 export function ProjectDetailLogo({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden ${className}`}>
+    <div className={`shrink-0 h-8 w-8 sm:h-12 sm:w-12 rounded-lg sm:rounded-2xl flex items-center justify-center overflow-hidden ${className}`}>
       {children}
     </div>
   );
@@ -145,7 +145,7 @@ export function ProjectDetailLogo({ children, className = "" }: { children: Reac
 export function ProjectTitle({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <h2
-      className={`text-[20px] sm:text-[26px] lg:text-[30px] leading-none tracking-[-0.03em] text-white ${className}`}
+      className={`text-[17px] sm:text-[22px] lg:text-[30px] leading-none tracking-[-0.03em] text-white ${className}`}
       style={{ fontFamily: 'Merriweather, serif' }}
     >
       {children}
@@ -159,7 +159,7 @@ export function ProjectTitle({ children, className = "" }: { children: React.Rea
 // We need the header to be a flex row. We'll use a special header wrapper.
 export function ProjectHeader({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 ${className}`}>
+    <div className={`flex items-center gap-2.5 sm:gap-4 mb-3.5 sm:mb-6 ${className}`}>
       {children}
     </div>
   );
@@ -167,7 +167,7 @@ export function ProjectHeader({ children, className = "" }: { children: React.Re
 
 export function ProjectGitHubLink({ href, className = "" }: { href: string; className?: string }) {
   return (
-    <div className={`ml-auto flex items-center gap-4 sm:gap-5 ${className}`}>
+    <div className={`ml-auto flex items-center gap-3.5 sm:gap-5 ${className}`}>
       <a
         href={href}
         target="_blank"
@@ -175,10 +175,10 @@ export function ProjectGitHubLink({ href, className = "" }: { href: string; clas
         className="opacity-75 hover:opacity-100 transition-opacity"
         aria-label="GitHub"
       >
-        <GitHubIcon className="w-5 h-5 text-white" />
+        <GitHubIcon className="w-4.5 h-4.5 sm:w-5 h-5 text-white" />
       </a>
       <button className="opacity-55 hover:opacity-90 transition-opacity" aria-label="Share">
-        <ShareIcon className="w-5 h-5 text-white" />
+        <ShareIcon className="w-4.5 h-4.5 sm:w-5 h-5 text-white" />
       </button>
     </div>
   );
@@ -187,7 +187,7 @@ export function ProjectGitHubLink({ href, className = "" }: { href: string; clas
 export function ProjectDesc({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <p
-      className={`text-[14px] sm:text-[16px] leading-normal text-[#b48a96] tracking-[-0.01em] mb-5 sm:mb-7 max-w-3xl ${className}`}
+      className={`text-[12.5px] sm:text-[14.5px] lg:text-[16px] leading-normal text-[#b48a96] tracking-[-0.01em] mb-4.5 sm:mb-7 max-w-3xl ${className}`}
       style={{ fontFamily: 'Merriweather, serif' }}
     >
       {children}
@@ -196,10 +196,22 @@ export function ProjectDesc({ children, className = "" }: { children: React.Reac
 }
 
 export function ProjectAuthors({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const childrenArray = React.Children.toArray(children);
+  const hasMore = childrenArray.length > 1;
+
   return (
     <MetaRow icon={<AuthorIcon className="w-full h-full text-[#8f6974]" />} label="Original Author(s):">
-      <div className={`flex flex-wrap items-center gap-x-4 gap-y-1 ${className}`}>
-        {children}
+      <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 ${className}`}>
+        {childrenArray.map((child, idx) => (
+          <span key={idx} className={idx > 0 ? "hidden sm:inline-block" : "inline-block"}>
+            {child}
+          </span>
+        ))}
+        {hasMore && (
+          <span className="text-[11.5px] text-white/50 sm:hidden select-none">
+            + others
+          </span>
+        )}
       </div>
     </MetaRow>
   );
@@ -214,7 +226,7 @@ export function ProjectAuthor({ children, className = "" }: { children: React.Re
 }
 
 export function AuthorName({ children, href, className = "" }: { children: React.ReactNode; href?: string; className?: string }) {
-  const cls = `relative z-10 text-[13px] sm:text-[15px] text-white underline underline-offset-[5px] decoration-[1.5px] decoration-white/70 transition-colors duration-300 hover:text-[#f3d6df] hover:decoration-[#f3d6df] ${className}`;
+  const cls = `relative z-10 text-[11.5px] sm:text-[13.5px] lg:text-[15px] text-white underline underline-offset-[5px] decoration-[1.5px] decoration-white/70 transition-colors duration-300 hover:text-[#f3d6df] hover:decoration-[#f3d6df] ${className}`;
   if (href) {
     return <a href={href} target="_blank" rel="noreferrer" className={cls}>{children}</a>;
   }
@@ -243,7 +255,7 @@ export function LastCommitDate({ children, className = "" }: { children: React.R
 }
 
 export function LastCommitMessage({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <span className={`text-white/60 ${className}`}>{children ? ` (${children})` : ''}</span>;
+  return <span className={`text-white/60 hidden sm:inline ${className}`}>{children ? ` (${children})` : ''}</span>;
 }
 
 export function ProjectLicense({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -273,7 +285,7 @@ export function ProjectFeature({ children, className = "" }: { children: React.R
 export function ProjectUrl({ href, className = "" }: { href: string; className?: string }) {
   return (
     <div className={`mt-3 sm:mt-8 flex justify-end ${className}`}>
-      <ButtonGroup gap="gap-[3px]" scaleOnHover={false} size="md">
+      <ButtonGroup gap="gap-[3px]" scaleOnHover={false} size="sm">
         <CustomLink href={href} target="_blank" rel="noreferrer" active>
           Learn More
         </CustomLink>
@@ -300,7 +312,8 @@ export function ProjectLogo({
   bottomBlur?: number;
   blurOpacity?: number;
 }) {
-  const child = React.Children.only(children) as React.ReactElement<React.ImgHTMLAttributes<HTMLImageElement>>;
+  const validChildren = React.Children.toArray(children).filter(React.isValidElement);
+  const child = validChildren[0] as React.ReactElement<React.ImgHTMLAttributes<HTMLImageElement>>;
 
   const totalLayers = 9; // Odd number allows a perfect center middle layer (index 4)
   const layers = Array.from({ length: totalLayers }).map((_, i) => {

@@ -81,7 +81,7 @@ export default function Home() {
             {/* Hero Section */}
             <section className="w-full min-h-[calc(100vh-100px)] flex flex-col justify-center relative z-10">
                 {/* Main Content Grid */}
-                <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 py-12">
+                <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between gap-12 py-12">
 
                     {/* Left Column: Hero Copy */}
                     {/* Left Column: Hero Copy */}
@@ -122,7 +122,7 @@ export default function Home() {
                     </div>
 
                     {/* Right Column: Profile Image */}
-                    <div className="flex w-full lg:w-1/2 justify-center items-center lg:justify-end mt-12 lg:mt-0 shrink-0">
+                    <div className="flex w-full lg:w-1/2 justify-center items-center lg:justify-end lg:mt-0 shrink-0">
                         <div className="relative w-full max-w-[320px] md:max-w-[480px] lg:max-w-[620px] aspect-square">
                             <Image
                                 src="/Profile.png"
@@ -271,20 +271,10 @@ export default function Home() {
                 </CarouselContent>
             </CarouselSection>
 
-            {/* Sample Section */}
-            <Section>
-                <SectionTitle>
-                    Sample <Highlight>Section</Highlight>
-                </SectionTitle>
-                <SectionContent className="text-white/70 text-lg leading-relaxed text-center">
-                    This is a sample of the new Section component. It stretches out vertically to fit its content without adding horizontal scrollbars. It obeys the marginal spacing defined by the platform's layout constraints, ensuring a consistent design aesthetic across all pages.
-                </SectionContent>
-            </Section>
-
             {/* Selected Projects Section */}
             <Section>
                 <SectionTitle id="projects">
-                    Selected <Highlight>Projects</Highlight>
+                    Latest <Highlight>Projects</Highlight>
                 </SectionTitle>
                 <SectionContent>
                     <Projects>
