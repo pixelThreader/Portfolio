@@ -32,6 +32,7 @@ import {
   JournalCardMeta,
   JournalCardAction
 } from "@/components/widgets/JournalCard";
+import CurvedLoop from '@/components/external/CurvedLoop';
 
 export default function Home() {
     return (
@@ -256,6 +257,15 @@ export default function Home() {
                     This is a sample of the new Section component. It stretches out vertically to fit its content without adding horizontal scrollbars. It obeys the marginal spacing defined by the platform's layout constraints, ensuring a consistent design aesthetic across all pages.
                 </SectionContent>
             </Section>
+
+            <CurvedLoop
+                marqueeText="     I Enjoy...     ✦     I Think...     ✦     I Plan...     ✦     I Code...     ✦"
+                speed={2}
+                curveAmount={100}
+                direction="right"
+                interactive
+                className="custom-text-style font-title"
+            />
 
         </div>
     );

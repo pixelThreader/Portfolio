@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useEffect, useState, useMemo, useId } from 'react';
 import './CurvedLoop.css';
 
@@ -106,7 +108,7 @@ const CurvedLoop = ({
 
   return (
     <div
-      className="curved-loop-jacket"
+      className="curved-loop-jacket relative z-10"
       style={{ visibility: ready ? 'visible' : 'hidden', cursor: cursorStyle }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
