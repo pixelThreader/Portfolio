@@ -288,73 +288,187 @@ export default function Home() {
                 </SectionTitle>
                 <SectionContent>
                     <Projects>
-                        {/* Project card — LHS only. ProjectLogo (RHS) is outside the card. */}
-                        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
-                            <div className="w-full lg:flex-[0_0_58%]">
-                                <Project>
-                                    <ProjectDetail>
-                                        <ProjectHeader>
-                                            <ProjectDetailLogo>
-                                                <Image
-                                                    src="/brand/inner_logo_dr_light.png"
-                                                    alt="Deep Researcher Logo"
-                                                    width={48}
-                                                    height={48}
-                                                    className="w-full h-full object-contain"
-                                                />
-                                            </ProjectDetailLogo>
-                                            <ProjectTitle>Deep Researcher v2</ProjectTitle>
-                                            <ProjectGitHubLink href="https://github.com/pixelthreader/deep-researcher" />
-                                        </ProjectHeader>
+                        <Project>
+                            <ProjectDetail>
+                                <ProjectHeader>
+                                    <ProjectDetailLogo>
+                                        <Image
+                                            src="/brand/inner_logo_dr_light.png"
+                                            alt="Deep Researcher Logo"
+                                            width={48}
+                                            height={48}
+                                            className="w-full h-full object-contain"
+                                        />
+                                    </ProjectDetailLogo>
+                                    <ProjectTitle>Deep Researcher v2</ProjectTitle>
+                                    <ProjectGitHubLink href="https://github.com/pixelthreader/deep-researcher" />
+                                </ProjectHeader>
 
-                                        <ProjectDesc>
-                                            Deep Researcher V2 is the successor to the previous version, an Open-Source agentic research harness for autonomous web research, reasoning, source analysis, multi-step planning, and structured AI-powered report generation.
-                                        </ProjectDesc>
+                                <ProjectDesc>
+                                    Deep Researcher V2 is the successor to the previous version, an Open-Source agentic research harness for autonomous web research, reasoning, source analysis, multi-step planning, and structured AI-powered report generation.
+                                </ProjectDesc>
 
-                                        <ProjectMeta>
-                                            <ProjectAuthors>
-                                                <ProjectAuthor>
-                                                    <AuthorName href="https://github.com/pixelThreader">pixelThreader</AuthorName>
-                                                </ProjectAuthor>
-                                                <ProjectAuthor>
-                                                    <AuthorName href="https://github.com/openagentx">OpenAgentX</AuthorName>
-                                                </ProjectAuthor>
-                                                <ProjectAuthor>
-                                                    <AuthorName href="https://github.com/neurostack">NeuroStack</AuthorName>
-                                                </ProjectAuthor>
-                                            </ProjectAuthors>
+                                <ProjectMeta>
+                                    <ProjectAuthors>
+                                        <ProjectAuthor>
+                                            <AuthorName href="https://github.com/pixelThreader">pixelThreader</AuthorName>
+                                        </ProjectAuthor>
+                                        <ProjectAuthor>
+                                            <AuthorName href="https://github.com/openagentx">OpenAgentX</AuthorName>
+                                        </ProjectAuthor>
+                                        <ProjectAuthor>
+                                            <AuthorName href="https://github.com/neurostack">NeuroStack</AuthorName>
+                                        </ProjectAuthor>
+                                    </ProjectAuthors>
 
-                                            <LastCommit>
-                                                <LastCommitDate>May 20, 2026</LastCommitDate>
-                                                <LastCommitMessage>commit #315: This Feature includes this th...</LastCommitMessage>
-                                            </LastCommit>
+                                    <LastCommit>
+                                        <LastCommitDate>May 20, 2026</LastCommitDate>
+                                        <LastCommitMessage>commit #315: This Feature includes this th...</LastCommitMessage>
+                                    </LastCommit>
 
-                                            <ProjectLicense>MIT License</ProjectLicense>
+                                    <ProjectLicense>MIT License</ProjectLicense>
 
-                                            <ProjectFeatures>
-                                                <ProjectFeature>Multi Agent System</ProjectFeature>
-                                                <ProjectFeature>MCP Tools</ProjectFeature>
-                                                <ProjectFeature>Multi-Step Reasoning</ProjectFeature>
-                                            </ProjectFeatures>
-                                        </ProjectMeta>
+                                    <ProjectFeatures>
+                                        <ProjectFeature>Multi Agent System</ProjectFeature>
+                                        <ProjectFeature>MCP Tools</ProjectFeature>
+                                        <ProjectFeature>Multi-Step Reasoning</ProjectFeature>
+                                    </ProjectFeatures>
+                                </ProjectMeta>
 
-                                        <ProjectUrl href="https://github.com/pixelthreader/deep-researcher" />
-                                    </ProjectDetail>
-                                </Project>
-                            </div>
+                                <ProjectUrl href="https://github.com/pixelthreader/deep-researcher" />
+                            </ProjectDetail>
 
-                            {/* RHS — glow applied automatically by ProjectLogo */}
-                            <div className="flex-1 flex items-center justify-center">
-                                <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={0.5}>
-                                    <Image
-                                        src="/projects/deep_researcher.png"
-                                        alt="Deep Researcher v2 Preview"
-                                        width={520}
-                                        height={520}
-                                    />
-                                </ProjectLogo>
-                            </div>
-                        </div>
+                            <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={0.5}>
+                                <Image
+                                    src="/projects/deep_researcher.png"
+                                    alt="Deep Researcher v2 Preview"
+                                    width={520}
+                                    height={520}
+                                />
+                            </ProjectLogo>
+                        </Project>
+
+                        {/* Replica 2 */}
+                        <Project>
+                            <ProjectDetail>
+                                <ProjectHeader>
+                                    <ProjectDetailLogo>
+                                        <Image
+                                            src="/brand/inner_logo_dr_light.png"
+                                            alt="Deep Researcher Logo"
+                                            width={48}
+                                            height={48}
+                                            className="w-full h-full object-contain"
+                                        />
+                                    </ProjectDetailLogo>
+                                    <ProjectTitle>Deep Researcher v2 (Replica)</ProjectTitle>
+                                    <ProjectGitHubLink href="https://github.com/pixelthreader/deep-researcher" />
+                                </ProjectHeader>
+
+                                <ProjectDesc>
+                                    Deep Researcher V2 is the successor to the previous version, an Open-Source agentic research harness for autonomous web research, reasoning, source analysis, multi-step planning, and structured AI-powered report generation.
+                                </ProjectDesc>
+
+                                <ProjectMeta>
+                                    <ProjectAuthors>
+                                        <ProjectAuthor>
+                                            <AuthorName href="https://github.com/pixelThreader">pixelThreader</AuthorName>
+                                        </ProjectAuthor>
+                                        <ProjectAuthor>
+                                            <AuthorName href="https://github.com/openagentx">OpenAgentX</AuthorName>
+                                        </ProjectAuthor>
+                                        <ProjectAuthor>
+                                            <AuthorName href="https://github.com/neurostack">NeuroStack</AuthorName>
+                                        </ProjectAuthor>
+                                    </ProjectAuthors>
+
+                                    <LastCommit>
+                                        <LastCommitDate>May 20, 2026</LastCommitDate>
+                                        <LastCommitMessage>commit #315: This Feature includes this th...</LastCommitMessage>
+                                    </LastCommit>
+
+                                    <ProjectLicense>MIT License</ProjectLicense>
+
+                                    <ProjectFeatures>
+                                        <ProjectFeature>Multi Agent System</ProjectFeature>
+                                        <ProjectFeature>MCP Tools</ProjectFeature>
+                                        <ProjectFeature>Multi-Step Reasoning</ProjectFeature>
+                                    </ProjectFeatures>
+                                </ProjectMeta>
+
+                                <ProjectUrl href="https://github.com/pixelthreader/deep-researcher" />
+                            </ProjectDetail>
+
+                            <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={0.5}>
+                                <Image
+                                    src="/projects/deep_researcher.png"
+                                    alt="Deep Researcher v2 Preview"
+                                    width={520}
+                                    height={520}
+                                />
+                            </ProjectLogo>
+                        </Project>
+
+                        {/* Replica 3 */}
+                        <Project>
+                            <ProjectDetail>
+                                <ProjectHeader>
+                                    <ProjectDetailLogo>
+                                        <Image
+                                            src="/brand/inner_logo_dr_light.png"
+                                            alt="Deep Researcher Logo"
+                                            width={48}
+                                            height={48}
+                                            className="w-full h-full object-contain"
+                                        />
+                                    </ProjectDetailLogo>
+                                    <ProjectTitle>Deep Researcher v2 (Replica 2)</ProjectTitle>
+                                    <ProjectGitHubLink href="https://github.com/pixelthreader/deep-researcher" />
+                                </ProjectHeader>
+
+                                <ProjectDesc>
+                                    Deep Researcher V2 is the successor to the previous version, an Open-Source agentic research harness for autonomous web research, reasoning, source analysis, multi-step planning, and structured AI-powered report generation.
+                                </ProjectDesc>
+
+                                <ProjectMeta>
+                                    <ProjectAuthors>
+                                        <ProjectAuthor>
+                                            <AuthorName href="https://github.com/pixelThreader">pixelThreader</AuthorName>
+                                        </ProjectAuthor>
+                                        <ProjectAuthor>
+                                            <AuthorName href="https://github.com/openagentx">OpenAgentX</AuthorName>
+                                        </ProjectAuthor>
+                                        <ProjectAuthor>
+                                            <AuthorName href="https://github.com/neurostack">NeuroStack</AuthorName>
+                                        </ProjectAuthor>
+                                    </ProjectAuthors>
+
+                                    <LastCommit>
+                                        <LastCommitDate>May 20, 2026</LastCommitDate>
+                                        <LastCommitMessage>commit #315: This Feature includes this th...</LastCommitMessage>
+                                    </LastCommit>
+
+                                    <ProjectLicense>MIT License</ProjectLicense>
+
+                                    <ProjectFeatures>
+                                        <ProjectFeature>Multi Agent System</ProjectFeature>
+                                        <ProjectFeature>MCP Tools</ProjectFeature>
+                                        <ProjectFeature>Multi-Step Reasoning</ProjectFeature>
+                                    </ProjectFeatures>
+                                </ProjectMeta>
+
+                                <ProjectUrl href="https://github.com/pixelthreader/deep-researcher" />
+                            </ProjectDetail>
+
+                            <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={0.5}>
+                                <Image
+                                    src="/projects/deep_researcher.png"
+                                    alt="Deep Researcher v2 Preview"
+                                    width={520}
+                                    height={520}
+                                />
+                            </ProjectLogo>
+                        </Project>
                     </Projects>
                 </SectionContent>
             </Section>

@@ -85,27 +85,43 @@ function MetaRow({
 
 export function Projects({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`flex flex-col gap-6 w-full ${className}`}>
+    <div className={`flex flex-col gap-12 sm:gap-20 w-full ${className}`}>
       {children}
     </div>
   );
 }
 
 export function Project({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const childrenArray = React.Children.toArray(children);
+  const detailChild = childrenArray[0];
+  const logoChild = childrenArray[1];
+
   return (
-    <div className={`relative w-full rounded-[28px] sm:rounded-[34px] border border-white/10 bg-[#411F27] shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_60px_rgba(0,0,0,0.35)] overflow-hidden ${className}`}>
-      {/* Gradient border glow */}
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit]">
-        <div className="absolute inset-0 rounded-[inherit] bg-linear-to-br from-white/30 via-transparent via-40% to-white/12 opacity-90" />
-        <div
-          className="absolute inset-px rounded-[inherit]"
-          style={{ backgroundColor: '#411F27', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)' }}
-        />
+    <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14 w-full">
+      {/* LHS - Card wrapper containing ProjectDetail */}
+      <div className={`w-full ${logoChild ? 'lg:flex-[0_0_58%]' : ''}`}>
+        <div className={`relative w-full rounded-[28px] sm:rounded-[34px] border border-white/10 bg-[#411F27] shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_16px_60px_rgba(0,0,0,0.35)] overflow-hidden ${className}`}>
+          {/* Gradient border glow */}
+          <div className="pointer-events-none absolute inset-0 rounded-[inherit]">
+            <div className="absolute inset-0 rounded-[inherit] bg-linear-to-br from-white/30 via-transparent via-40% to-white/12 opacity-90" />
+            <div
+              className="absolute inset-px rounded-[inherit]"
+              style={{ backgroundColor: '#411F27', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)' }}
+            />
+          </div>
+          {/* Content */}
+          <div className="relative z-10">
+            {detailChild || children}
+          </div>
+        </div>
       </div>
-      {/* Content */}
-      <div className="relative z-10">
-        {children}
-      </div>
+
+      {/* RHS - Centered preview logo glow */}
+      {logoChild && (
+        <div className="flex-1 flex items-center justify-center w-full">
+          {logoChild}
+        </div>
+      )}
     </div>
   );
 }
