@@ -154,7 +154,7 @@ export function Button({ children, active, className = "", ...props }: React.But
 }
 
 // Custom simulated router/link component that wraps Next.js Link
-export function Link({ children, href = "#", className = "", ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href?: string, active?: boolean }) {
+export function Link({ children, href = "#", className = "", active, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href?: string, active?: boolean }) {
   return (
     <NextLink href={href} className={className} {...props}>
       {children}

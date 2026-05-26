@@ -46,7 +46,7 @@ export default function Header() {
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-8 h-8 rounded-full overflow-hidden border border-magenta/20 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-105 shadow-[0_0_15px_rgba(188,19,254,0.15)] shrink-0">
                         <Image
-                            src="/brand/icons/android-chrome-192x192.webp"
+                            src="/icons/android-chrome-192x192.webp"
                             alt="pixelThreader Logo"
                             fill
                             sizes="32px"

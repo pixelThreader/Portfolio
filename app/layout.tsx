@@ -37,6 +37,23 @@ export const metadata: Metadata = {
         description: "Engineering ideas into reality. AI • Systems • Experiences.",
         type: "website",
     },
+    manifest: "/manifest.json",
+    icons: {
+        icon: [
+            { url: "/favicon.ico", type: "image/x-icon" },
+            { url: "/icons/pixelthreader-32.webp", sizes: "32x32", type: "image/webp" },
+            { url: "/icons/pixelthreader-48.webp", sizes: "48x48", type: "image/webp" },
+            { url: "/icons/pixelthreader-96x96.webp", sizes: "96x96", type: "image/webp" },
+            { url: "/icons/pixelthreader-144x144.webp", sizes: "144x144", type: "image/webp" },
+            { url: "/icons/pixelthreader-150x150.webp", sizes: "150x150", type: "image/webp" },
+            { url: "/icons/android-chrome-192x192.webp", sizes: "192x192", type: "image/webp" },
+            { url: "/icons/pixelthreader-310x310.webp", sizes: "310x310", type: "image/webp" },
+            { url: "/icons/android-chrome-512x512.webp", sizes: "512x512", type: "image/webp" },
+        ],
+        apple: [
+            { url: "/icons/apple-touch-icon.webp", sizes: "180x180", type: "image/webp" },
+        ],
+    },
 };
 
 export default function RootLayout({

@@ -283,7 +283,7 @@ export default function Home() {
                                 <ProjectHeader>
                                     <ProjectDetailLogo>
                                         <Image
-                                            src="/brand/inner_logo_dr_light.png"
+                                            src="/projects/inner_logo_dr_light.png"
                                             alt="Deep Researcher Logo"
                                             width={48}
                                             height={48}
@@ -344,7 +344,7 @@ export default function Home() {
                                 <ProjectHeader>
                                     <ProjectDetailLogo>
                                         <Image
-                                            src="/brand/inner_logo_dr_light.png"
+                                            src="/projects/inner_logo_dr_light.png"
                                             alt="Deep Researcher Logo"
                                             width={48}
                                             height={48}
@@ -405,7 +405,7 @@ export default function Home() {
                                 <ProjectHeader>
                                     <ProjectDetailLogo>
                                         <Image
-                                            src="/brand/inner_logo_dr_light.png"
+                                            src="/projects/inner_logo_dr_light.png"
                                             alt="Deep Researcher Logo"
                                             width={48}
                                             height={48}
