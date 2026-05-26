@@ -6,16 +6,76 @@ import {
     SectionTitle,
     SectionContent
 } from "@/components/widgets/Section";
-import {
-    CardGlossy,
-    CardGlossyContent,
-    CardGlossyTitle,
-    CardGlossyDescription,
-    CardGlossyFooter,
-    CardGlossyDate
-} from "@/components/widgets/CardGlossy";
 import { GlassyHeroSection } from "@/components/widgets/GlassyHeroSection";
-import CurvedLoop from '@/components/external/CurvedLoop';
+import experienceData from './experience.json';
+import { Timeline } from "@/components/widgets/Timeline";
+import MagicBento from "@/components/external/MagicBento";
+import { Accordion } from "@/components/widgets/Accordion";
+import ProfileCard from "@/components/external/ProfileCard";
+
+const customEducationData = [
+    {
+        degree: 'Bachelor of Computer Applications (BCA)',
+        institute: 'Your University / Institute',
+        specialization: 'Software Engineering & Intelligent Systems',
+        duration: '2023 — 2026',
+        subjects: ['Data Structures & Algorithms', 'Database Systems', 'System Architecture', 'Web Engineering', 'AI Foundations'],
+        projects: [
+            'Developed an autonomous Model Context Protocol (MCP) agent framework for dynamic database discovery.',
+            'Designed a high-performance rendering pipeline for reactive web experiences yielding smooth 60fps animations.'
+        ]
+    },
+    {
+        degree: 'Higher Secondary & High School (Class X & XII)',
+        institute: 'KV Ramgarh Cantt (Kendriya Vidyalaya)',
+        specialization: 'Science Stream (PCM & Computer Science)',
+        duration: '2020 — 2022',
+        subjects: ['Physics', 'Chemistry', 'Mathematics', 'Computer Science', 'English'],
+        projects: [
+            'Completed secondary and senior secondary board qualifications with a focus on science and programming.',
+            'Developed strong foundational skills in object-oriented programming (OOP), logic design, and database basics.'
+        ]
+    }
+];
+
+const customBentoCards = [
+    {
+        color: '#411F27',
+        title: 'AI Engineering',
+        description: 'Fine-tuning open-source models, building advanced RAG architectures, and deploying custom inference solutions at scale.',
+        label: 'Intelligence'
+    },
+    {
+        color: '#411F27',
+        title: 'Full-stack Development',
+        description: 'Developing robust Next.js frontends and lightning-fast APIs using modern architectures like React 19 and Bun.',
+        label: 'Ecosystem'
+    },
+    {
+        color: '#411F27',
+        title: 'Agentic Systems',
+        description: 'Orchestrating multi-agent systems, background loop execution engines, and Model Context Protocol (MCP) tool integrations.',
+        label: 'Autonomy'
+    },
+    {
+        color: '#411F27',
+        title: 'SaaS Architecture',
+        description: 'Designing highly reliable distributed systems, Redis caching topologies, and serverless background pipelines.',
+        label: 'Scale'
+    },
+    {
+        color: '#411F27',
+        title: 'UI/UX Engineering',
+        description: 'Crafting liquid-glass interfaces with mathematical grid systems, responsive typography, and micro-animations.',
+        label: 'Aesthetics'
+    },
+    {
+        color: '#411F27',
+        title: 'Performance Optimization',
+        description: 'Achieving sub-millisecond edge render speeds, bundling optimizations, and millisecond database lookups.',
+        label: 'Velocity'
+    }
+];
 
 export default function About() {
     return (
@@ -38,156 +98,100 @@ export default function About() {
                 />
             </div>
 
-            {/* Premium Modular Glassy Hero Header */}
             <GlassyHeroSection />
 
-            {/* Elegant Minimal Personal Profile Section */}
-            <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] py-16 z-10 relative grid grid-cols-1 md:grid-cols-10 gap-12 md:gap-16 items-center">
-                <div className="md:col-span-6 text-left flex flex-col justify-center">
-                    <p className="font-serif text-[#ffd4dc] text-[22px] sm:text-[30px] md:text-[36px] lg:text-[42px] leading-snug tracking-tight select-none">
-                        Threading complex neural architectures with high-fidelity digital fabrics.
-                    </p>
-                    <p className="font-serif text-white/70 text-base sm:text-lg md:text-xl leading-relaxed mt-8 max-w-3xl">
-                        I am an AI Systems Engineer and Full-Stack Developer. I specialize in designing autonomous reasoning pipelines, robust backend environments, and premium user interfaces that feel alive, responsive, and beautiful.
-                    </p>
-                    <div className="mt-12 flex justify-start w-full">
-                        <ButtonGroup gap="gap-[8px] sm:gap-[12px]" size="md">
-                            <CustomLink href="/">
-                                Back Home
-                            </CustomLink>
-                            <CustomLink href="/#projects">
-                                Explore Projects
-                            </CustomLink>
-                        </ButtonGroup>
+            <div className="w-full relative px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col md:grid md:grid-cols-10 gap-12 md:gap-16 pt-12 z-10">
+                <div className="md:col-span-6 flex flex-col justify-center items-start text-left w-full">
+                    <div className="font-serif text-[#ffd4dc]/90 text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed mb-6 font-normal tracking-wide flex flex-col gap-4">
+                        <p>
+                            I’m Piyush Rana, building under the name <span className="text-white font-semibold">pixelThreader</span>, an AI-focused full-stack developer passionate about building scalable systems, AI-driven applications, and modern web experiences.
+                        </p>
+                        <p>
+                            My work combines AI engineering, full-stack development, and product-focused thinking. I enjoy building end-to-end solutions ranging from agentic workflows and deep learning experiments to complete SaaS platforms.
+                        </p>
+                        <p>
+                            During my full-stack internship at <span className="text-white font-semibold">AYCreation IT Services</span>, I worked across the development pipeline from planning and architecture to production-ready implementation using multiple technologies.
+                        </p>
+                        <p>
+                            I’m driven by solving real-world problems through clean, efficient, and practical systems while continuously exploring AI, software architecture, and performance-focused development.
+                        </p>
                     </div>
+                    <ButtonGroup>
+                        <CustomLink href="/projects">View Projects</CustomLink>
+                        <CustomLink href="/resume.pdf" download="Piyush_Rana_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                            <svg
+                                className="w-5 h-5 mr-2 shrink-0 stroke-[2.25]"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+                            Resume
+                        </CustomLink>
+                    </ButtonGroup>
                 </div>
 
                 <div className="md:col-span-4 flex justify-center items-center w-full">
-                    <div className="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-full aspect-square flex justify-center items-center rounded-3xl">
-                        <Image
-                            src="/asthetic/pt_test_2.png"
-                            alt="Aesthetic Vase"
-                            width={450}
-                            height={450}
-                            className="w-full h-auto object-contain max-h-[350px] md:max-h-[450px] rounded-3xl select-none pointer-events-none"
-                            priority
-                        />
-                    </div>
+                    <ProfileCard
+                        avatarUrl="/Profile.png"
+                        miniAvatarUrl="/brand/icons/pixelthreader-150x150.webp"
+                        name="pixelThreader"
+                        title="AI & Full-Stack Engineer"
+                        handle="pixelThreader"
+                        status="Piyush Rana"
+                        behindGlowColor="rgba(208, 25, 126, 0.4)"
+                        innerGradient="linear-gradient(145deg, #411f27bf 0%, #d0197e33 100%)"
+                        contactText="Let's Connect"
+                        showUserInfo={true}
+                    />
                 </div>
             </div>
 
-            {/* Core Philosophy Section */}
+            {/* What I Actually Do Section */}
             <Section>
-                <SectionTitle id="philosophy">
-                    Core <span className="brand-gradient font-title">Philosophy</span>
+                <SectionTitle id="what-i-do">
+                    What I <span className="brand-gradient font-title">Actually Do</span>
                 </SectionTitle>
                 <SectionContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center w-full">
-
-                        <CardGlossy>
-                            <CardGlossyContent>
-                                <CardGlossyTitle>Speed & Agility</CardGlossyTitle>
-                                <CardGlossyDescription>
-                                    Shipping fast is a core product feature. I focus on optimizing developer velocity, reducing state management friction, and leveraging reliable runtimes like Bun to turn ideas into production-ready platforms immediately.
-                                </CardGlossyDescription>
-                            </CardGlossyContent>
-                            <CardGlossyFooter gradientDivider={true}>
-                                <BadgeGroup>
-                                    <Badge>Bun</Badge>
-                                    <Badge>Velocity</Badge>
-                                </BadgeGroup>
-                                <CardGlossyDate>01</CardGlossyDate>
-                            </CardGlossyFooter>
-                        </CardGlossy>
-
-                        <CardGlossy>
-                            <CardGlossyContent>
-                                <CardGlossyTitle>Autonomous Agents</CardGlossyTitle>
-                                <CardGlossyDescription>
-                                    Deep learning shouldn't just summarize—it should act. I build complex multi-agent system orchestrations, tool-use harnesses (MCP), and background pipeline loops that automate research, systems work, and engineering.
-                                </CardGlossyDescription>
-                            </CardGlossyContent>
-                            <CardGlossyFooter gradientDivider={false}>
-                                <BadgeGroup>
-                                    <Badge>AI Agents</Badge>
-                                    <Badge>Reasoning</Badge>
-                                </BadgeGroup>
-                                <CardGlossyDate>02</CardGlossyDate>
-                            </CardGlossyFooter>
-                        </CardGlossy>
-
-                        <CardGlossy>
-                            <CardGlossyContent>
-                                <CardGlossyTitle>High-Fidelity UX</CardGlossyTitle>
-                                <CardGlossyDescription>
-                                    Details are the product. Glassmorphic shaders, mathematical grid systems, curated HSL gradients, and responsive typography. The UX must stun at first glance and feel extremely premium under touch and scroll.
-                                </CardGlossyDescription>
-                            </CardGlossyContent>
-                            <CardGlossyFooter gradientDivider={true}>
-                                <BadgeGroup>
-                                    <Badge>Tailwind v4</Badge>
-                                    <Badge>Aesthetics</Badge>
-                                </BadgeGroup>
-                                <CardGlossyDate>03</CardGlossyDate>
-                            </CardGlossyFooter>
-                        </CardGlossy>
-
+                    <div className="w-full">
+                        <MagicBento
+                            cards={customBentoCards}
+                            textAutoHide={true}
+                            enableStars={true}
+                            enableSpotlight={true}
+                            enableBorderGlow={true}
+                            enableTilt={false}
+                            enableMagnetism={false}
+                            clickEffect={true}
+                            spotlightRadius={400}
+                            particleCount={12}
+                            glowColor="65, 31, 39"
+                            disableAnimations={false}
+                        />
                     </div>
                 </SectionContent>
             </Section>
 
-            {/* Skills & Arsenal Section */}
+            {/* Professional Journey / Experience Section */}
             <Section>
-                <SectionTitle id="arsenal">
-                    Tech <span className="brand-gradient font-title">Arsenal</span>
+                <SectionTitle id="journey">
+                    Professional <span className="brand-gradient font-title">Journey</span>
                 </SectionTitle>
                 <SectionContent>
-                    <div className="w-full max-w-4xl mx-auto rounded-[32px] border border-white/5 bg-[#3a141d]/40 p-8 sm:p-10 backdrop-blur-md shadow-xl flex flex-col gap-8">
-                        <div>
-                            <h4 className="font-title text-xl text-white mb-4">Frontend & Aesthetics</h4>
-                            <BadgeGroup>
-                                {["React", "Next.js", "TypeScript", "Tailwind CSS v4", "Framer Motion", "Vanilla CSS", "Responsive Design"].map((item) => (
-                                    <Badge key={item}>{item}</Badge>
-                                ))}
-                            </BadgeGroup>
-                        </div>
-
-                        <div className="h-px w-full bg-white/5" />
-
-                        <div>
-                            <h4 className="font-title text-xl text-white mb-4">Backend & Architecture</h4>
-                            <BadgeGroup>
-                                {["Node.js", "Bun", "PostgreSQL", "Supabase", "Redis", "REST & GraphQL", "Distributed Systems"].map((item) => (
-                                    <Badge key={item}>{item}</Badge>
-                                ))}
-                            </BadgeGroup>
-                        </div>
-
-                        <div className="h-px w-full bg-white/5" />
-
-                        <div>
-                            <h4 className="font-title text-xl text-white mb-4">AI & Agents</h4>
-                            <BadgeGroup>
-                                {["LLM Orchestration", "MCP Tools", "Autonomous Agent Loops", "RAG Systems", "Vector Databases", "Prompt Engineering"].map((item) => (
-                                    <Badge key={item}>{item}</Badge>
-                                ))}
-                            </BadgeGroup>
-                        </div>
-                    </div>
+                    <Timeline data={experienceData} />
                 </SectionContent>
             </Section>
 
-            {/* Bottom Marquee Loop */}
-            <div className="py-12 md:py-16">
-                <CurvedLoop
-                    marqueeText="     ✦     Autonomous Reasoning     ✦     High Fidelity UI     ✦     System Architect     ✦     Pixel Perfect Design     ✦"
-                    speed={2.5}
-                    curveAmount={80}
-                    direction="right"
-                    interactive
-                    className="custom-text-style font-title"
-                />
-            </div>
+            {/* Qualifications / Education Section */}
+            <Section>
+                <SectionTitle id="education">
+                    Qualifications & <span className="brand-gradient font-title">Education</span>
+                </SectionTitle>
+                <SectionContent>
+                    <Accordion data={customEducationData} />
+                </SectionContent>
+            </Section>
 
         </div>
     );
