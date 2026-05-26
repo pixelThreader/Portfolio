@@ -42,22 +42,37 @@ export default function About() {
             <GlassyHeroSection />
 
             {/* Elegant Minimal Personal Profile Section */}
-            <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] py-16 text-left z-10 relative">
-                <p className="font-serif text-[#ffd4dc] text-[22px] sm:text-[30px] md:text-[36px] lg:text-[42px] leading-snug tracking-tight select-none">
-                    Threading complex neural architectures with high-fidelity digital fabrics.
-                </p>
-                <p className="font-serif text-white/70 text-base sm:text-lg md:text-xl leading-relaxed mt-8 max-w-3xl">
-                    I am an AI Systems Engineer and Full-Stack Developer. I specialize in designing autonomous reasoning pipelines, robust backend environments, and premium user interfaces that feel alive, responsive, and beautiful.
-                </p>
-                <div className="mt-12 flex justify-start w-full">
-                    <ButtonGroup gap="gap-[8px] sm:gap-[12px]" size="md">
-                        <CustomLink href="/">
-                            Back Home
-                        </CustomLink>
-                        <CustomLink href="/#projects">
-                            Explore Projects
-                        </CustomLink>
-                    </ButtonGroup>
+            <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] py-16 z-10 relative grid grid-cols-1 md:grid-cols-10 gap-12 md:gap-16 items-center">
+                <div className="md:col-span-6 text-left flex flex-col justify-center">
+                    <p className="font-serif text-[#ffd4dc] text-[22px] sm:text-[30px] md:text-[36px] lg:text-[42px] leading-snug tracking-tight select-none">
+                        Threading complex neural architectures with high-fidelity digital fabrics.
+                    </p>
+                    <p className="font-serif text-white/70 text-base sm:text-lg md:text-xl leading-relaxed mt-8 max-w-3xl">
+                        I am an AI Systems Engineer and Full-Stack Developer. I specialize in designing autonomous reasoning pipelines, robust backend environments, and premium user interfaces that feel alive, responsive, and beautiful.
+                    </p>
+                    <div className="mt-12 flex justify-start w-full">
+                        <ButtonGroup gap="gap-[8px] sm:gap-[12px]" size="md">
+                            <CustomLink href="/">
+                                Back Home
+                            </CustomLink>
+                            <CustomLink href="/#projects">
+                                Explore Projects
+                            </CustomLink>
+                        </ButtonGroup>
+                    </div>
+                </div>
+
+                <div className="md:col-span-4 flex justify-center items-center w-full">
+                    <div className="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-full aspect-square flex justify-center items-center rounded-3xl">
+                        <Image
+                            src="/asthetic/pt_test_2.png"
+                            alt="Aesthetic Vase"
+                            width={450}
+                            height={450}
+                            className="w-full h-auto object-contain max-h-[350px] md:max-h-[450px] rounded-3xl select-none pointer-events-none"
+                            priority
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -68,7 +83,7 @@ export default function About() {
                 </SectionTitle>
                 <SectionContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center w-full">
-                        
+
                         <CardGlossy>
                             <CardGlossyContent>
                                 <CardGlossyTitle>Speed & Agility</CardGlossyTitle>
