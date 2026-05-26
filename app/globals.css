@@ -185,6 +185,14 @@ html.lenis, html.lenis body {
 }
 
 /* === UTILITIES === */
+@utility no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+}
+
 @utility glass {
   background: var(--glass-bg);
   backdrop-filter: blur(16px);
