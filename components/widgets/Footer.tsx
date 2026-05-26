@@ -1,6 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+    const pathname = usePathname();
+    const isAbout = pathname === "/about";
+    const isProjects = pathname === "/projects";
+    const isContact = pathname === "/contact";
+
     return (
         <footer className="w-full bg-[#411F27] pt-16 pb-8 px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col relative overflow-hidden shrink-0 mt-auto">
             {/* Top Row with Brand Tagline and Navigation Columns */}
@@ -16,29 +24,30 @@ export default function Footer() {
                 <div className="flex gap-16 md:gap-24">
                     {/* Column 1 */}
                     <div className="flex flex-col gap-3">
+                        {/* Dynamic Link depending on current page */}
                         <Link 
-                            href="#about" 
+                            href={isAbout ? "/" : "/about"} 
                             className="font-serif text-[15px] text-white/70 hover:text-white transition-opacity duration-300"
                         >
-                            About
+                            {isAbout ? "Home" : "About"}
                         </Link>
                         <Link 
-                            href="#experience" 
+                            href="/#experience" 
                             className="font-serif text-[15px] text-white/70 hover:text-white transition-opacity duration-300"
                         >
                             Experience
                         </Link>
                         <Link 
-                            href="#contact" 
+                            href={isContact ? "/" : "/contact"} 
                             className="font-serif text-[15px] text-white/70 hover:text-white transition-opacity duration-300"
                         >
-                            Contact
+                            {isContact ? "Home" : "Contact"}
                         </Link>
                         <Link 
-                            href="#projects" 
+                            href={isProjects ? "/" : "/projects"} 
                             className="font-serif text-[15px] text-white/70 hover:text-white transition-opacity duration-300"
                         >
-                            Projects
+                            {isProjects ? "Home" : "Projects"}
                         </Link>
                     </div>
 
