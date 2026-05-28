@@ -125,18 +125,6 @@ export default function Projects() {
                 </SectionContent>
             </Section>
 
-            {/* Bottom Marquee Loop */}
-            <div className="py-12 md:py-16">
-                <CurvedLoop
-                    marqueeText="     ✦     AI Systems Architect     ✦     Fidelity Frontend Developer     ✦     Open Source Builder     ✦"
-                    speed={2.5}
-                    curveAmount={80}
-                    direction="right"
-                    interactive
-                    className="custom-text-style font-title"
-                />
-            </div>
-
         </div>
     );
 }

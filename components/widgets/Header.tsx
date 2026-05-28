@@ -114,12 +114,13 @@ export default function Header() {
 
                     {/* Right Area: Search & Mobile Toggle */}
                     <div className="flex items-center gap-4">
-                        <button 
+                        <Link 
+                            href="/search"
                             aria-label="Search"
                             className="p-2 text-white/70 hover:text-white hover:scale-105 active:scale-95 transition-all duration-300 rounded-full hover:bg-white/5"
                         >
                             <Search className="w-5 h-5 stroke-[1.5]" />
-                        </button>
+                        </Link>
 
                         {/* Mobile Menu Button */}
                         <button
