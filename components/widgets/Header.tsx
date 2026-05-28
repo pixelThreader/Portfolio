@@ -5,7 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, Download } from "lucide-react";
+import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -112,15 +113,28 @@ export default function Header() {
                         })}
                     </nav>
 
-                    {/* Right Area: Search & Mobile Toggle */}
+                    {/* Right Area: Resume download, Search & Mobile Toggle */}
                     <div className="flex items-center gap-4">
-                        <Link 
-                            href="/search"
-                            aria-label="Search"
-                            className="p-2 text-white/70 hover:text-white hover:scale-105 active:scale-95 transition-all duration-300 rounded-full hover:bg-white/5"
-                        >
-                            <Search className="w-5 h-5 stroke-[1.5]" />
-                        </Link>
+                        {/* ButtonGroup for Resume and Search Button (Gap reduced mathematically by 50%, no hover scale, always full brightness) */}
+                        <ButtonGroup size="sm" gap="gap-[3px] sm:gap-[6px]" fullBrightness={true}>
+                            <CustomLink 
+                                href="/resume.pdf" 
+                                download 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-1.5"
+                            >
+                                <Download className="w-3.5 h-3.5 stroke-[1.5]" />
+                                Resume
+                            </CustomLink>
+                            <CustomLink 
+                                href="/search"
+                                aria-label="Search"
+                                className="flex items-center"
+                            >
+                                <Search className="w-4 h-4 stroke-[1.5]" />
+                            </CustomLink>
+                        </ButtonGroup>
 
                         {/* Mobile Menu Button */}
                         <button

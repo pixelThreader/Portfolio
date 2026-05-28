@@ -13,6 +13,7 @@ export function ButtonGroup({
   onSelect, 
   gap = "gap-1.5 sm:gap-[12px]", // Spacing reduced by 50%
   scaleOnHover = true,
+  fullBrightness = false,
   size = "lg",
   className = "" 
 }: {
@@ -21,6 +22,7 @@ export function ButtonGroup({
   onSelect?: (val: string) => void,
   gap?: string,
   scaleOnHover?: boolean,
+  fullBrightness?: boolean,
   size?: 'sm' | 'md' | 'lg' | 'xxl',
   className?: string
 }) {
@@ -93,9 +95,9 @@ export function ButtonGroup({
 
         // Determine if this child is active
         const childValue = child.props.value || child.props.children;
-        const isActive = selected !== undefined 
+        const isActive = fullBrightness || (selected !== undefined 
           ? (selected === childValue) 
-          : !!child.props.active;
+          : !!child.props.active);
 
         // Custom click handler to notify group selection while preserving child's own onClick
         const handleChildClick = (e: React.MouseEvent) => {
@@ -108,7 +110,7 @@ export function ButtonGroup({
         };
 
         const activeClass = isActive ? 'premium-btn-active' : 'premium-btn-inactive';
-        const hoverScaleClass = scaleOnHover ? 'hover:scale-[1.03] active:scale-95' : '';
+        const hoverScaleClass = (scaleOnHover && !fullBrightness) ? 'hover:scale-[1.03] active:scale-95' : '';
 
         // Intelligently clone the child to act as the premium outer element
         // while nesting the illuminated borders and background mask
@@ -127,9 +129,9 @@ export function ButtonGroup({
               
               {/* Inner High-Fidelity Mask Container */}
               <span 
-                className={`relative flex items-center justify-center ${config.padding} font-serif ${config.fontSize} tracking-wide transition-all duration-300 select-none ${roundedClass.inner} ${
+                className={`relative flex items-center justify-center gap-1.5 ${config.padding} font-serif ${config.fontSize} leading-none tracking-wide transition-all duration-300 select-none ${roundedClass.inner} ${
                   isActive 
-                    ? 'bg-[#4e1c26]/95 hover:bg-[#4e1c26]/80 text-white' 
+                    ? `bg-[#4e1c26]/95 ${fullBrightness ? '' : 'hover:bg-[#4e1c26]/80'} text-white` 
                     : 'bg-[#3a141d]/65 hover:bg-[#3a141d]/85 text-[#ffd4dc] group-hover:text-white'
                 }`}
               >
