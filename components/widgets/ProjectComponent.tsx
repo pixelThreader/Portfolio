@@ -226,3 +226,181 @@ export function ProjectDescription({ description, authors, className = "" }: Pro
         </div>
     );
 }
+
+export function ProjectPreview({ children, className = "", snap = true }: { children: React.ReactNode; className?: string; snap?: boolean }) {
+    const containerRef = React.useRef<HTMLDivElement>(null);
+    const [showLeft, setShowLeft] = React.useState(false);
+    const [showRight, setShowRight] = React.useState(false);
+
+    const checkScroll = React.useCallback(() => {
+        const c = containerRef.current;
+        if (!c) return;
+        const hasOverflow = c.scrollWidth > c.clientWidth;
+        if (hasOverflow) {
+            setShowLeft(c.scrollLeft > 10);
+            setShowRight(c.scrollLeft + c.clientWidth < c.scrollWidth - 10);
+        } else {
+            setShowLeft(false);
+            setShowRight(false);
+        }
+    }, []);
+
+    React.useEffect(() => {
+        const c = containerRef.current;
+        if (!c) return;
+        checkScroll();
+        c.addEventListener("scroll", checkScroll);
+        window.addEventListener("resize", checkScroll);
+        const obs = new MutationObserver(checkScroll);
+        obs.observe(c, { childList: true, subtree: true });
+        return () => {
+            c.removeEventListener("scroll", checkScroll);
+            window.removeEventListener("resize", checkScroll);
+            obs.disconnect();
+        };
+    }, [checkScroll]);
+
+    const handleScrollClick = (dir: "left" | "right") => {
+        const c = containerRef.current;
+        if (!c) return;
+        const amount = c.clientWidth * 0.75;
+        c.scrollTo({ left: c.scrollLeft + (dir === "left" ? -amount : amount), behavior: "smooth" });
+    };
+
+    return (
+        <div className={`relative w-full group/preview ${className}`}>
+            {/* Left chevron */}
+            <button
+                onClick={() => handleScrollClick("left")}
+                aria-label="Scroll left"
+                className={`absolute left-4 md:left-[8%] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl cursor-pointer ${
+                    showLeft ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
+                }`}
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            {/* Right chevron */}
+            <button
+                onClick={() => handleScrollClick("right")}
+                aria-label="Scroll right"
+                className={`absolute right-4 md:right-[8%] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl cursor-pointer ${
+                    showRight ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
+                }`}
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
+
+            {/* Scroll track */}
+            <div
+                ref={containerRef}
+                className={`w-full overflow-x-auto no-scrollbar pb-8 scroll-smooth ${snap ? 'snap-x snap-proximity' : ''}`}
+            >
+                <div className="flex items-stretch gap-6 pl-8 md:pl-16 lg:pl-[12%] xl:pl-[15%] pr-8 md:pr-16 lg:pr-[12%] xl:pr-[15%] w-max">
+                    {React.Children.map(children, (child) => {
+                        if (!child) return null;
+                        return (
+                            <div className={`flex-none ${snap ? 'snap-center' : ''}`}>
+                                {child}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function ProjectPreviewTitle({ children }: { children: React.ReactNode }) {
+    return (
+        <div className="flex flex-col items-start justify-start mb-8 w-full select-none px-8 md:px-16 lg:px-[12%] xl:px-[15%]">
+            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-title text-white flex items-baseline tracking-tight pb-2 pt-1 leading-normal">
+                {children}
+            </h2>
+            {/* Visual bottom indicator scaled to match smaller title size */}
+            <div className="mt-1.5 flex w-full max-w-[130px] sm:max-w-[170px] items-center gap-1.5 h-[3px]">
+                <div className="h-full bg-white rounded-full w-[70%]" />
+                <div className="h-full bg-[linear-gradient(to_right,#D0197E_23%,#D606C8_62%,#A94365_100%)] rounded-full w-[15%]" />
+                <div className="h-full bg-[linear-gradient(to_right,#D0197E_23%,#D606C8_62%,#A94365_100%)] rounded-full w-[8%]" />
+                <div className="h-full bg-[linear-gradient(to_right,#D0197E_23%,#D606C8_62%,#A94365_100%)] rounded-full w-[7%]" />
+            </div>
+        </div>
+    );
+}
+
+export function ProjectPreviewGroup({ 
+    title, 
+    children, 
+    className = "" 
+}: { 
+    title: string; 
+    children: React.ReactNode; 
+    className?: string;
+}) {
+    return (
+        <div className={`flex flex-col gap-2 shrink-0 ${className}`}>
+            {/* Group Title */}
+            <h3 className="text-[16px] sm:text-[18px] md:text-[20px] font-semibold text-white/90 font-serif text-left pl-1 select-none tracking-tight">
+                {title}
+            </h3>
+
+            {/* Gradient Border Carousel Container Wrapper */}
+            <div className="relative rounded-[24px] p-[2px] shadow-[0_12px_40px_-8px_rgba(0,0,0,0.65)] group/border shrink-0">
+                {/* Outer Glowing Gradient Border */}
+                <span className="absolute inset-0 bg-linear-to-br from-white/20 via-transparent to-white/10 group-hover/border:from-white/35 group-hover/border:to-white/20 rounded-[24px] transition-all duration-500" />
+
+                {/* Inner Glassmorphic Container (Transparent background) */}
+                <div className="relative rounded-[22.8px] bg-background border border-white/5 backdrop-blur-xl p-2 sm:p-2 flex items-center h-full overflow-hidden">
+                    <div className="flex items-stretch gap-2 sm:gap-2 shrink-0">
+                        {children}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function ProjectAsset({ 
+    type, 
+    src, 
+    caption, 
+    className = "w-[260px] sm:w-[320px] md:w-[380px]" 
+}: { 
+    type: "image" | "video"; 
+    src: string; 
+    caption?: string; 
+    className?: string;
+}) {
+    return (
+        <div className={`flex-none aspect-video rounded-2xl overflow-hidden relative shadow-[0_6px_20px_rgba(0,0,0,0.5)] border border-white/5 bg-black/30 group/asset ${className}`}>
+            {type === "video" ? (
+                <video 
+                    src={src} 
+                    controls 
+                    muted 
+                    loop 
+                    playsInline
+                    className="w-full h-full object-cover rounded-2xl"
+                />
+            ) : (
+                <Image 
+                    src={src} 
+                    alt={caption || "Project preview asset"} 
+                    width={640} 
+                    height={360} 
+                    className="w-full h-full object-cover rounded-2xl group-hover/asset:scale-[1.01] transition-transform duration-500"
+                    priority
+                />
+            )}
+
+            {/* Floating caption badge at bottom-left */}
+            {caption && (
+                <div 
+                    className="absolute bottom-4 left-4 z-10 bg-black/75 border border-white/10 backdrop-blur-md px-3 py-1 text-[10px] sm:text-[11px] font-serif text-white/90 rounded-full select-none shadow-lg tracking-wide"
+                >
+                    Fig: {caption}
+                </div>
+            )}
+        </div>
+    );
+}

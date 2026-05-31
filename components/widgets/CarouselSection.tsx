@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode, useRef, useState, useEffect } from 'react';
+import React, { ReactNode, useRef, useState, useEffect, createContext, useContext } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const Highlight = ({ children }: { children: ReactNode }) => {
@@ -26,7 +26,10 @@ export const CarouselSectionTitle = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const CarouselContent = ({ children }: { children: ReactNode }) => {
+
+const CarouselContext = createContext<{ snap: boolean }>({ snap: true });
+
+export const CarouselContent = ({ children, snap = true }: { children: ReactNode; snap?: boolean }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(false);
@@ -36,7 +39,7 @@ export const CarouselContent = ({ children }: { children: ReactNode }) => {
     if (!container) return;
 
     const { scrollLeft, scrollWidth, clientWidth } = container;
-    
+
     // We only show navigation if the content is wider than container width
     const hasOverflow = scrollWidth > clientWidth;
 
@@ -81,8 +84,8 @@ export const CarouselContent = ({ children }: { children: ReactNode }) => {
     if (!container) return;
 
     const scrollAmount = container.clientWidth * 0.75; // Scroll 75% of view area
-    const target = direction === 'left' 
-      ? container.scrollLeft - scrollAmount 
+    const target = direction === 'left'
+      ? container.scrollLeft - scrollAmount
       : container.scrollLeft + scrollAmount;
 
     container.scrollTo({
@@ -92,45 +95,49 @@ export const CarouselContent = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <div className="relative w-full group/carousel">
-      {/* Scroll Left Button */}
-      <button
-        onClick={() => handleScrollClick('left')}
-        className={`absolute left-4 md:left-[8%] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl pointer-events-auto cursor-pointer ${
-          showLeft ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
-        }`}
-        aria-label="Scroll left"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
+    <CarouselContext.Provider value={{ snap }}>
+      <div className="relative w-full group/carousel">
+        {/* Scroll Left Button */}
+        <button
+          onClick={() => handleScrollClick('left')}
+          className={`absolute left-4 md:left-[8%] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl pointer-events-auto cursor-pointer ${
+            showLeft ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
+          }`}
+          aria-label="Scroll left"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
 
-      {/* Scroll Right Button */}
-      <button
-        onClick={() => handleScrollClick('right')}
-        className={`absolute right-4 md:right-[8%] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl pointer-events-auto cursor-pointer ${
-          showRight ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
-        }`}
-        aria-label="Scroll right"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
+        {/* Scroll Right Button */}
+        <button
+          onClick={() => handleScrollClick('right')}
+          className={`absolute right-4 md:right-[8%] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl pointer-events-auto cursor-pointer ${
+            showRight ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
+          }`}
+          aria-label="Scroll right"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
 
-      {/* Scrollable Container */}
-      <div 
-        ref={containerRef}
-        className="w-full overflow-x-auto no-scrollbar pb-8 snap-x snap-mandatory scroll-smooth"
-      >
-        <div className="flex items-stretch gap-6 pl-8 md:pl-16 lg:pl-[12%] xl:pl-[15%] pr-8 md:pr-16 lg:pr-[12%] xl:pr-[15%] w-max">
-          {children}
+        {/* Scrollable Container */}
+        <div
+          ref={containerRef}
+          className={`w-full overflow-x-auto no-scrollbar pb-8 scroll-smooth ${snap ? 'snap-x snap-mandatory' : ''}`}
+        >
+          <div className="flex items-stretch gap-6 pl-8 md:pl-16 lg:pl-[12%] xl:pl-[15%] pr-8 md:pr-16 lg:pr-[12%] xl:pr-[15%] w-max">
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+    </CarouselContext.Provider>
   );
 };
 
-export const CarouselItem = ({ children, className = "w-[280px] md:w-[320px] lg:w-[400px]" }: { children: ReactNode, className?: string }) => {
+export const CarouselItem = ({ children, className = "w-[280px] md:w-[320px] lg:w-[400px]", snap: propSnap }: { children: ReactNode, className?: string, snap?: boolean }) => {
+  const context = useContext(CarouselContext);
+  const snap = propSnap !== undefined ? propSnap : context.snap;
   return (
-    <div className={`flex-none snap-center h-full ${className}`}>
+    <div className={`flex-none h-full ${snap ? 'snap-center' : ''} ${className}`}>
       {children}
     </div>
   );
