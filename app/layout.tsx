@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/widgets/Header";
 import Footer from "@/components/widgets/Footer";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const merienda = Merienda({
     variable: "--font-merienda",
@@ -66,11 +68,14 @@ export default function RootLayout({
             <body
                 className={`${merienda.variable} ${merriweather.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
             >
-                <Header />
-                <main className="flex-1 w-full flex flex-col">
-                    {children}
-                </main>
-                <Footer />
+                <TooltipProvider>
+                    <Header />
+                    <main className="flex-1 w-full flex flex-col">
+                        {children}
+                    </main>
+                    <Footer />
+                    <Toaster />
+                </TooltipProvider>
                 <Analytics />
             </body>
         </html>
