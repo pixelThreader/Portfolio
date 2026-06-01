@@ -7,16 +7,59 @@ export const Highlight = ({ children }: { children: ReactNode }) => {
   return <span className="brand-gradient font-title ml-2 md:ml-3">{children}</span>;
 };
 
-export const CarouselSectionTitle = ({ children }: { children: ReactNode }) => {
+export const CarouselSectionTitle = ({ 
+  children,
+  size = "lg",
+  position = "center"
+}: { 
+  children: ReactNode;
+  size?: "sm" | "md" | "lg";
+  position?: "left" | "right" | "center";
+}) => {
+  // Size-specific classes
+  const sizeClasses = {
+    sm: {
+      text: "text-xl md:text-2xl lg:text-3xl pb-1.5 pt-0.5",
+      line: "max-w-[140px] md:max-w-[160px] h-0.5 md:h-1 mt-2.5"
+    },
+    md: {
+      text: "text-2xl md:text-3xl lg:text-4xl pb-2 pt-1",
+      line: "max-w-[200px] md:max-w-[240px] h-[3px] md:h-[4px] mt-3"
+    },
+    lg: {
+      text: "text-3xl md:text-4xl lg:text-5xl pb-3 pt-1",
+      line: "max-w-[280px] md:max-w-[340px] h-1 md:h-1.5 mt-4"
+    }
+  }[size];
+
+  // Position-specific classes
+  const containerPositionClasses = {
+    center: "items-center justify-center text-center",
+    left: "items-start justify-start text-left px-8 md:px-16 lg:px-[12%] xl:px-[15%]",
+    right: "items-end justify-end text-right px-8 md:px-16 lg:px-[12%] xl:px-[15%]"
+  }[position];
+
+  const headerPositionClasses = {
+    center: "justify-center",
+    left: "justify-start",
+    right: "justify-end"
+  }[position];
+
+  const linePositionClasses = {
+    center: "mx-auto",
+    left: "ml-0",
+    right: "mr-0"
+  }[position];
+
   return (
-    <div className="flex flex-col items-center justify-center mb-12 w-full">
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-title text-white flex items-baseline justify-center tracking-tighter pb-3 pt-1 leading-normal">
+    <div className={`flex flex-col mb-10 w-full ${containerPositionClasses}`}>
+      <h2 className={`font-title text-white flex items-baseline tracking-tighter leading-normal ${sizeClasses.text} ${headerPositionClasses}`}>
         {children}
         <span className="text-white">.</span>
       </h2>
       
       {/* The bottom line: 80% white, 10% gradient, 5% gradient, 5% gradient */}
-      <div className="mt-4 flex w-full max-w-[280px] md:max-w-[340px] mx-auto items-center gap-2 h-1 md:h-1.5">
+      <div className={`flex w-full items-center gap-2 rounded-full ${sizeClasses.line} ${linePositionClasses}`}>
         <div className="h-full bg-white rounded-full w-[80%]" />
         <div className="h-full bg-[linear-gradient(to_right,#D0197E_23%,#D606C8_62%,#A94365_100%)] rounded-full w-[10%]" />
         <div className="h-full bg-[linear-gradient(to_right,#D0197E_23%,#D606C8_62%,#A94365_100%)] rounded-full w-[5%]" />
@@ -143,9 +186,10 @@ export const CarouselItem = ({ children, className = "w-[280px] md:w-[320px] lg:
   );
 };
 
-export const CarouselSection = ({ children }: { children: ReactNode }) => {
+export const CarouselSection = ({ children, gap }: { children: ReactNode; gap?: string }) => {
+  const paddingClass = gap ? gap : "py-16 md:py-24";
   return (
-    <section className="py-16 md:py-24 w-full relative overflow-hidden">
+    <section className={`${paddingClass} w-full relative overflow-hidden`}>
       <div className="w-full">
         {children}
       </div>
