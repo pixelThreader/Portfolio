@@ -20,13 +20,11 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-    title: "pixelThreader: AI Engineer & Full Stack Developer",
+    title: "pixelThreader: Full Stack Engineer",
     description:
-        "Portfolio of pixelThreader: AI Engineer, Full Stack Developer, and System Builder crafting intelligent digital experiences.",
+        "Portfolio of pixelThreader: Full Stack Engineer crafting intelligent digital experiences.",
     keywords: [
-        "AI Engineer",
-        "Full Stack Developer",
-        "Deep Learning",
+        "Full Stack Engineer",
         "System Design",
         "Next.js",
         "Portfolio",
@@ -35,8 +33,8 @@ export const metadata: Metadata = {
     ],
     authors: [{ name: "pixelThreader" }],
     openGraph: {
-        title: "pixelThreader: AI Engineer & Full Stack Developer",
-        description: "Engineering ideas into reality. AI • Systems • Experiences.",
+        title: "pixelThreader: Full Stack Engineer",
+        description: "Engineering ideas into reality. Code • Systems • Experiences.",
         type: "website",
     },
     manifest: "/manifest.json",

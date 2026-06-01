@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
 import { BadgeGroup, Badge } from "@/components/widgets/Badge";
 import {
@@ -7,6 +8,11 @@ import {
 } from "@/components/widgets/Section";
 import { GlassyHeroSection } from "@/components/widgets/GlassyHeroSection";
 import CurvedLoop from '@/components/external/CurvedLoop';
+
+export const metadata: Metadata = {
+    title: "Skills • pixelThreader",
+    description: "Explore the technical arsenal and engineering capabilities of pixelThreader.",
+};
 
 export default function Skills() {
     return (

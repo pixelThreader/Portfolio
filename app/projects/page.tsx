@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
@@ -10,6 +11,11 @@ import {
     CarouselContent,
     CarouselItem
 } from "@/components/widgets/CarouselSection";
+
+export const metadata: Metadata = {
+    title: "Projects • pixelThreader",
+    description: "Explore the custom software engineering, AI agents, and web applications built by pixelThreader.",
+};
 import {
     JournalCard,
     JournalCardImage,

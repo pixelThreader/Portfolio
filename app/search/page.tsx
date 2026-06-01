@@ -4,7 +4,7 @@ import SearchPageClient from "./SearchPageClient";
 
 // SEO Best Practices - Titles & Meta Descriptions
 export const metadata: Metadata = {
-  title: "Search Results | pixelThreader",
+  title: "Search • pixelThreader",
   description: "Search across pixelThreader's portfolio projects, blog updates, system architecture journals, and documentation guides instantly.",
   keywords: ["Search", "pixelThreader Portfolio", "AI Projects", "Tech Blog", "System Architecture"],
 };

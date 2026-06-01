@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
 import { BadgeGroup, Badge } from "@/components/widgets/Badge";
@@ -12,6 +13,11 @@ import { Timeline } from "@/components/widgets/Timeline";
 import MagicBento from "@/components/external/MagicBento";
 import { Accordion } from "@/components/widgets/Accordion";
 import ProfileCard from "@/components/external/ProfileCard";
+
+export const metadata: Metadata = {
+    title: "About • pixelThreader",
+    description: "About pixelThreader: Full Stack Engineer crafting premium digital systems.",
+};
 
 const customEducationData = [
     {
@@ -137,7 +143,7 @@ export default function About() {
                         avatarUrl="/Profile.png"
                         miniAvatarUrl="/brand/icons/pixelthreader-150x150.webp"
                         name="pixelThreader"
-                        title="AI & Full-Stack Engineer"
+                        title="Full-Stack Engineer"
                         handle="pixelThreader"
                         status="Piyush Rana"
                         behindGlowColor="rgba(208, 25, 126, 0.4)"

@@ -1,0 +1,136 @@
+{
+    "engine": [
+        {
+            "name": "Next.js",
+            "desc": "React Framework & Server Side Rendering",
+            "website": "https://nextjs.org",
+            "github": "https://github.com/vercel/next.js",
+            "image": "https://nextjs.org/favicon.ico?favicon.117ezoe8m31dk.ico"
+        },
+        {
+            "name": "React 19",
+            "desc": "Reactive UI Components & Hook Orchestration",
+            "website": "https://react.dev",
+            "github": "https://github.com/facebook/react",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+        },
+        {
+            "name": "TypeScript",
+            "desc": "Type-safe robust compilation",
+            "website": "https://www.typescriptlang.org",
+            "github": "https://github.com/microsoft/TypeScript",
+            "image": "https://www.typescriptlang.org/icons/icon-512x512.png"
+        },
+        {
+            "name": "Tailwind CSS",
+            "desc": "Responsive utility styling & custom design tokens",
+            "website": "https://tailwindcss.com",
+            "github": "https://github.com/tailwindlabs/tailwindcss",
+            "image": "https://tailwindcss.com/favicons/apple-touch-icon.png"
+        },
+        {
+            "name": "Vercel",
+            "desc": "Lightning-fast edge hosting & serverless analytics",
+            "website": "https://vercel.com",
+            "github": "https://github.com/vercel",
+            "image": "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png"
+        }
+    ],
+    "ecosystem": [
+        {
+            "name": "React Bits",
+            "desc": "Interactive UI assets, custom layouts, and premium animation patterns",
+            "website": "https://reactbits.dev",
+            "github": "https://github.com/DavidHDev/react-bits",
+            "image": "https://reactbits.dev/favicon.ico"
+        },
+        {
+            "name": "Framer Motion",
+            "desc": "Fluid interactive micro-animations & layout transitions",
+            "website": "https://www.framer.com/motion/",
+            "github": "https://github.com/framer/motion",
+            "image": "https://avatars.githubusercontent.com/u/84441432?s=48&v=4"
+        },
+        {
+            "name": "Lucide React",
+            "desc": "Clean, consistent geometric vector iconography",
+            "website": "https://lucide.dev",
+            "github": "https://github.com/lucide-icons/lucide",
+            "image": "https://lucide.dev/logo.light.svg"
+        },
+        {
+            "name": "Lenis",
+            "desc": "Butter-smooth inertial scrolling experience",
+            "website": "https://lenis.darkroom.engineering",
+            "github": "https://github.com/darkroomengineering/lenis",
+            "image": "https://lenis.darkroom.engineering/favicon.ico"
+        },
+        {
+            "name": "Shadcn UI",
+            "desc": "Beautifully designed, accessible component primitives",
+            "website": "https://ui.shadcn.com",
+            "github": "https://github.com/shadcn-ui/ui",
+            "image": "https://ui.shadcn.com/favicon.ico"
+        },
+        {
+            "name": "Hugeicons React",
+            "desc": "Extensive, highly customizable stroke vector icon library",
+            "website": "https://hugeicons.com",
+            "github": "https://github.com/hugeicons/hugeicons-react",
+            "image": "https://hugeicons.com/favicon.ico"
+        }
+    ],
+    "aesthetics": [
+        {
+            "name": "Merienda (Google Fonts)",
+            "desc": "Elegant cursive branding & headings typography",
+            "website": "https://fonts.google.com/specimen/Merienda",
+            "github": "https://github.com/google/fonts",
+            "image": "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg"
+        },
+        {
+            "name": "Merriweather (Google Fonts)",
+            "desc": "Highly readable body text & serif typography",
+            "website": "https://fonts.google.com/specimen/Merriweather",
+            "github": "https://github.com/google/fonts",
+            "image": "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg"
+        }
+    ],
+    "tools": [
+        {
+            "name": "Figma",
+            "desc": "UI/UX collaborative design tool for prototyping fluid interfaces",
+            "website": "https://www.figma.com",
+            "github": "",
+            "image": "https://static.figma.com/app/icon/1/favicon.png"
+        },
+        {
+            "name": "Antigravity",
+            "desc": "Autonomous AI software engineering agent crafting digital systems",
+            "website": "https://antigravity.dev",
+            "github": "",
+            "image": "https://antigravity.google/assets/image/brand/antigravity-icon__full-color.png"
+        },
+        {
+            "name": "GitHub Copilot",
+            "desc": "AI pair programmer providing autocomplete code suggestions",
+            "website": "https://github.com/features/copilot",
+            "github": "",
+            "image": "https://github.com/fluidicon.png"
+        },
+        {
+            "name": "Zed",
+            "desc": "High-performance, collaborative code editor built in Rust",
+            "website": "https://zed.dev",
+            "github": "https://github.com/zed-industries/zed",
+            "image": "https://zed.dev/_next/static/media/logo_wordmark_white_bigger.11rssg-7g1jg..png"
+        },
+        {
+            "name": "Docker",
+            "desc": "Container platform for local isolated deployment environments",
+            "website": "https://www.docker.com",
+            "github": "https://github.com/docker",
+            "image": "https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png"
+        }
+    ]
+}

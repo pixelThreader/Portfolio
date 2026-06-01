@@ -56,7 +56,7 @@ export default function TermsOfService() {
                                 1. Site Purpose & Capabilities
                             </h2>
                             <p>
-                                This website is operated as a static showcase of my professional experience, skills, and projects in AI engineering and full-stack development. It is purely informational and educational.
+                                This website is operated as a static showcase of my professional experience, skills, and projects in complex AI systems and full-stack development. It is purely informational and educational.
                             </p>
                             <p>
                                 There are no commercial services, user logins, paid subscriptions, or transaction engines hosted on this site.

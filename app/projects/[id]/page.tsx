@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Section, SectionContent } from "@/components/widgets/Section"
 import { 
     ProjectHeader, 
@@ -10,6 +11,19 @@ import {
     ProjectVerticalStacks,
     ProjectHorizontalStacks
 } from "@/components/widgets/ProjectComponent"
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const resolvedParams = await params;
+    const formattedId = resolvedParams.id
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+
+    return {
+        title: `${formattedId} • pixelThreader`,
+        description: `Deep dive and engineering details of the ${formattedId} project by pixelThreader.`,
+    };
+}
 
 const page = () => {
     const navItems = {

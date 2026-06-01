@@ -2,34 +2,71 @@ import React from "react";
 import type { Metadata } from "next";
 import { Section, SectionContent } from "@/components/widgets/Section";
 import GlassyHeroSection from "@/components/widgets/GlassyHeroSection";
+import {
+    CarouselSection,
+    CarouselContent,
+    CarouselItem
+} from "@/components/widgets/CarouselSection";
+import CreditIcon from "@/components/ui/CreditIcon";
+import creditsData from "./credits.json";
 
 export const metadata: Metadata = {
     title: "Credits • pixelThreader",
     description: "Attributions, frameworks, packages, and design assets utilized in the pixelThreader portfolio website.",
 };
 
+interface CreditItem {
+    name: string;
+    desc: string;
+    website?: string;
+    github?: string;
+    image?: string;
+}
+
 export default function Credits() {
-    const techStack = [
-        { name: "Next.js", role: "React Framework & Server Side Rendering" },
-        { name: "React 19", role: "Reactive UI Components & Hook Orchestration" },
-        { name: "TypeScript", role: "Type-safe robust compilation" },
-        { name: "Tailwind CSS", role: "Responsive utility styling & custom design tokens" },
-        { name: "Vercel", role: "Lightning-fast edge hosting & serverless analytics" }
-    ];
+    const renderCardItems = (items: CreditItem[]) => {
+        return (
+            <div className="flex flex-col gap-5">
+                {items.map((item) => (
+                    <div key={item.name} className="flex gap-4 items-start font-serif">
+                        {/* Logo icon with clean letter fallback on error */}
+                        <CreditIcon src={item.image} name={item.name} />
 
-    const libraries = [
-        { name: "Framer Motion", role: "Fluid interactive micro-animations & layout transitions" },
-        { name: "Lucide React", role: "Clean, consistent geometric vector iconography" },
-        { name: "Lenis", role: "Butter-smooth inertial scrolling experience" },
-        { name: "Sonner", role: "Premium toast alerts & real-time notices" }
-    ];
-
-    const designCredits = [
-        { name: "Merienda (Google Fonts)", role: "Elegant cursive branding & headings typography" },
-        { name: "Merriweather (Google Fonts)", role: "Highly readable body text & serif typography" },
-        { name: "Floral Vector Artworks", role: "Atmospheric, vintage-styled floral overlay patterns" },
-        { name: "Liquid Glass & Bento Grids", role: "Mathematical layouts with reflection highlights" }
-    ];
+                        {/* Title & Description with clean links */}
+                        <div className="flex flex-col flex-1 gap-1">
+                            <div className="flex items-baseline justify-between gap-3">
+                                <span className="text-[#f3f0ef] font-semibold text-[15px]">{item.name}</span>
+                                
+                                <div className="flex items-center gap-3 text-[11px] font-sans tracking-wide shrink-0">
+                                    {item.website && (
+                                        <a 
+                                            href={item.website} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            className="text-[#ffd4dc]/40 hover:text-[#f3f0ef] transition-colors duration-200 underline decoration-white/10 hover:decoration-white underline-offset-4"
+                                        >
+                                            Web
+                                        </a>
+                                    )}
+                                    {item.github && (
+                                        <a 
+                                            href={item.github} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            className="text-[#ffd4dc]/40 hover:text-[#f3f0ef] transition-colors duration-200 underline decoration-white/10 hover:decoration-white underline-offset-4"
+                                        >
+                                            GitHub
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+                            <p className="text-[#ffd4dc]/60 text-xs leading-normal font-normal text-left">{item.desc}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        );
+    };
 
     return (
         <div className="w-full relative overflow-x-hidden bg-background min-h-screen flex flex-col">
@@ -58,76 +95,83 @@ export default function Credits() {
                 </h1>
             </GlassyHeroSection>
 
-            {/* Main Content */}
-            <Section className="z-10 !pt-0">
+            {/* Introductory Description Section */}
+            <Section className="z-10 !pt-0 !pb-4">
                 <SectionContent>
-                    <div className="w-full flex flex-col gap-12 text-left">
-                        
+                    <div className="w-full flex flex-col gap-6 text-left">
                         <p className="font-serif text-[#ffd4dc]/90 text-[16px] sm:text-[17px] leading-relaxed max-w-2xl text-left">
                             This website is a premium full-stack portfolio engineered to showcase AI solutions and interactive frontends. Below are the frameworks, libraries, tools, and design assets that made it possible.
                         </p>
+                    </div>
+                </SectionContent>
+            </Section>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            
-                            {/* Core Tech Stack Panel */}
-                            <div className="glass rounded-[24px] p-6 border border-white/5 bg-[#411F27]/25 flex flex-col gap-6 backdrop-blur-xl">
-                                <h2 className="font-title text-xl text-white tracking-wide border-b border-white/10 pb-3 flex items-center gap-2">
-                                    <span className="inline-block w-2.5 h-2.5 rounded-full bg-magenta shadow-[0_0_8px_#e040fb]" />
+            {/* Horizontal Scrolling Carousel Section containing Category Panels */}
+            <CarouselSection gap="pt-4 pb-8 sm:pt-6 sm:pb-12">
+                <CarouselContent>
+                    
+                    {/* Core Tech Stack Panel */}
+                    <CarouselItem className="w-[280px] sm:w-[360px] h-full flex">
+                        <div className="relative w-full rounded-[28px] bg-linear-to-br from-[#a88b97]/80 via-[#6a4754]/40 to-[#a88b97]/80 p-[1.5px] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[34px] flex flex-col h-full">
+                            <div className="rounded-[26px] border border-white/5 bg-[#471824]/95 p-6 sm:p-7 backdrop-blur-xl sm:rounded-[32px] flex flex-col flex-1 h-full gap-6">
+                                <h2 className="font-title text-xl text-[#f3f0ef] tracking-wide border-b border-white/10 pb-3 flex items-center justify-start select-none">
                                     Core Engine
                                 </h2>
-                                <div className="flex flex-col gap-4 font-serif">
-                                    {techStack.map((tech) => (
-                                        <div key={tech.name} className="flex flex-col gap-0.5">
-                                            <span className="text-white font-semibold text-[15px]">{tech.name}</span>
-                                            <span className="text-[#ffd4dc]/60 text-xs leading-normal">{tech.role}</span>
-                                        </div>
-                                    ))}
-                                </div>
+                                {renderCardItems(creditsData.engine)}
                             </div>
+                        </div>
+                    </CarouselItem>
 
-                            {/* Libraries & Packages Panel */}
-                            <div className="glass rounded-[24px] p-6 border border-white/5 bg-[#411F27]/25 flex flex-col gap-6 backdrop-blur-xl">
-                                <h2 className="font-title text-xl text-white tracking-wide border-b border-white/10 pb-3 flex items-center gap-2">
-                                    <span className="inline-block w-2.5 h-2.5 rounded-full bg-neon shadow-[0_0_8px_#bc13fe]" />
+                    {/* Libraries & Packages Panel */}
+                    <CarouselItem className="w-[280px] sm:w-[360px] h-full flex">
+                        <div className="relative w-full rounded-[28px] bg-linear-to-br from-[#a88b97]/80 via-[#6a4754]/40 to-[#a88b97]/80 p-[1.5px] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[34px] flex flex-col h-full">
+                            <div className="rounded-[26px] border border-white/5 bg-[#471824]/95 p-6 sm:p-7 backdrop-blur-xl sm:rounded-[32px] flex flex-col flex-1 h-full gap-6">
+                                <h2 className="font-title text-xl text-[#f3f0ef] tracking-wide border-b border-white/10 pb-3 flex items-center justify-start select-none">
                                     Ecosystem
                                 </h2>
-                                <div className="flex flex-col gap-4 font-serif">
-                                    {libraries.map((lib) => (
-                                        <div key={lib.name} className="flex flex-col gap-0.5">
-                                            <span className="text-white font-semibold text-[15px]">{lib.name}</span>
-                                            <span className="text-[#ffd4dc]/60 text-xs leading-normal">{lib.role}</span>
-                                        </div>
-                                    ))}
-                                </div>
+                                {renderCardItems(creditsData.ecosystem)}
                             </div>
+                        </div>
+                    </CarouselItem>
 
-                            {/* Design & Typography Panel */}
-                            <div className="glass rounded-[24px] p-6 border border-white/5 bg-[#411F27]/25 flex flex-col gap-6 backdrop-blur-xl">
-                                <h2 className="font-title text-xl text-white tracking-wide border-b border-white/10 pb-3 flex items-center gap-2">
-                                    <span className="inline-block w-2.5 h-2.5 rounded-full bg-pink shadow-[0_0_8px_#f472b6]" />
+                    {/* Design & Typography Panel */}
+                    <CarouselItem className="w-[280px] sm:w-[360px] h-full flex">
+                        <div className="relative w-full rounded-[28px] bg-linear-to-br from-[#a88b97]/80 via-[#6a4754]/40 to-[#a88b97]/80 p-[1.5px] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[34px] flex flex-col h-full">
+                            <div className="rounded-[26px] border border-white/5 bg-[#471824]/95 p-6 sm:p-7 backdrop-blur-xl sm:rounded-[32px] flex flex-col flex-1 h-full gap-6">
+                                <h2 className="font-title text-xl text-[#f3f0ef] tracking-wide border-b border-white/10 pb-3 flex items-center justify-start select-none">
                                     Aesthetics
                                 </h2>
-                                <div className="flex flex-col gap-4 font-serif">
-                                    {designCredits.map((design) => (
-                                        <div key={design.name} className="flex flex-col gap-0.5">
-                                            <span className="text-white font-semibold text-[15px]">{design.name}</span>
-                                            <span className="text-[#ffd4dc]/60 text-xs leading-normal">{design.role}</span>
-                                        </div>
-                                    ))}
-                                </div>
+                                {renderCardItems(creditsData.aesthetics)}
                             </div>
-
                         </div>
+                    </CarouselItem>
 
-                        {/* Special Appreciation */}
-                        <div className="glass rounded-[32px] p-8 md:p-10 border border-white/5 bg-linear-to-br from-white/5 to-transparent text-left relative overflow-hidden backdrop-blur-xl flex flex-col gap-4 mt-4 font-serif">
-                            <span className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-white/15 to-transparent" />
-                            <h3 className="font-title text-xl sm:text-2xl text-white">Special Thanks</h3>
-                            <p className="text-[#ffd4dc]/80 text-[15px] sm:text-[16px] leading-relaxed max-w-3xl">
+                    {/* Tools Panel */}
+                    <CarouselItem className="w-[280px] sm:w-[360px] h-full flex">
+                        <div className="relative w-full rounded-[28px] bg-linear-to-br from-[#a88b97]/80 via-[#6a4754]/40 to-[#a88b97]/80 p-[1.5px] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[34px] flex flex-col h-full">
+                            <div className="rounded-[26px] border border-white/5 bg-[#471824]/95 p-6 sm:p-7 backdrop-blur-xl sm:rounded-[32px] flex flex-col flex-1 h-full gap-6">
+                                <h2 className="font-title text-xl text-[#f3f0ef] tracking-wide border-b border-white/10 pb-3 flex items-center justify-start select-none">
+                                    Tools
+                                </h2>
+                                {renderCardItems(creditsData.tools)}
+                            </div>
+                        </div>
+                    </CarouselItem>
+
+                </CarouselContent>
+            </CarouselSection>
+
+            {/* Special Appreciation Section */}
+            <Section className="z-10 !pt-0">
+                <SectionContent>
+                    <div className="relative w-full rounded-[32px] bg-linear-to-br from-[#a88b97]/80 via-[#6a4754]/40 to-[#a88b97]/80 p-[1.5px] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[38px] flex flex-col mt-4">
+                        <div className="rounded-[30.5px] border border-white/5 bg-[#471824]/95 p-8 md:p-10 backdrop-blur-xl sm:rounded-[36.5px] flex flex-col flex-1 h-full text-left relative overflow-hidden font-serif">
+                            <span className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
+                            <h3 className="font-title text-xl sm:text-2xl text-[#f3f0ef] select-none">Special Thanks</h3>
+                            <p className="text-[#ffd4dc]/80 text-[15px] sm:text-[16px] leading-relaxed max-w-3xl mt-4">
                                 Deep appreciation to all open-source developers, contributors, and creative designers who release packages, design patterns, and assets to the community under permissive licenses. Your work accelerates software engineering and drives human innovation.
                             </p>
                         </div>
-
                     </div>
                 </SectionContent>
             </Section>
