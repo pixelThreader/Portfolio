@@ -54,19 +54,19 @@ export default function Footer() {
                     {/* Column 2 */}
                     <div className="flex flex-col gap-3">
                         <Link 
-                            href="#privacy" 
+                            href="/lg/privacy" 
                             className="font-serif text-[15px] text-white/70 hover:text-white transition-opacity duration-300"
                         >
                             Privacy
                         </Link>
                         <Link 
-                            href="#terms" 
+                            href="/lg/terms" 
                             className="font-serif text-[15px] text-white/70 hover:text-white transition-opacity duration-300"
                         >
                             Terms
                         </Link>
                         <Link 
-                            href="#credits" 
+                            href="/lg/credits" 
                             className="font-serif text-[15px] text-white/70 hover:text-white transition-opacity duration-300"
                         >
                             Credits
