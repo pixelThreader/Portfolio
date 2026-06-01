@@ -11,8 +11,13 @@ import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [activeSection, setActiveSection] = useState("");
     const pathname = usePathname();
+    const activeSection = 
+        pathname === "/about" ? "About" :
+        (pathname === "/projects" || pathname?.startsWith("/projects/")) ? "Projects" :
+        pathname === "/skills" ? "Skills" :
+        pathname === "/contact" ? "Contact" :
+        "Home";
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,20 +27,6 @@ export default function Header() {
         handleScroll(); // Check on mount
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    useEffect(() => {
-        if (pathname === "/about") {
-            setActiveSection("About");
-        } else if (pathname === "/projects") {
-            setActiveSection("Projects");
-        } else if (pathname === "/skills") {
-            setActiveSection("Skills");
-        } else if (pathname === "/contact") {
-            setActiveSection("Contact");
-        } else {
-            setActiveSection("Home");
-        }
-    }, [pathname]);
 
     const navLinks = [
         { name: "About", href: "/about" },

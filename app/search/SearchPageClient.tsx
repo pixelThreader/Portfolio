@@ -78,7 +78,10 @@ export default function SearchPageClient() {
     try {
       const history = localStorage.getItem("pt_search_history");
       if (history) {
-        setSearchHistory(JSON.parse(history));
+        const parsed = JSON.parse(history);
+        setTimeout(() => {
+          setSearchHistory(parsed);
+        }, 0);
       }
     } catch (e) {
       console.error("Failed to load search history", e);
@@ -395,7 +398,7 @@ export default function SearchPageClient() {
                 </div>
                 <h3 className="font-title text-2xl font-bold text-white select-none">No Results Found</h3>
                 <p className="font-serif text-[#ffd4dc]/70 text-sm mt-3 leading-relaxed">
-                  We couldn't find matches for <span className="text-[#ffd4dc] font-bold">"{activeQuery}"</span> inside our database. 
+                  We couldn&apos;t find matches for <span className="text-[#ffd4dc] font-bold">&quot;{activeQuery}&quot;</span> inside our database. 
                   Try checking the spelling, selecting another category, or trying one of our suggested keywords.
                 </p>
                 

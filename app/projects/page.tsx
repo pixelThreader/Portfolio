@@ -59,7 +59,7 @@ export default function Projects() {
                             Back Home
                         </CustomLink>
                         <CustomLink href="/contact">
-                            Let's Collaborate
+                            Let&apos;s Collaborate
                         </CustomLink>
                     </ButtonGroup>
                 </div>

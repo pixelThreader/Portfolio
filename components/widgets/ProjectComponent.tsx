@@ -4,7 +4,8 @@ import React from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
-import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
+import { ButtonGroup, Button, Link as CustomLink } from "@/components/widgets/Button";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 interface ProjectHeaderProps {
     image: string;
@@ -164,8 +165,8 @@ export function ProjectDescription({ description, authors, className = "" }: Pro
             {/* Description Text */}
             <div className="flex flex-col gap-4">
                 {paragraphs.map((p, idx) => (
-                    <p 
-                        key={idx} 
+                    <p
+                        key={idx}
                         className="text-[14px] sm:text-[15.5px] lg:text-[17px] leading-relaxed text-[#b48a96] tracking-tight font-serif text-left"
                     >
                         {p}
@@ -175,22 +176,22 @@ export function ProjectDescription({ description, authors, className = "" }: Pro
 
             {/* Authors List with inline author.svg symbol */}
             <div className="flex items-center gap-0.5 mt-6 sm:mt-8 text-[13px] sm:text-[15px] text-[#b48a96]/80 font-serif select-none">
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 512 512" 
-                    className="w-4.5 h-4.5 sm:w-5 sm:h-5 stroke-current shrink-0" 
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                    className="w-4.5 h-4.5 sm:w-5 sm:h-5 stroke-current shrink-0"
                     fill="none"
                 >
-                    <path 
-                        d="M320 254.27c-4.5 51-40.12 80-80.55 80s-67.34-35.82-63.45-80 37.12-80 77.55-80 70.33 36 66.45 80z" 
-                        strokeWidth="32" 
-                        strokeLinecap="round" 
+                    <path
+                        d="M320 254.27c-4.5 51-40.12 80-80.55 80s-67.34-35.82-63.45-80 37.12-80 77.55-80 70.33 36 66.45 80z"
+                        strokeWidth="32"
+                        strokeLinecap="round"
                         strokeLinejoin="round"
                     />
-                    <path 
-                        d="M319.77 415.77c-28.56 12-47.28 14.5-79.28 14.5-97.2 0-169-78.8-160.49-176s94.31-176 191.51-176C381 78.27 441.19 150 432.73 246c-6.31 71.67-52.11 92.32-76.09 88.07-22.56-4-41.18-24.42-37.74-63.5l8.48-96.25" 
-                        strokeWidth="32" 
-                        strokeLinecap="round" 
+                    <path
+                        d="M319.77 415.77c-28.56 12-47.28 14.5-79.28 14.5-97.2 0-169-78.8-160.49-176s94.31-176 191.51-176C381 78.27 441.19 150 432.73 246c-6.31 71.67-52.11 92.32-76.09 88.07-22.56-4-41.18-24.42-37.74-63.5l8.48-96.25"
+                        strokeWidth="32"
+                        strokeLinecap="round"
                         strokeLinejoin="round"
                     />
                 </svg>
@@ -199,11 +200,11 @@ export function ProjectDescription({ description, authors, className = "" }: Pro
                     {authors.map((author, idx) => {
                         const isLast = idx === authors.length - 1;
                         const nameEl = author.github ? (
-                            <a 
+                            <a
                                 key={author.name}
-                                href={author.github} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
+                                href={author.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="text-white hover:text-[#f3d6df] underline underline-offset-[5px] decoration-dashed hover:decoration-solid decoration-[1.5px] decoration-white/70 transition-all duration-300 font-semibold"
                             >
                                 {author.name}
@@ -273,9 +274,8 @@ export function ProjectPreview({ children, className = "", snap = true }: { chil
             <button
                 onClick={() => handleScrollClick("left")}
                 aria-label="Scroll left"
-                className={`absolute left-4 md:left-[8%] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl cursor-pointer ${
-                    showLeft ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
-                }`}
+                className={`absolute left-4 md:left-[8%] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl cursor-pointer ${showLeft ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
+                    }`}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
             </button>
@@ -284,9 +284,8 @@ export function ProjectPreview({ children, className = "", snap = true }: { chil
             <button
                 onClick={() => handleScrollClick("right")}
                 aria-label="Scroll right"
-                className={`absolute right-4 md:right-[8%] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl cursor-pointer ${
-                    showRight ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
-                }`}
+                className={`absolute right-4 md:right-[8%] top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl cursor-pointer ${showRight ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
+                    }`}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </button>
@@ -328,13 +327,13 @@ export function ProjectPreviewTitle({ children }: { children: React.ReactNode })
     );
 }
 
-export function ProjectPreviewGroup({ 
-    title, 
-    children, 
-    className = "" 
-}: { 
-    title: string; 
-    children: React.ReactNode; 
+export function ProjectPreviewGroup({
+    title,
+    children,
+    className = ""
+}: {
+    title: string;
+    children: React.ReactNode;
     className?: string;
 }) {
     return (
@@ -360,34 +359,34 @@ export function ProjectPreviewGroup({
     );
 }
 
-export function ProjectAsset({ 
-    type, 
-    src, 
-    caption, 
-    className = "w-[260px] sm:w-[320px] md:w-[380px]" 
-}: { 
-    type: "image" | "video"; 
-    src: string; 
-    caption?: string; 
+export function ProjectAsset({
+    type,
+    src,
+    caption,
+    className = "w-[260px] sm:w-[320px] md:w-[380px]"
+}: {
+    type: "image" | "video";
+    src: string;
+    caption?: string;
     className?: string;
 }) {
     return (
         <div className={`flex-none aspect-video rounded-2xl overflow-hidden relative shadow-[0_6px_20px_rgba(0,0,0,0.5)] border border-white/5 bg-black/30 group/asset ${className}`}>
             {type === "video" ? (
-                <video 
-                    src={src} 
-                    controls 
-                    muted 
-                    loop 
+                <video
+                    src={src}
+                    controls
+                    muted
+                    loop
                     playsInline
                     className="w-full h-full object-cover rounded-2xl"
                 />
             ) : (
-                <Image 
-                    src={src} 
-                    alt={caption || "Project preview asset"} 
-                    width={640} 
-                    height={360} 
+                <Image
+                    src={src}
+                    alt={caption || "Project preview asset"}
+                    width={640}
+                    height={360}
                     className="w-full h-full object-cover rounded-2xl group-hover/asset:scale-[1.01] transition-transform duration-500"
                     priority
                 />
@@ -395,12 +394,229 @@ export function ProjectAsset({
 
             {/* Floating caption badge at bottom-left */}
             {caption && (
-                <div 
+                <div
                     className="absolute bottom-4 left-4 z-10 bg-black/75 border border-white/10 backdrop-blur-md px-3 py-1 text-[10px] sm:text-[11px] font-serif text-white/90 rounded-full select-none shadow-lg tracking-wide"
                 >
                     Fig: {caption}
                 </div>
             )}
+        </div>
+    );
+}
+
+export interface TabItem {
+    id: string;
+    label: string;
+    content: React.ReactNode;
+}
+
+export interface ProjectVerticalStacksProps {
+    tabs: TabItem[];
+    className?: string;
+}
+
+export function ProjectVerticalStacks({ tabs, className = "" }: ProjectVerticalStacksProps) {
+    const [activeIndex, setActiveIndex] = React.useState(0);
+    const [prevIndex, setPrevIndex] = React.useState(0);
+
+    const handleTabClick = (index: number) => {
+        if (index === activeIndex) return;
+        setPrevIndex(activeIndex);
+        setActiveIndex(index);
+    };
+
+    // Calculate direction:
+    // "up" (index decreases, slide up) vs "down" (index increases, slide down)
+    const direction = activeIndex > prevIndex ? "down" : "up";
+    const activeTab = tabs[activeIndex];
+
+    const slideVariants: Variants = {
+        enter: (dir: "up" | "down") => ({
+            y: dir === "up" ? 40 : -40,
+            opacity: 0
+        }),
+        center: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                y: { type: "spring" as const, stiffness: 350, damping: 30 },
+                opacity: { duration: 0.25 }
+            }
+        },
+        exit: (dir: "up" | "down") => ({
+            y: dir === "up" ? -40 : 40,
+            opacity: 0,
+            transition: {
+                y: { type: "spring" as const, stiffness: 350, damping: 30 },
+                opacity: { duration: 0.2 }
+            }
+        })
+    };
+
+    return (
+        <div className={`flex flex-col lg:flex-row gap-6 items-stretch w-full ${className}`}>
+            {/* LHS Tabs List Panel */}
+            <div className="relative rounded-[24px] p-[1.2px] group w-full lg:w-[260px] xl:w-[280px] shrink-0">
+                {/* Outer Glowing Gradient Border */}
+                <span className="absolute inset-0 bg-background rounded-[24px]" />
+
+                {/* Inner glass panel */}
+                <div className="relative rounded-[22.8px] bg-[#411F27]/60 border border-white/5 backdrop-blur-xl p-3 flex flex-col gap-1.5 w-full h-full min-h-[220px] lg:min-h-[340px]">
+                    {tabs.map((tab, idx) => {
+                        const isActive = idx === activeIndex;
+                        return (
+                            <button
+                                key={tab.id}
+                                onClick={() => handleTabClick(idx)}
+                                className={`relative block p-[1.5px] transition-all duration-300 group rounded-xl cursor-pointer w-full text-left outline-none ${isActive
+                                        ? "bg-linear-to-br from-white/70 via-transparent to-white/40 shadow-lg opacity-100"
+                                        : "bg-linear-to-br from-white/10 via-transparent to-white/5 hover:from-white/35 hover:to-white/20 opacity-50 hover:opacity-80"
+                                    }`}
+                            >
+                                <span
+                                    className={`relative flex items-center justify-between px-5 py-3 font-serif text-[14px] font-medium transition-all duration-300 select-none rounded-[11px] ${isActive
+                                            ? "bg-[#4e1c26]/95 text-white font-bold"
+                                            : "bg-transparent text-[#ffd4dc]/50 group-hover:text-white"
+                                        }`}
+                                >
+                                    {tab.label}
+                                </span>
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
+
+            {/* RHS Active Content Container */}
+            <div className="relative flex-1 rounded-[24px] p-[1.2px] group min-h-[300px] lg:min-h-[380px]">
+                {/* Outer Glowing Gradient Border */}
+                <span className="absolute inset-0 bg-linear-to-br from-white/20 via-transparent to-white/10 rounded-[24px]" />
+
+                {/* Inner glass panel with fixed height and scrollable content */}
+                <div className="relative rounded-[22.8px] bg-[#411F27]/35 border border-white/5 backdrop-blur-xl p-4 sm:p-5 w-full h-[50vh] overflow-y-auto pr-2 flex flex-col justify-start">
+                    <AnimatePresence mode="wait" custom={direction}>
+                        <motion.div
+                            key={activeTab.id}
+                            custom={direction}
+                            variants={slideVariants}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            className="w-full min-h-full flex flex-col gap-4"
+                        >
+                            {activeTab.content}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export interface ProjectHorizontalStacksProps {
+    tabs: TabItem[];
+    className?: string;
+    align?: "left" | "center" | "right";
+}
+
+export function ProjectHorizontalStacks({ 
+    tabs, 
+    className = "", 
+    align = "left" 
+}: ProjectHorizontalStacksProps) {
+    const [activeIndex, setActiveIndex] = React.useState(0);
+    const [prevIndex, setPrevIndex] = React.useState(0);
+
+    const handleTabClick = (index: number) => {
+        if (index === activeIndex) return;
+        setPrevIndex(activeIndex);
+        setActiveIndex(index);
+    };
+
+    const direction = activeIndex > prevIndex ? "right" : "left";
+    const activeTab = tabs[activeIndex];
+
+    const slideVariants: Variants = {
+        enter: (dir: "left" | "right") => ({
+            x: dir === "right" ? 40 : -40,
+            opacity: 0
+        }),
+        center: {
+            x: 0,
+            opacity: 1,
+            transition: {
+                x: { type: "spring" as const, stiffness: 350, damping: 30 },
+                opacity: { duration: 0.25 }
+            }
+        },
+        exit: (dir: "left" | "right") => ({
+            x: dir === "right" ? -40 : 40,
+            opacity: 0,
+            transition: {
+                x: { type: "spring" as const, stiffness: 350, damping: 30 },
+                opacity: { duration: 0.2 }
+            }
+        })
+    };
+
+    const alignClasses = {
+        left: "justify-start",
+        center: "justify-center",
+        right: "justify-end"
+    };
+
+    return (
+        <div className={`relative w-full rounded-[24px] p-[1.2px] group ${className}`}>
+            {/* Outer Glowing Gradient Border */}
+            <span className="absolute inset-0 bg-linear-to-br from-white/20 via-transparent to-white/10 rounded-[24px]" />
+            
+            {/* Inner glass panel containing both tabs and content */}
+            <div className="relative rounded-[22.8px] bg-[#411F27]/35 border border-white/5 backdrop-blur-xl p-4 sm:p-5 w-full flex flex-col gap-4">
+                
+                {/* Horizontal Tabs Header using ButtonGroup and Button widgets */}
+                <div className={`flex items-center w-full ${alignClasses[align]}`}>
+                    <ButtonGroup
+                        selected={activeTab.id}
+                        onSelect={(val) => {
+                            const newIdx = tabs.findIndex(t => t.id === val);
+                            if (newIdx !== -1) handleTabClick(newIdx);
+                        }}
+                        scaleOnHover={false}
+                        size="sm"
+                    >
+                        {tabs.map((tab, idx) => {
+                            const isActive = idx === activeIndex;
+                            return (
+                                <Button 
+                                    key={tab.id} 
+                                    value={tab.id}
+                                    className={`transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-50 hover:opacity-80'}`}
+                                >
+                                    {tab.label}
+                                </Button>
+                            );
+                        })}
+                    </ButtonGroup>
+                </div>
+
+                {/* Content Area with smooth horizontal slide animation and fixed height scrollable content */}
+                <div className="relative w-full h-[50vh] overflow-y-auto pr-2">
+                    <AnimatePresence mode="wait" custom={direction}>
+                        <motion.div
+                            key={activeTab.id}
+                            custom={direction}
+                            variants={slideVariants}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            className="w-full min-h-full flex flex-col gap-4"
+                        >
+                            {activeTab.content}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+
+            </div>
         </div>
     );
 }
