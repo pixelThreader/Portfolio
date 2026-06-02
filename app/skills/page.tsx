@@ -221,17 +221,17 @@ export default function Skills() {
             </GlassyHeroSection>
 
             {/* Professional Experience — first thing a recruiter sees */}
-            <Section className="!py-8 md:!py-12">
+            <Section className="py-8! md:py-12!">
                 <SectionTitle id="experience">
                     Professional <span className="brand-gradient font-title ml-2">Experience</span>
                 </SectionTitle>
-                <SectionContent className="[&_h4]:!font-serif">
+                <SectionContent className="[&_h4]:font-serif!">
                     <Accordion data={customExperienceData} />
                 </SectionContent>
             </Section>
 
             {/* Core Competencies */}
-            <Section className="!py-8 md:!py-12">
+            <Section className="py-8! md:py-12!">
                 <SectionTitle id="competencies">
                     Core <span className="brand-gradient font-title ml-2">Competencies</span>
                 </SectionTitle>
@@ -260,7 +260,7 @@ export default function Skills() {
             </Section>
 
             {/* Technology Stack */}
-            <Section className="!py-8 md:!py-12">
+            <Section className="py-8! md:py-12!">
                 <SectionTitle id="stack">
                     Technology <span className="brand-gradient font-title ml-2">Stack</span>
                 </SectionTitle>
@@ -312,7 +312,7 @@ export default function Skills() {
             </Section>
 
             {/* What I Build — ProjectVerticalStacks */}
-            <Section className="!py-8 md:!py-12">
+            <Section className="py-8! md:py-12!">
                 <SectionTitle id="what-i-build">
                     What I <span className="brand-gradient font-title ml-2">Build</span>
                 </SectionTitle>
@@ -322,7 +322,7 @@ export default function Skills() {
             </Section>
 
             {/* Currently Exploring — ProjectVerticalStacks */}
-            <Section className="!py-8 md:!py-12">
+            <Section className="py-8! md:py-12!">
                 <SectionTitle id="exploring">
                     Currently <span className="brand-gradient font-title ml-2">Exploring</span>
                 </SectionTitle>
