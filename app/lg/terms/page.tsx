@@ -37,10 +37,10 @@ export default function TermsOfService() {
             </GlassyHeroSection>
 
             {/* Main Section */}
-            <Section className="z-10 !pt-0">
+            <Section className="z-10 pt-0!">
                 <SectionContent>
                     <div className="w-full text-left flex flex-col gap-12 font-serif text-[#ffd4dc]/90 text-[15px] sm:text-[16px] leading-relaxed">
-                        
+
                         <div className="flex flex-col gap-4">
                             <p className="text-[17px] text-[#ffd4dc]/75 italic">
                                 Last Updated: June 1, 2026
@@ -72,7 +72,7 @@ export default function TermsOfService() {
                                 2. Intellectual Property
                             </h2>
                             <p>
-                                The layout, custom CSS styling, design systems, illustrations, and self-authored showcase descriptions are the intellectual property of <span className="text-white font-semibold">pixelThreader</span>. 
+                                The layout, custom CSS styling, design systems, illustrations, and self-authored showcase descriptions are the intellectual property of <span className="text-white font-semibold">pixelThreader</span>.
                             </p>
                             <p>
                                 You are welcome to view, copy snippet concepts, or review open-source components linked to my public GitHub repositories under their respective open-source licenses. However, copying the full portfolio design and presentation layout to pass off as your own is prohibited.

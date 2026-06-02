@@ -36,23 +36,23 @@ export default function Credits() {
                         <div className="flex flex-col flex-1 gap-1">
                             <div className="flex items-baseline justify-between gap-3">
                                 <span className="text-[#f3f0ef] font-semibold text-[15px]">{item.name}</span>
-                                
+
                                 <div className="flex items-center gap-3 text-[11px] font-sans tracking-wide shrink-0">
                                     {item.website && (
-                                        <a 
-                                            href={item.website} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer" 
+                                        <a
+                                            href={item.website}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="text-[#ffd4dc]/40 hover:text-[#f3f0ef] transition-colors duration-200 underline decoration-white/10 hover:decoration-white underline-offset-4"
                                         >
                                             Web
                                         </a>
                                     )}
                                     {item.github && (
-                                        <a 
-                                            href={item.github} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer" 
+                                        <a
+                                            href={item.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="text-[#ffd4dc]/40 hover:text-[#f3f0ef] transition-colors duration-200 underline decoration-white/10 hover:decoration-white underline-offset-4"
                                         >
                                             GitHub
@@ -96,7 +96,7 @@ export default function Credits() {
             </GlassyHeroSection>
 
             {/* Introductory Description Section */}
-            <Section className="z-10 !pt-0 !pb-4">
+            <Section className="z-10 pt-0! pb-4!">
                 <SectionContent>
                     <div className="w-full flex flex-col gap-6 text-left">
                         <p className="font-serif text-[#ffd4dc]/90 text-[16px] sm:text-[17px] leading-relaxed max-w-2xl text-left">
@@ -109,7 +109,7 @@ export default function Credits() {
             {/* Horizontal Scrolling Carousel Section containing Category Panels */}
             <CarouselSection gap="pt-4 pb-8 sm:pt-6 sm:pb-12">
                 <CarouselContent>
-                    
+
                     {/* Core Tech Stack Panel */}
                     <CarouselItem className="w-[280px] sm:w-[360px] h-full flex">
                         <div className="relative w-full rounded-[28px] bg-linear-to-br from-[#a88b97]/80 via-[#6a4754]/40 to-[#a88b97]/80 p-[1.5px] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[34px] flex flex-col h-full">
@@ -162,7 +162,7 @@ export default function Credits() {
             </CarouselSection>
 
             {/* Special Appreciation Section */}
-            <Section className="z-10 !pt-0">
+            <Section className="z-10 pt-0!">
                 <SectionContent>
                     <div className="relative w-full rounded-[32px] bg-linear-to-br from-[#a88b97]/80 via-[#6a4754]/40 to-[#a88b97]/80 p-[1.5px] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[38px] flex flex-col mt-4">
                         <div className="rounded-[30.5px] border border-white/5 bg-[#471824]/95 p-8 md:p-10 backdrop-blur-xl sm:rounded-[36.5px] flex flex-col flex-1 h-full text-left relative overflow-hidden font-serif">

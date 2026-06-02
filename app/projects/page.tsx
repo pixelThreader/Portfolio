@@ -246,7 +246,7 @@ export default function Projects() {
                             <JournalCard className="w-full h-full">
                                 {/* Clickable Image Banner Link */}
                                 <Link href={`/projects/${project.id}`} className="block relative">
-                                    <JournalCardImage className="!h-[160px] sm:!h-[210px]">
+                                    <JournalCardImage className="h-[160px]! sm:h-[210px]!">
                                         <Image
                                             src={project.image}
                                             alt={project.title}
@@ -257,11 +257,11 @@ export default function Projects() {
                                     </JournalCardImage>
                                 </Link>
 
-                                <JournalCardContent className="!pb-0">
+                                <JournalCardContent className="pb-0!">
                                     {/* Clickable Title & Description Link */}
                                     <Link href={`/projects/${project.id}`} className="block group/link">
                                         <JournalCardHeader>
-                                            <JournalCardTitle className="!text-[18px] sm:!text-[20px] transition-colors duration-300 group-hover/link:text-[#ffd4dc]">{project.title}</JournalCardTitle>
+                                            <JournalCardTitle className="text-[18px]! sm:text-[20px]! transition-colors duration-300 group-hover/link:text-[#ffd4dc]">{project.title}</JournalCardTitle>
                                         </JournalCardHeader>
 
                                         <JournalCardDescription>
@@ -270,19 +270,19 @@ export default function Projects() {
                                     </Link>
 
                                     {/* Footer with Independent links */}
-                                    <JournalCardFooter className="!pt-4 flex flex-col items-stretch gap-3">
+                                    <JournalCardFooter className="pt-4! flex flex-col items-stretch gap-3">
                                         <JournalCardMeta className="text-left">{project.tag}</JournalCardMeta>
-                                        <ButtonGroup size="sm" className="w-full !justify-start" gap="gap-2">
-                                            <CustomLink 
-                                                href={project.viewUrl} 
+                                        <ButtonGroup size="sm" className="w-full justify-start!" gap="gap-2">
+                                            <CustomLink
+                                                href={project.viewUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="flex-1 text-center"
                                             >
                                                 View
                                             </CustomLink>
-                                            <CustomLink 
-                                                href={project.githubUrl} 
+                                            <CustomLink
+                                                href={project.githubUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="flex-1 text-center"
@@ -309,7 +309,7 @@ export default function Projects() {
                             <JournalCard className="w-full h-full">
                                 {/* Clickable Image Banner Link */}
                                 <Link href={`/projects/${project.id}`} className="block relative">
-                                    <JournalCardImage className="!h-[160px] sm:!h-[210px]">
+                                    <JournalCardImage className="h-[160px]! sm:h-[210px]!">
                                         <Image
                                             src={project.image}
                                             alt={project.title}
@@ -320,11 +320,11 @@ export default function Projects() {
                                     </JournalCardImage>
                                 </Link>
 
-                                <JournalCardContent className="!pb-0">
+                                <JournalCardContent className="pb-0!">
                                     {/* Clickable Title & Description Link */}
                                     <Link href={`/projects/${project.id}`} className="block group/link">
                                         <JournalCardHeader>
-                                            <JournalCardTitle className="!text-[18px] sm:!text-[20px] transition-colors duration-300 group-hover/link:text-[#ffd4dc]">{project.title}</JournalCardTitle>
+                                            <JournalCardTitle className="text-[18px]! sm:text-[20px]! transition-colors duration-300 group-hover/link:text-[#ffd4dc]">{project.title}</JournalCardTitle>
                                         </JournalCardHeader>
 
                                         <JournalCardDescription>
@@ -333,19 +333,19 @@ export default function Projects() {
                                     </Link>
 
                                     {/* Footer with Independent links */}
-                                    <JournalCardFooter className="!pt-4 flex flex-col items-stretch gap-3">
+                                    <JournalCardFooter className="pt-4! flex flex-col items-stretch gap-3">
                                         <JournalCardMeta className="text-left">{project.tag}</JournalCardMeta>
-                                        <ButtonGroup size="sm" className="w-full !justify-start" gap="gap-2">
-                                            <CustomLink 
-                                                href={project.viewUrl} 
+                                        <ButtonGroup size="sm" className="w-full justify-start!" gap="gap-2">
+                                            <CustomLink
+                                                href={project.viewUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="flex-1 text-center"
                                             >
                                                 View
                                             </CustomLink>
-                                            <CustomLink 
-                                                href={project.githubUrl} 
+                                            <CustomLink
+                                                href={project.githubUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="flex-1 text-center"
@@ -372,7 +372,7 @@ export default function Projects() {
                             <JournalCard className="w-full h-full">
                                 {/* Clickable Image Banner Link */}
                                 <Link href={`/projects/${project.id}`} className="block relative">
-                                    <JournalCardImage className="!h-[160px] sm:!h-[210px]">
+                                    <JournalCardImage className="h-[160px]! sm:h-[210px]!">
                                         <Image
                                             src={project.image}
                                             alt={project.title}
@@ -383,11 +383,11 @@ export default function Projects() {
                                     </JournalCardImage>
                                 </Link>
 
-                                <JournalCardContent className="!pb-0">
+                                <JournalCardContent className="pb-0!">
                                     {/* Clickable Title & Description Link */}
                                     <Link href={`/projects/${project.id}`} className="block group/link">
                                         <JournalCardHeader>
-                                            <JournalCardTitle className="!text-[18px] sm:!text-[20px] transition-colors duration-300 group-hover/link:text-[#ffd4dc]">{project.title}</JournalCardTitle>
+                                            <JournalCardTitle className="text-[18px]! sm:text-[20px]! transition-colors duration-300 group-hover/link:text-[#ffd4dc]">{project.title}</JournalCardTitle>
                                         </JournalCardHeader>
 
                                         <JournalCardDescription>
@@ -396,19 +396,19 @@ export default function Projects() {
                                     </Link>
 
                                     {/* Footer with Independent links */}
-                                    <JournalCardFooter className="!pt-4 flex flex-col items-stretch gap-3">
+                                    <JournalCardFooter className="pt-4! flex flex-col items-stretch gap-3">
                                         <JournalCardMeta className="text-left">{project.tag}</JournalCardMeta>
-                                        <ButtonGroup size="sm" className="w-full !justify-start" gap="gap-2">
-                                            <CustomLink 
-                                                href={project.viewUrl} 
+                                        <ButtonGroup size="sm" className="w-full justify-start!" gap="gap-2">
+                                            <CustomLink
+                                                href={project.viewUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="flex-1 text-center"
                                             >
                                                 View
                                             </CustomLink>
-                                            <CustomLink 
-                                                href={project.githubUrl} 
+                                            <CustomLink
+                                                href={project.githubUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="flex-1 text-center"
