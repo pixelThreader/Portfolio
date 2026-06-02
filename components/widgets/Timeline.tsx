@@ -3,6 +3,7 @@
 import React from 'react';
 import { ButtonGroup, Link as CustomLink } from "./Button";
 import { BadgeGroup, Badge } from "./Badge";
+import Image from 'next/image';
 
 export interface TimelineItem {
     company_name: string;
@@ -80,7 +81,7 @@ export function Timeline({ data, className = "" }: TimelineProps) {
                                     {item.logo_url ? (
                                         <div className="w-6 h-6 rounded-full overflow-hidden border border-white/10 shrink-0 bg-[#3a141d] flex items-center justify-center">
                                             {(item.logo_url.startsWith('http') || item.logo_url.startsWith('/')) ? (
-                                                <img src={item.logo_url} alt={item.company_name} className="w-full h-full object-cover" />
+                                                <Image src={item.logo_url} alt={item.company_name} className="w-full h-full object-cover" />
                                             ) : (
                                                 <span className="text-[10px] font-title text-[#ffd4dc] font-bold leading-none">{item.logo_url}</span>
                                             )}

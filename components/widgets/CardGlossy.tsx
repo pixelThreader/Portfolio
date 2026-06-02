@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { BadgeGroup, Badge } from "./Badge";
 
 export function CardGlossy({ children, className = "" }: { children: React.ReactNode, className?: string }) {
   return (

@@ -45,7 +45,6 @@ import {
     ProjectAuthors,
     ProjectAuthor,
     AuthorName,
-    AuthorGitHubLink,
     LastCommit,
     LastCommitDate,
     LastCommitMessage,

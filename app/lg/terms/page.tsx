@@ -88,7 +88,7 @@ export default function TermsOfService() {
                                 3. Outbound Integrations & Code Disclaimer
                             </h2>
                             <p>
-                                Outbound links to external apps, demos, and source code repositories are provided solely for evaluation and showcase. These external items and linked systems are provided "as-is" and "as-available" without any direct commercial guarantees or operational liabilities.
+                                Outbound links to external apps, demos, and source code repositories are provided solely for evaluation and showcase. These external items and linked systems are provided &ldquo;as-is&rdquo; and &ldquo;as-available&rdquo; without any direct commercial guarantees or operational liabilities.
                             </p>
                         </div>
 

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
-import { BadgeGroup, Badge } from "@/components/widgets/Badge";
 import {
     Section,
     SectionTitle,

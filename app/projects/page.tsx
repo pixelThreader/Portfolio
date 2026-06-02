@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
-import { BadgeGroup, Badge } from "@/components/widgets/Badge";
 import { GlassyHeroSection } from "@/components/widgets/GlassyHeroSection";
 import {
     CarouselSection,

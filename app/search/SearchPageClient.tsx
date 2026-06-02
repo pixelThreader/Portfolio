@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useTransition } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Search, X, ChevronLeft, ChevronRight, CornerDownLeft, Sparkles, History, SearchCheck, ArrowRight } from "lucide-react";
+import { Search, X, ChevronLeft, ChevronRight, CornerDownLeft, History, SearchCheck, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Reuse existing widgets directly
@@ -20,8 +20,7 @@ import {
   JournalCardTitle,
   JournalCardDescription,
   JournalCardFooter,
-  JournalCardMeta,
-  JournalCardAction
+  JournalCardMeta
 } from "@/components/widgets/JournalCard";
 
 import { queryMockSearch, SearchResponse, SearchResult } from "@/lib/mockSearchData";

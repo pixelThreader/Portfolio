@@ -1,8 +1,5 @@
 "use client";
 
-import React from 'react';
-import { BadgeGroup, Badge } from './Badge';
-
 export interface AccordionItem {
     degree: string;
     institute: string;
@@ -24,7 +21,7 @@ export function Accordion({ data, className = "" }: AccordionProps) {
             {data.map((item, index) => {
                 const isLast = index === data.length - 1;
                 return (
-                    <div 
+                    <div
                         key={index}
                         className="w-full flex flex-col md:grid md:grid-cols-12 gap-6 md:gap-8 items-start text-left pl-6 md:pl-8 relative pb-12 last:pb-0"
                     >
@@ -36,14 +33,14 @@ export function Accordion({ data, className = "" }: AccordionProps) {
                             ) : (
                                 <div className="w-[2px] h-3 shrink-0 bg-transparent" />
                             )}
-                            
+
                             {/* Static Glossy Timeline Dot */}
                             <div className="relative w-5 h-5 rounded-full bg-linear-to-br from-[#a88b97] via-[#6a4754]/40 to-[#a88b97] p-[1.5px] flex items-center justify-center z-10 shrink-0">
                                 <div className="w-full h-full rounded-full bg-[#471824] flex items-center justify-center">
                                     <div className="w-2 h-2 rounded-full bg-[#ffd4dc]" />
                                 </div>
                             </div>
-                            
+
                             {/* Lower connecting line */}
                             {!isLast ? (
                                 <div className="w-[2px] grow bg-linear-to-b from-[#a88b97]/30 via-white/10 to-[#a88b97]/30" />
@@ -91,7 +88,7 @@ export function Accordion({ data, className = "" }: AccordionProps) {
                                     </span>
                                     <div className="flex flex-wrap gap-1.5">
                                         {item.subjects.map((subj, sIdx) => (
-                                            <span 
+                                            <span
                                                 key={sIdx}
                                                 className="px-2.5 py-0.5 rounded-full text-[11px] bg-white/5 text-[#ffd4dc]/80 border border-white/5 font-normal select-none"
                                             >
