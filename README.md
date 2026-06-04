@@ -11,5 +11,4 @@
 𝕏 X (Twitter): https://x.com/_pixelThreader
 <br />
 
-<br />
 [⬇ Download Resume](https://pixelthreader.pro/cv/latest)
