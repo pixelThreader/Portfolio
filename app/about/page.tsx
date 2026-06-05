@@ -6,41 +6,19 @@ import {
     SectionContent
 } from "@/components/widgets/Section";
 import { GlassyHeroSection } from "@/components/widgets/GlassyHeroSection";
-import experienceData from './experience.json';
 import { Timeline } from "@/components/widgets/Timeline";
 import MagicBento from "@/components/external/MagicBento";
 import { Accordion } from "@/components/widgets/Accordion";
+import { cookies } from "next/headers";
+import { createClient } from "@/utils/supabase/server";
+import { getExperiences, getEducation, ExperienceRow, EducationRow } from "@/utils/api";
 import ProfileCard from "@/components/external/ProfileCard";
+import { ToastError } from "@/components/widgets/ToastError";
 
 export const metadata: Metadata = {
     title: "About • pixelThreader",
     description: "About pixelThreader: Full Stack Engineer crafting premium digital systems.",
 };
-
-const customEducationData = [
-    {
-        degree: 'Bachelor of Computer Applications (BCA)',
-        institute: 'Your University / Institute',
-        specialization: 'Software Engineering & Intelligent Systems',
-        duration: '2023 — 2026',
-        subjects: ['Data Structures & Algorithms', 'Database Systems', 'System Architecture', 'Web Engineering', 'AI Foundations'],
-        projects: [
-            'Developed an autonomous Model Context Protocol (MCP) agent framework for dynamic database discovery.',
-            'Designed a high-performance rendering pipeline for reactive web experiences yielding smooth 60fps animations.'
-        ]
-    },
-    {
-        degree: 'Higher Secondary & High School (Class X & XII)',
-        institute: 'KV Ramgarh Cantt (Kendriya Vidyalaya)',
-        specialization: 'Science Stream (PCM & Computer Science)',
-        duration: '2020 — 2022',
-        subjects: ['Physics', 'Chemistry', 'Mathematics', 'Computer Science', 'English'],
-        projects: [
-            'Completed secondary and senior secondary board qualifications with a focus on science and programming.',
-            'Developed strong foundational skills in object-oriented programming (OOP), logic design, and database basics.'
-        ]
-    }
-];
 
 const customBentoCards = [
     {
@@ -81,7 +59,34 @@ const customBentoCards = [
     }
 ];
 
-export default function About() {
+export default async function About() {
+    const cookieStore = await cookies();
+    const supabase = createClient(cookieStore);
+    const { data: dbExperiences, error: experiencesError } = await getExperiences(supabase);
+    const { data: dbEducation, error: educationError } = await getEducation(supabase);
+
+    const experiences = dbExperiences
+        ? dbExperiences.map((exp: ExperienceRow) => ({
+            company_name: exp.company_name,
+            role: exp.role,
+            start_time: exp.start_time,
+            end_time: exp.end_time,
+            certificate_url: exp.certificate_url || undefined,
+            experience_url: exp.company_url || undefined
+        }))
+        : [];
+
+    const education = dbEducation
+        ? dbEducation.map((edu: EducationRow) => ({
+            degree: edu.degree,
+            institute: edu.institute,
+            specialization: edu.specialization,
+            duration: edu.duration,
+            subjects: edu.subjects || [],
+            projects: edu.projects || []
+        }))
+        : [];
+
     return (
         <div className="w-full relative overflow-x-hidden bg-background min-h-screen">
 
@@ -183,7 +188,20 @@ export default function About() {
                     Professional <span className="brand-gradient font-title">Journey</span>
                 </SectionTitle>
                 <SectionContent>
-                    <Timeline data={experienceData} />
+                    {experiencesError ? (
+                        <div className="w-full py-12 text-center">
+                            <ToastError message={`Failed to fetch experiences: ${experiencesError.message}`} />
+                            <p className="font-serif text-[#ffd4dc]/40" style={{ fontFamily: 'Merriweather, serif' }}>
+                                Failed to fetch experiences (status: {experiencesError.code})
+                            </p>
+                        </div>
+                    ) : experiences.length > 0 ? (
+                        <Timeline data={experiences} />
+                    ) : (
+                        <div className="w-full py-12 text-center text-[#ffd4dc]/40 font-serif" style={{ fontFamily: 'Merriweather, serif' }}>
+                            No professional experience found.
+                        </div>
+                    )}
                 </SectionContent>
             </Section>
 
@@ -193,7 +211,20 @@ export default function About() {
                     Qualifications & <span className="brand-gradient font-title">Education</span>
                 </SectionTitle>
                 <SectionContent>
-                    <Accordion data={customEducationData} />
+                    {educationError ? (
+                        <div className="w-full py-12 text-center">
+                            <ToastError message={`Failed to fetch education: ${educationError.message}`} />
+                            <p className="font-serif text-[#ffd4dc]/40" style={{ fontFamily: 'Merriweather, serif' }}>
+                                Failed to fetch qualifications & education (status: {educationError.code})
+                            </p>
+                        </div>
+                    ) : education.length > 0 ? (
+                        <Accordion data={education} />
+                    ) : (
+                        <div className="w-full py-12 text-center text-[#ffd4dc]/40 font-serif" style={{ fontFamily: 'Merriweather, serif' }}>
+                            No qualifications found.
+                        </div>
+                    )}
                 </SectionContent>
             </Section>
 

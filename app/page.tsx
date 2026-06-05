@@ -55,8 +55,50 @@ import {
     ProjectLogo
 } from "@/components/widgets/Projects";
 import CurvedLoop from '@/components/external/CurvedLoop';
+import { cookies } from "next/headers";
+import { createClient } from "@/utils/supabase/server";
+import { getLatestUpdates, getJournalPosts, getProjects, getGitHubRepo } from "@/utils/api";
+import { ToastError } from "@/components/widgets/ToastError";
 
-export default function Home() {
+export default async function Home() {
+    const cookieStore = await cookies();
+    const supabase = createClient(cookieStore);
+
+    const { data: dbUpdates, error: updatesError } = await getLatestUpdates(supabase);
+    const { data: dbJournal, error: journalError } = await getJournalPosts(supabase);
+    const { data: dbProjects, error: projectsError } = await getProjects(supabase, 3);
+
+    // Resolve github API stats for database projects
+    const projectsWithGitHub = dbProjects ? await Promise.all(
+        dbProjects.map(async (project) => {
+            const gitHubData = await getGitHubRepo(project.github_url);
+            
+            // Format features list from JSONB schema
+            let parsedFeatures: string[] = [];
+            if (project.features) {
+                try {
+                    parsedFeatures = Array.isArray(project.features) 
+                        ? project.features.map((f: { label?: string; title?: string }) => f.label || f.title || (f as unknown as string))
+                        : Object.values(project.features as Record<string, { label?: string; title?: string }>).map((f) => f.label || f.title || (f as unknown as string));
+                } catch {
+                    parsedFeatures = [];
+                }
+            }
+
+            return {
+                ...project,
+                license: gitHubData?.license || "MIT License",
+                last_commit_date: gitHubData?.last_commit || "Recent",
+                last_commit_message: gitHubData?.last_commit_message || "Latest updates",
+                features: parsedFeatures
+            };
+        })
+    ) : null;
+
+    const updates = dbUpdates || [];
+    const journal = dbJournal || [];
+    const projects = projectsWithGitHub || [];
+
     return (
         <div className="w-full relative overflow-x-hidden bg-background">
 
@@ -82,7 +124,6 @@ export default function Home() {
                 {/* Main Content Grid */}
                 <div className="w-full px-8 md:px-16 lg:px-[12%] xl:px-[15%] flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between gap-12 py-12">
 
-                    {/* Left Column: Hero Copy */}
                     {/* Left Column: Hero Copy */}
                     <div className="flex flex-col items-start md:items-center lg:items-start text-left md:text-center lg:text-left w-full max-w-2xl md:mx-auto lg:mx-0">
 
@@ -143,97 +184,45 @@ export default function Home() {
                     Latest <Highlight>Updates</Highlight>
                 </CarouselSectionTitle>
                 <CarouselContent>
-                    {[
-                        {
-                            title: "The AI Renaissance",
-                            description: "Exploring how deep learning is reshaping modern software development tools and automated execution frameworks.",
-                            date: "July 12, 2026",
-                            badges: ["AI", "10 mins"]
-                        },
-                        {
-                            title: "Turbopack vs Webpack",
-                            description: "Why Next.js dev server memory problems exist and how Rust is fixing hot-module replacement speeds.",
-                            date: "July 15, 2026",
-                            badges: ["Next.js", "4 mins"]
-                        },
-                        {
-                            title: "Glossy CSS Guide",
-                            description: "How to design premium glassy borders and high fidelity translucent panels using pure modern Tailwind v4.",
-                            date: "July 18, 2026",
-                            badges: ["Design", "6 mins"]
-                        },
-                        {
-                            title: "Recruiting in LLM Era",
-                            description: "LLMs are changing tech screening. What junior developers actually need to build to stand out in recruitment.",
-                            date: "July 20, 2026",
-                            badges: ["Careers", "8 mins"]
-                        },
-                        {
-                            title: "Bun: Speeding Up TS",
-                            description: "Ditching Node for Bun in development environments: An honest speed and environment comparison.",
-                            date: "July 22, 2026",
-                            badges: ["Runtime", "5 mins"]
-                        },
-                        {
-                            title: "Postgres Optimization",
-                            description: "How to optimize complex queries and indexing strategies for heavy relational production workloads.",
-                            date: "July 25, 2026",
-                            badges: ["Database", "12 mins"]
-                        },
-                        {
-                            title: "Framer Motion Physics",
-                            description: "Adding realistic inertia and drag animations to horizontal snap scroll carousels for premium feel.",
-                            date: "July 28, 2026",
-                            badges: ["Frontend", "7 mins"]
-                        },
-                        {
-                            title: "Agentic Loops",
-                            description: "Building autonomous coding loops that actually solve issues without getting trapped in infinite runtime cycles.",
-                            date: "Aug 02, 2026",
-                            badges: ["AI", "15 mins"]
-                        },
-                        {
-                            title: "Tailwind v4 Deep Dive",
-                            description: "Testing the brand new linear-to-br utilities and CSS variables theme engine on production builds.",
-                            date: "Aug 05, 2026",
-                            badges: ["Tailwind", "5 mins"]
-                        },
-                        {
-                            title: "Building in Public",
-                            description: "Why shipping incomplete concepts yields better design feedback than launching extremely polished MVPs.",
-                            date: "Aug 10, 2026",
-                            badges: ["Mindset", "4 mins"]
-                        },
-                        {
-                            title: "Next.js Server Actions",
-                            description: "Securing backend endpoints directly inside React components without exposing extra routing controllers.",
-                            date: "Aug 15, 2026",
-                            badges: ["Security", "9 mins"]
-                        },
-                        {
-                            title: "Cyberpunk Palette Design",
-                            description: "The mathematical rules behind contrasting dark magenta gradients and deep ambient neon glow systems.",
-                            date: "Aug 20, 2026",
-                            badges: ["Art", "6 mins"]
-                        }
-                    ].map((card, idx) => (
-                        <CarouselItem key={idx} className="w-[320px] sm:w-[465px] h-full flex">
-                            <CardGlossy className="w-full h-full">
-                                <CardGlossyContent>
-                                    <CardGlossyTitle>{card.title}</CardGlossyTitle>
-                                    <CardGlossyDescription>{card.description}</CardGlossyDescription>
-                                </CardGlossyContent>
-                                <CardGlossyFooter gradientDivider={idx % 2 === 0}>
-                                    <BadgeGroup className="origin-left scale-[1]">
-                                        {card.badges.map((badge, bIdx) => (
-                                            <Badge key={bIdx}>{badge}</Badge>
-                                        ))}
-                                    </BadgeGroup>
-                                    <CardGlossyDate>{card.date}</CardGlossyDate>
-                                </CardGlossyFooter>
-                            </CardGlossy>
+                    {updatesError ? (
+                        <CarouselItem className="w-full flex justify-center items-center py-12">
+                            <ToastError message={`Failed to fetch updates: ${updatesError.message}`} />
+                            <p className="font-serif text-[#ffd4dc]/40 text-center" style={{ fontFamily: 'Merriweather, serif' }}>
+                                Failed to fetch updates (status: {updatesError.code})
+                            </p>
                         </CarouselItem>
-                    ))}
+                    ) : updates.length > 0 ? (
+                        updates.map((card, idx) => {
+                            const badgesToRender = [...(card.badges || [])];
+                            if (card.read_time) {
+                                badgesToRender.push(card.read_time);
+                            }
+                            return (
+                                <CarouselItem key={idx} className="w-[320px] sm:w-[465px] h-full flex">
+                                    <CardGlossy className="w-full h-full">
+                                        <CardGlossyContent>
+                                            <CardGlossyTitle>{card.title}</CardGlossyTitle>
+                                            <CardGlossyDescription>{card.description}</CardGlossyDescription>
+                                        </CardGlossyContent>
+                                        <CardGlossyFooter gradientDivider={idx % 2 === 0}>
+                                            <BadgeGroup className="origin-left scale-[1]">
+                                                {badgesToRender.map((badge, bIdx) => (
+                                                    <Badge key={bIdx}>{badge}</Badge>
+                                                ))}
+                                            </BadgeGroup>
+                                            <CardGlossyDate>{card.date}</CardGlossyDate>
+                                        </CardGlossyFooter>
+                                    </CardGlossy>
+                                </CarouselItem>
+                            );
+                        })
+                    ) : (
+                        <CarouselItem className="w-full flex justify-center items-center py-12">
+                            <p className="font-serif text-[#ffd4dc]/40 text-center" style={{ fontFamily: 'Merriweather, serif' }}>
+                                No updates found.
+                            </p>
+                        </CarouselItem>
+                    )}
                 </CarouselContent>
             </CarouselSection>
 
@@ -243,30 +232,60 @@ export default function Home() {
                     Blogs & <Highlight>Journal</Highlight>
                 </CarouselSectionTitle>
                 <CarouselContent>
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((idx) => (
-                        <CarouselItem key={idx} className="w-[300px] sm:w-[390px] h-full flex">
-                            <JournalCard className="w-full h-full">
-                                <JournalCardImage />
-                                <JournalCardContent>
-                                    <JournalCardHeader>
-                                        <JournalCardTitle>Architectural Scaling #{idx}</JournalCardTitle>
-                                        <BadgeGroup className="shrink-0 pt-1">
-                                            <Badge>5 mins</Badge>
-                                        </BadgeGroup>
-                                    </JournalCardHeader>
-
-                                    <JournalCardDescription>
-                                        Exploring modern resilient system design patterns. This is a placeholder insight focusing on highly available infrastructure and deep learning pipelines.
-                                    </JournalCardDescription>
-
-                                    <JournalCardFooter>
-                                        <JournalCardMeta>Sept 12, 2026 | System Design</JournalCardMeta>
-                                        <JournalCardAction />
-                                    </JournalCardFooter>
-                                </JournalCardContent>
-                            </JournalCard>
+                    {journalError ? (
+                        <CarouselItem className="w-full flex justify-center items-center py-12">
+                            <ToastError message={`Failed to fetch journal: ${journalError.message}`} />
+                            <p className="font-serif text-[#ffd4dc]/40 text-center" style={{ fontFamily: 'Merriweather, serif' }}>
+                                Failed to fetch journal posts (status: {journalError.code})
+                            </p>
                         </CarouselItem>
-                    ))}
+                    ) : journal.length > 0 ? (
+                        journal.map((post, idx) => (
+                            <CarouselItem key={post.id || idx} className="w-[300px] sm:w-[390px] h-full flex">
+                                <JournalCard className="w-full h-full">
+                                    <JournalCardImage>
+                                        {post.banner_image_url && (
+                                            <Image
+                                                src={post.banner_image_url}
+                                                alt={post.title}
+                                                fill
+                                                sizes="300px"
+                                                className="object-cover"
+                                            />
+                                        )}
+                                    </JournalCardImage>
+                                    <JournalCardContent>
+                                        <JournalCardHeader>
+                                            <JournalCardTitle>{post.title}</JournalCardTitle>
+                                            {post.read_time && (
+                                                <BadgeGroup className="shrink-0 pt-1">
+                                                    <Badge>{post.read_time}</Badge>
+                                                </BadgeGroup>
+                                            )}
+                                        </JournalCardHeader>
+
+                                        <JournalCardDescription>
+                                            {post.description}
+                                        </JournalCardDescription>
+
+                                        <JournalCardFooter>
+                                            <JournalCardMeta>
+                                                {post.date || ('created_at' in post && post.created_at ? new Date(post.created_at).toLocaleDateString() : "")}
+                                                {post.category ? ` | ${post.category}` : ""}
+                                            </JournalCardMeta>
+                                            <JournalCardAction />
+                                        </JournalCardFooter>
+                                    </JournalCardContent>
+                                </JournalCard>
+                            </CarouselItem>
+                        ))
+                    ) : (
+                        <CarouselItem className="w-full flex justify-center items-center py-12">
+                            <p className="font-serif text-[#ffd4dc]/40 text-center" style={{ fontFamily: 'Merriweather, serif' }}>
+                                No journal posts found.
+                            </p>
+                        </CarouselItem>
+                    )}
                 </CarouselContent>
             </CarouselSection>
 
@@ -276,189 +295,82 @@ export default function Home() {
                     Latest <Highlight>Projects</Highlight>
                 </SectionTitle>
                 <SectionContent>
-                    <Projects>
-                        <Project>
-                            <ProjectDetail>
-                                <ProjectHeader>
-                                    <ProjectDetailLogo>
-                                        <Image
-                                            src="/projects/inner_logo_dr_light.png"
-                                            alt="Deep Researcher Logo"
-                                            width={48}
-                                            height={48}
-                                            className="w-full h-full object-contain"
-                                        />
-                                    </ProjectDetailLogo>
-                                    <ProjectTitle>Deep Researcher v2</ProjectTitle>
-                                    <ProjectGitHubLink href="https://github.com/pixelthreader/deep-researcher" />
-                                </ProjectHeader>
+                    {projectsError ? (
+                        <div className="w-full text-center py-12">
+                            <ToastError message={`Failed to fetch projects: ${projectsError.message}`} />
+                            <p className="font-serif text-[#ffd4dc]/40" style={{ fontFamily: 'Merriweather, serif' }}>
+                                Failed to fetch projects (status: {projectsError.code})
+                            </p>
+                        </div>
+                    ) : projects.length > 0 ? (
+                        <Projects>
+                            {projects.map((project, idx) => (
+                                <Project key={project.id || idx}>
+                                    <ProjectDetail>
+                                        <ProjectHeader>
+                                            {project.logo_url && (
+                                                <ProjectDetailLogo>
+                                                    <Image
+                                                        src={project.logo_url}
+                                                        alt={`${project.title} Logo`}
+                                                        width={48}
+                                                        height={48}
+                                                        className="w-full h-full object-contain"
+                                                    />
+                                                </ProjectDetailLogo>
+                                            )}
+                                            <ProjectTitle>{project.title}</ProjectTitle>
+                                            {project.github_url && <ProjectGitHubLink href={project.github_url} />}
+                                        </ProjectHeader>
 
-                                <ProjectDesc>
-                                    Deep Researcher V2 is the successor to the previous version, an Open-Source agentic research harness for autonomous web research, reasoning, source analysis, multi-step planning, and structured AI-powered report generation.
-                                </ProjectDesc>
+                                        <ProjectDesc>
+                                            {project.description}
+                                        </ProjectDesc>
 
-                                <ProjectMeta>
-                                    <ProjectAuthors>
-                                        <ProjectAuthor>
-                                            <AuthorName href="https://github.com/pixelThreader">pixelThreader</AuthorName>
-                                        </ProjectAuthor>
-                                        <ProjectAuthor>
-                                            <AuthorName href="https://github.com/openagentx">OpenAgentX</AuthorName>
-                                        </ProjectAuthor>
-                                        <ProjectAuthor>
-                                            <AuthorName href="https://github.com/neurostack">NeuroStack</AuthorName>
-                                        </ProjectAuthor>
-                                    </ProjectAuthors>
+                                        <ProjectMeta>
+                                            <ProjectAuthors>
+                                                <ProjectAuthor>
+                                                    <AuthorName href="https://github.com/pixelThreader">pixelThreader</AuthorName>
+                                                </ProjectAuthor>
+                                            </ProjectAuthors>
 
-                                    <LastCommit>
-                                        <LastCommitDate>May 20, 2026</LastCommitDate>
-                                        <LastCommitMessage>commit #315: This Feature includes this th...</LastCommitMessage>
-                                    </LastCommit>
+                                            <LastCommit>
+                                                <LastCommitDate>{project.last_commit_date}</LastCommitDate>
+                                                <LastCommitMessage>{project.last_commit_message}</LastCommitMessage>
+                                            </LastCommit>
 
-                                    <ProjectLicense>MIT License</ProjectLicense>
+                                            <ProjectLicense>{project.license}</ProjectLicense>
 
-                                    <ProjectFeatures>
-                                        <ProjectFeature>Multi Agent System</ProjectFeature>
-                                        <ProjectFeature>MCP Tools</ProjectFeature>
-                                        <ProjectFeature>Multi-Step Reasoning</ProjectFeature>
-                                    </ProjectFeatures>
-                                </ProjectMeta>
+                                            {project.features && project.features.length > 0 && (
+                                                <ProjectFeatures>
+                                                    {project.features.map((feat: string, fIdx: number) => (
+                                                        <ProjectFeature key={fIdx}>{feat}</ProjectFeature>
+                                                    ))}
+                                                </ProjectFeatures>
+                                            )}
+                                        </ProjectMeta>
 
-                                <ProjectUrl href="https://github.com/pixelthreader/deep-researcher" />
-                            </ProjectDetail>
+                                        {project.view_url && <ProjectUrl href={project.view_url} />}
+                                    </ProjectDetail>
 
-                            <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={0.5}>
-                                <Image
-                                    src="/projects/deep_researcher.png"
-                                    alt="Deep Researcher v2 Preview"
-                                    width={520}
-                                    height={520}
-                                />
-                            </ProjectLogo>
-                        </Project>
-
-                        {/* Replica 2 */}
-                        <Project>
-                            <ProjectDetail>
-                                <ProjectHeader>
-                                    <ProjectDetailLogo>
-                                        <Image
-                                            src="/projects/inner_logo_dr_light.png"
-                                            alt="Deep Researcher Logo"
-                                            width={48}
-                                            height={48}
-                                            className="w-full h-full object-contain"
-                                        />
-                                    </ProjectDetailLogo>
-                                    <ProjectTitle>Deep Researcher v2 (Replica)</ProjectTitle>
-                                    <ProjectGitHubLink href="https://github.com/pixelthreader/deep-researcher" />
-                                </ProjectHeader>
-
-                                <ProjectDesc>
-                                    Deep Researcher V2 is the successor to the previous version, an Open-Source agentic research harness for autonomous web research, reasoning, source analysis, multi-step planning, and structured AI-powered report generation.
-                                </ProjectDesc>
-
-                                <ProjectMeta>
-                                    <ProjectAuthors>
-                                        <ProjectAuthor>
-                                            <AuthorName href="https://github.com/pixelThreader">pixelThreader</AuthorName>
-                                        </ProjectAuthor>
-                                        <ProjectAuthor>
-                                            <AuthorName href="https://github.com/openagentx">OpenAgentX</AuthorName>
-                                        </ProjectAuthor>
-                                        <ProjectAuthor>
-                                            <AuthorName href="https://github.com/neurostack">NeuroStack</AuthorName>
-                                        </ProjectAuthor>
-                                    </ProjectAuthors>
-
-                                    <LastCommit>
-                                        <LastCommitDate>May 20, 2026</LastCommitDate>
-                                        <LastCommitMessage>commit #315: This Feature includes this th...</LastCommitMessage>
-                                    </LastCommit>
-
-                                    <ProjectLicense>MIT License</ProjectLicense>
-
-                                    <ProjectFeatures>
-                                        <ProjectFeature>Multi Agent System</ProjectFeature>
-                                        <ProjectFeature>MCP Tools</ProjectFeature>
-                                        <ProjectFeature>Multi-Step Reasoning</ProjectFeature>
-                                    </ProjectFeatures>
-                                </ProjectMeta>
-
-                                <ProjectUrl href="https://github.com/pixelthreader/deep-researcher" />
-                            </ProjectDetail>
-
-                            <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={0.5}>
-                                <Image
-                                    src="/projects/deep_researcher.png"
-                                    alt="Deep Researcher v2 Preview"
-                                    width={520}
-                                    height={520}
-                                />
-                            </ProjectLogo>
-                        </Project>
-
-                        {/* Replica 3 */}
-                        <Project>
-                            <ProjectDetail>
-                                <ProjectHeader>
-                                    <ProjectDetailLogo>
-                                        <Image
-                                            src="/projects/inner_logo_dr_light.png"
-                                            alt="Deep Researcher Logo"
-                                            width={48}
-                                            height={48}
-                                            className="w-full h-full object-contain"
-                                        />
-                                    </ProjectDetailLogo>
-                                    <ProjectTitle>Deep Researcher v2 (Replica 2)</ProjectTitle>
-                                    <ProjectGitHubLink href="https://github.com/pixelthreader/deep-researcher" />
-                                </ProjectHeader>
-
-                                <ProjectDesc>
-                                    Deep Researcher V2 is the successor to the previous version, an Open-Source agentic research harness for autonomous web research, reasoning, source analysis, multi-step planning, and structured AI-powered report generation.
-                                </ProjectDesc>
-
-                                <ProjectMeta>
-                                    <ProjectAuthors>
-                                        <ProjectAuthor>
-                                            <AuthorName href="https://github.com/pixelThreader">pixelThreader</AuthorName>
-                                        </ProjectAuthor>
-                                        <ProjectAuthor>
-                                            <AuthorName href="https://github.com/openagentx">OpenAgentX</AuthorName>
-                                        </ProjectAuthor>
-                                        <ProjectAuthor>
-                                            <AuthorName href="https://github.com/neurostack">NeuroStack</AuthorName>
-                                        </ProjectAuthor>
-                                    </ProjectAuthors>
-
-                                    <LastCommit>
-                                        <LastCommitDate>May 20, 2026</LastCommitDate>
-                                        <LastCommitMessage>commit #315: This Feature includes this th...</LastCommitMessage>
-                                    </LastCommit>
-
-                                    <ProjectLicense>MIT License</ProjectLicense>
-
-                                    <ProjectFeatures>
-                                        <ProjectFeature>Multi Agent System</ProjectFeature>
-                                        <ProjectFeature>MCP Tools</ProjectFeature>
-                                        <ProjectFeature>Multi-Step Reasoning</ProjectFeature>
-                                    </ProjectFeatures>
-                                </ProjectMeta>
-
-                                <ProjectUrl href="https://github.com/pixelthreader/deep-researcher" />
-                            </ProjectDetail>
-
-                            <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={0.5}>
-                                <Image
-                                    src="/projects/deep_researcher.png"
-                                    alt="Deep Researcher v2 Preview"
-                                    width={520}
-                                    height={520}
-                                />
-                            </ProjectLogo>
-                        </Project>
-                    </Projects>
+                                    {project.banner_image_url && (
+                                        <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={0.5}>
+                                            <Image
+                                                src={project.banner_image_url}
+                                                alt={`${project.title} Preview`}
+                                                width={520}
+                                                height={520}
+                                            />
+                                        </ProjectLogo>
+                                    )}
+                                </Project>
+                            ))}
+                        </Projects>
+                    ) : (
+                        <div className="w-full text-center py-12 text-[#ffd4dc]/40 font-serif" style={{ fontFamily: 'Merriweather, serif' }}>
+                            No projects found.
+                        </div>
+                    )}
                 </SectionContent>
             </Section>
 
