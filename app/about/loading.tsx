@@ -1,24 +1,10 @@
-import type { Metadata } from "next";
-import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
-import {
-    Section,
-    SectionTitle,
-    SectionContent
-} from "@/components/widgets/Section";
-import { GlassyHeroSection } from "@/components/widgets/GlassyHeroSection";
-import { Timeline } from "@/components/widgets/Timeline";
-import MagicBento from "@/components/external/MagicBento";
-import { Accordion } from "@/components/widgets/Accordion";
-import { cookies } from "next/headers";
-import { createClient } from "@/utils/supabase/server";
-import { getExperiences, getEducation, ExperienceRow, EducationRow } from "@/utils/api";
-import ProfileCard from "@/components/external/ProfileCard";
-import { ToastError } from "@/components/widgets/ToastError";
-
-export const metadata: Metadata = {
-    title: "About • pixelThreader",
-    description: "About pixelThreader: Full Stack Engineer crafting premium digital systems.",
-};
+import React from "react"
+import { GlassyHeroSection } from "@/components/widgets/GlassyHeroSection"
+import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button"
+import { Section, SectionTitle, SectionContent } from "@/components/widgets/Section"
+import ProfileCard from "@/components/external/ProfileCard"
+import MagicBento from "@/components/external/MagicBento"
+import { TimelineSkeleton, AccordionSkeleton } from "@/components/ui/skeleton"
 
 const customBentoCards = [
     {
@@ -57,39 +43,11 @@ const customBentoCards = [
         description: 'Achieving sub-millisecond edge render speeds, bundling optimizations, and millisecond database lookups.',
         label: 'Velocity'
     }
-];
+]
 
-export default async function About() {
-    const cookieStore = await cookies();
-    const supabase = createClient(cookieStore);
-    const { data: dbExperiences, error: experiencesError } = await getExperiences(supabase);
-    const { data: dbEducation, error: educationError } = await getEducation(supabase);
-
-    const experiences = dbExperiences
-        ? dbExperiences.map((exp: ExperienceRow) => ({
-            company_name: exp.company_name,
-            role: exp.role,
-            start_time: exp.start_time,
-            end_time: exp.end_time,
-            certificate_url: exp.certificate_url || undefined,
-            experience_url: exp.company_url || undefined
-        }))
-        : [];
-
-    const education = dbEducation
-        ? dbEducation.map((edu: EducationRow) => ({
-            degree: edu.degree,
-            institute: edu.institute,
-            specialization: edu.specialization,
-            duration: edu.duration,
-            subjects: edu.subjects || [],
-            projects: edu.projects || []
-        }))
-        : [];
-
+export default function AboutLoading() {
     return (
         <div className="w-full relative overflow-x-hidden bg-background min-h-screen">
-
             {/* Massive Background Flowers */}
             <div className="fixed top-0 left-0 -translate-x-[50%] -translate-y-1/2 pointer-events-none z-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -188,20 +146,7 @@ export default async function About() {
                     Professional <span className="brand-gradient font-title">Journey</span>
                 </SectionTitle>
                 <SectionContent>
-                    {experiencesError ? (
-                        <div className="w-full py-12 text-center">
-                            <ToastError message={`Failed to fetch experiences: ${experiencesError.message}`} />
-                            <p className="font-serif text-[#ffd4dc]/40" style={{ fontFamily: 'Merriweather, serif' }}>
-                                Failed to fetch experiences (status: {experiencesError.code})
-                            </p>
-                        </div>
-                    ) : experiences.length > 0 ? (
-                        <Timeline data={experiences} />
-                    ) : (
-                        <div className="w-full py-12 text-center text-[#ffd4dc]/40 font-serif" style={{ fontFamily: 'Merriweather, serif' }}>
-                            No professional experience found.
-                        </div>
-                    )}
+                    <TimelineSkeleton count={3} />
                 </SectionContent>
             </Section>
 
@@ -211,23 +156,9 @@ export default async function About() {
                     Qualifications & <span className="brand-gradient font-title">Education</span>
                 </SectionTitle>
                 <SectionContent>
-                    {educationError ? (
-                        <div className="w-full py-12 text-center">
-                            <ToastError message={`Failed to fetch education: ${educationError.message}`} />
-                            <p className="font-serif text-[#ffd4dc]/40" style={{ fontFamily: 'Merriweather, serif' }}>
-                                Failed to fetch qualifications & education (status: {educationError.code})
-                            </p>
-                        </div>
-                    ) : education.length > 0 ? (
-                        <Accordion data={education} />
-                    ) : (
-                        <div className="w-full py-12 text-center text-[#ffd4dc]/40 font-serif" style={{ fontFamily: 'Merriweather, serif' }}>
-                            No qualifications found.
-                        </div>
-                    )}
+                    <AccordionSkeleton count={2} />
                 </SectionContent>
             </Section>
-
         </div>
-    );
+    )
 }
