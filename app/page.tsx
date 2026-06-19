@@ -72,12 +72,12 @@ export default async function Home() {
     const projectsWithGitHub = dbProjects ? await Promise.all(
         dbProjects.map(async (project) => {
             const gitHubData = await getGitHubRepo(project.github_url);
-            
+
             // Format features list from JSONB schema
             let parsedFeatures: string[] = [];
             if (project.features) {
                 try {
-                    parsedFeatures = Array.isArray(project.features) 
+                    parsedFeatures = Array.isArray(project.features)
                         ? project.features.map((f: { label?: string; title?: string }) => f.label || f.title || (f as unknown as string))
                         : Object.values(project.features as Record<string, { label?: string; title?: string }>).map((f) => f.label || f.title || (f as unknown as string));
                 } catch {
@@ -353,10 +353,10 @@ export default async function Home() {
                                         {project.view_url && <ProjectUrl href={project.view_url} />}
                                     </ProjectDetail>
 
-                                    {project.banner_image_url && (
+                                    {project.logo_url && (
                                         <ProjectLogo className="w-[220px] sm:w-[280px] lg:w-[340px]" topBlur={0} middleBlur={20} bottomBlur={40} blurOpacity={0.5}>
                                             <Image
-                                                src={project.banner_image_url}
+                                                src={project.logo_url}
                                                 alt={`${project.title} Preview`}
                                                 width={520}
                                                 height={520}
