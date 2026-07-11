@@ -111,6 +111,8 @@ export function ButtonGroup({
 
                 const activeClass = isActive ? 'premium-btn-active' : 'premium-btn-inactive';
                 const hoverScaleClass = (scaleOnHover && !fullBrightness) ? 'hover:scale-[1.03] active:scale-95' : '';
+                const isFullWidth = child.props.className?.split(/\s+/).includes('w-full');
+                const innerWidthClass = isFullWidth ? 'w-full' : '';
 
                 // Intelligently clone the child to act as the premium outer element
                 // while nesting the illuminated borders and background mask
@@ -128,7 +130,7 @@ export function ButtonGroup({
 
                             {/* Inner High-Fidelity Mask Container */}
                             <span
-                                className={`relative flex items-center justify-center gap-1.5 ${config.padding} font-serif ${config.fontSize} leading-none tracking-wide transition-all duration-300 select-none ${roundedClass.inner} ${isActive
+                                className={`relative flex items-center justify-center gap-1.5 ${innerWidthClass} ${config.padding} font-serif ${config.fontSize} leading-none tracking-wide transition-all duration-300 select-none ${roundedClass.inner} ${isActive
                                         ? `bg-[#4e1c26]/95 ${fullBrightness ? '' : 'hover:bg-[#4e1c26]/80'} text-white`
                                         : 'bg-[#3a141d]/65 hover:bg-[#3a141d]/85 text-[#ffd4dc] group-hover:text-white'
                                     }`}
