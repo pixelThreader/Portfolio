@@ -13,6 +13,7 @@ export interface TimelineItem {
     certificate_url?: string;
     experience_url?: string;
     logo_url?: string;
+    company_logo_url?: string;
 }
 
 export interface TimelineProps {
@@ -27,6 +28,7 @@ export function Timeline({ data, className = "" }: TimelineProps) {
         <div className={`w-full relative pl-10 pr-4 md:px-0 ${className}`}>
             {data.map((item, index) => {
                 const isLast = index === data.length - 1;
+                const logo = item.logo_url || item.company_logo_url;
                 return (
                     <div 
                         key={index} 
@@ -78,12 +80,12 @@ export function Timeline({ data, className = "" }: TimelineProps) {
                                 
                                 {/* Company Logo + Name Container */}
                                 <div className="flex items-center gap-2 mt-2 select-none">
-                                    {item.logo_url ? (
+                                    {logo ? (
                                         <div className="w-6 h-6 rounded-full overflow-hidden border border-white/10 shrink-0 bg-[#3a141d] flex items-center justify-center">
-                                            {(item.logo_url.startsWith('http') || item.logo_url.startsWith('/')) ? (
-                                                <Image src={item.logo_url} alt={item.company_name} className="w-full h-full object-cover" />
+                                            {(logo.startsWith('http') || logo.startsWith('/')) ? (
+                                                <Image src={logo} alt={item.company_name} className="w-full h-full object-cover" />
                                             ) : (
-                                                <span className="text-[10px] font-title text-[#ffd4dc] font-bold leading-none">{item.logo_url}</span>
+                                                <span className="text-[10px] font-title text-[#ffd4dc] font-bold leading-none">{logo}</span>
                                             )}
                                         </div>
                                     ) : (

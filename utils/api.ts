@@ -37,6 +37,8 @@ export interface ExperienceRow {
     end_time: string;
     certificate_url: string | null;
     company_url: string | null;
+    company_logo_url?: string | null;
+    logo_url?: string | null;
 }
 
 export interface EducationRow {

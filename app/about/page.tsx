@@ -33,7 +33,8 @@ export default async function About() {
             start_time: exp.start_time,
             end_time: exp.end_time,
             certificate_url: exp.certificate_url || undefined,
-            experience_url: exp.company_url || undefined
+            experience_url: exp.company_url || undefined,
+            logo_url: exp.company_logo_url || exp.logo_url || undefined
         }))
         : [];
 
