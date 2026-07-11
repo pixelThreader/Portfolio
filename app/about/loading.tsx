@@ -3,53 +3,13 @@ import { GlassyHeroSection } from "@/components/widgets/GlassyHeroSection"
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button"
 import { Section, SectionTitle, SectionContent } from "@/components/widgets/Section"
 import ProfileCard from "@/components/external/ProfileCard"
-import MagicBento from "@/components/external/MagicBento"
 import { TimelineSkeleton, AccordionSkeleton } from "@/components/ui/skeleton"
-
-const customBentoCards = [
-    {
-        color: '#411F27',
-        title: 'AI Engineering',
-        description: 'Fine-tuning open-source models, building advanced RAG architectures, and deploying custom inference solutions at scale.',
-        label: 'Intelligence'
-    },
-    {
-        color: '#411F27',
-        title: 'Full-stack Development',
-        description: 'Developing robust Next.js frontends and lightning-fast APIs using modern architectures like React 19 and Bun.',
-        label: 'Ecosystem'
-    },
-    {
-        color: '#411F27',
-        title: 'Agentic Systems',
-        description: 'Orchestrating multi-agent systems, background loop execution engines, and Model Context Protocol (MCP) tool integrations.',
-        label: 'Autonomy'
-    },
-    {
-        color: '#411F27',
-        title: 'SaaS Architecture',
-        description: 'Designing highly reliable distributed systems, Redis caching topologies, and serverless background pipelines.',
-        label: 'Scale'
-    },
-    {
-        color: '#411F27',
-        title: 'UI/UX Engineering',
-        description: 'Crafting liquid-glass interfaces with mathematical grid systems, responsive typography, and micro-animations.',
-        label: 'Aesthetics'
-    },
-    {
-        color: '#411F27',
-        title: 'Performance Optimization',
-        description: 'Achieving sub-millisecond edge render speeds, bundling optimizations, and millisecond database lookups.',
-        label: 'Velocity'
-    }
-]
 
 export default function AboutLoading() {
     return (
         <div className="w-full relative overflow-x-hidden bg-background min-h-screen">
             {/* Massive Background Flowers */}
-            <div className="fixed top-0 left-0 -translate-x-[50%] -translate-y-1/2 pointer-events-none z-0">
+            <div className="fixed top-0 left-0 translate-x-[-50%] -translate-y-1/2 pointer-events-none z-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/flower_pattern.png"
@@ -114,31 +74,6 @@ export default function AboutLoading() {
                     />
                 </div>
             </div>
-
-            {/* What I Actually Do Section */}
-            <Section>
-                <SectionTitle id="what-i-do">
-                    What I <span className="brand-gradient font-title">Actually Do</span>
-                </SectionTitle>
-                <SectionContent>
-                    <div className="w-full">
-                        <MagicBento
-                            cards={customBentoCards}
-                            textAutoHide={true}
-                            enableStars={true}
-                            enableSpotlight={true}
-                            enableBorderGlow={true}
-                            enableTilt={false}
-                            enableMagnetism={false}
-                            clickEffect={true}
-                            spotlightRadius={400}
-                            particleCount={12}
-                            glowColor="65, 31, 39"
-                            disableAnimations={false}
-                        />
-                    </div>
-                </SectionContent>
-            </Section>
 
             {/* Professional Journey / Experience Section */}
             <Section>
