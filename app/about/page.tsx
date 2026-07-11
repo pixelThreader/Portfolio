@@ -11,7 +11,7 @@ import { Accordion } from "@/components/widgets/Accordion";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { getExperiences, getEducation, getActiveResumeUrl, ExperienceRow, EducationRow } from "@/utils/api";
-import ProfileCard from "@/components/external/ProfileCard";
+import ProfileSection from "@/components/widgets/ProfileSection";
 import { ToastError } from "@/components/widgets/ToastError";
 
 export const metadata: Metadata = {
@@ -104,7 +104,7 @@ export default async function About() {
                 </div>
 
                 <div className="md:col-span-4 flex justify-center items-center w-full">
-                    <ProfileCard
+                    <ProfileSection
                         avatarUrl="/Profile.png"
                         miniAvatarUrl="/brand/icons/pixelthreader-150x150.webp"
                         name="pixelThreader"
