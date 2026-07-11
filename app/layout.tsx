@@ -7,6 +7,9 @@ import Footer from "@/components/widgets/Footer";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { cookies } from "next/headers";
+import { createClient } from "@/utils/supabase/server";
+import { getActiveResumeUrl } from "@/utils/api";
 
 const merienda = Merienda({
     variable: "--font-merienda",
@@ -57,18 +60,22 @@ export const metadata: Metadata = {
     },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const cookieStore = await cookies();
+    const supabase = createClient(cookieStore);
+    const resumeUrl = await getActiveResumeUrl(supabase);
+
     return (
         <html lang="en" className="dark scroll-smooth">
             <body
                 className={`${merienda.variable} ${merriweather.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
             >
                 <TooltipProvider>
-                    <Header />
+                    <Header resumeUrl={resumeUrl || undefined} />
                     <main className="flex-1 w-full flex flex-col">
                         {children}
                     </main>

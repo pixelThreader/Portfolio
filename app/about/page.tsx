@@ -10,7 +10,7 @@ import { Timeline } from "@/components/widgets/Timeline";
 import { Accordion } from "@/components/widgets/Accordion";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
-import { getExperiences, getEducation, ExperienceRow, EducationRow } from "@/utils/api";
+import { getExperiences, getEducation, getActiveResumeUrl, ExperienceRow, EducationRow } from "@/utils/api";
 import ProfileCard from "@/components/external/ProfileCard";
 import { ToastError } from "@/components/widgets/ToastError";
 
@@ -24,6 +24,7 @@ export default async function About() {
     const supabase = createClient(cookieStore);
     const { data: dbExperiences, error: experiencesError } = await getExperiences(supabase);
     const { data: dbEducation, error: educationError } = await getEducation(supabase);
+    const resumeUrl = await getActiveResumeUrl(supabase);
 
     const experiences = dbExperiences
         ? dbExperiences.map((exp: ExperienceRow) => ({
@@ -87,7 +88,7 @@ export default async function About() {
                     </div>
                     <ButtonGroup>
                         <CustomLink href="/projects">View Projects</CustomLink>
-                        <CustomLink href="/resume.pdf" download="Piyush_Rana_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                        <CustomLink href={resumeUrl || "/resume.pdf"} download="Piyush_Rana_Resume.pdf" target="_blank" rel="noopener noreferrer">
                             <svg
                                 className="w-5 h-5 mr-2 shrink-0 stroke-[2.25]"
                                 fill="none"

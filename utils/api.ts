@@ -220,6 +220,22 @@ export async function getResumes(supabase: SupabaseClient): Promise<FetchResult<
     }
 }
 
+// 7b. Fetch the active resume URL
+export async function getActiveResumeUrl(supabase: SupabaseClient): Promise<string | null> {
+    try {
+        const { data, error } = await supabase
+            .from("resumes")
+            .select("file_url")
+            .eq("is_active", true)
+            .limit(1)
+            .maybeSingle();
+        if (error || !data) return null;
+        return data.file_url;
+    } catch {
+        return null;
+    }
+}
+
 // 8. Fetch Skills
 export async function getSkills(supabase: SupabaseClient): Promise<FetchResult<unknown[]>> {
     try {

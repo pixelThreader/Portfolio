@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { Search, Menu, X, Download } from "lucide-react";
 import { ButtonGroup, Link as CustomLink } from "@/components/widgets/Button";
 
-export default function Header() {
+export default function Header({ resumeUrl }: { resumeUrl?: string }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
@@ -109,7 +109,7 @@ export default function Header() {
                         {/* ButtonGroup for Resume and Search Button (Gap reduced mathematically by 50%, no hover scale, always full brightness) */}
                         <ButtonGroup size="sm" gap="gap-[3px] sm:gap-[6px]" fullBrightness={true}>
                             <CustomLink 
-                                href="/resume.pdf" 
+                                href={resumeUrl || "/resume.pdf"} 
                                 download 
                                 target="_blank" 
                                 rel="noopener noreferrer"
